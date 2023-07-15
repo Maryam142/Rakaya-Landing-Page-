@@ -33,7 +33,7 @@ a:hover {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #816D4A ;
+  background: #2C3640;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -96,7 +96,7 @@ a:hover {
 #header .logo img {
   padding: 0;
   margin: 0;
-  max-height: 40px;
+  max-height: 60px;
 }
 
 #main {
@@ -104,11 +104,8 @@ a:hover {
 }
 
 /*--------------------------------------------------------------
-# Navigation Menu
+# Desktop Navigation 
 --------------------------------------------------------------*/
-/**
-* Desktop Navigation 
-*/
 .navbar {
   padding: 0;
 }
@@ -151,10 +148,9 @@ a:hover {
   color: #C4AE7C;
 }
 
-
-/**
-* Mobile Navigation 
-*/
+/*--------------------------------------------------------------
+# Mobile Navigation  
+--------------------------------------------------------------*/
 .mobile-nav-toggle {
   color: #fff;
   font-size: 28px;
