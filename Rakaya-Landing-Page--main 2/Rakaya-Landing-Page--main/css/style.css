@@ -5,7 +5,6 @@
  *{
   font-family: 'Almarai', sans-serif;
   font-family: 'Cairo', sans-serif;
-  font-family: 'Rubik', sans-serif;
 } 
 body {
   font-family: "Open Sans", sans-serif;
@@ -33,7 +32,7 @@ a:hover {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #C4AE7C;
+  background: #2C3640;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -97,6 +96,7 @@ a:hover {
   padding: 0;
   margin: 0;
   max-height: 60px;
+  padding-left: 18px;
 }
 
 #main {
@@ -116,6 +116,7 @@ a:hover {
   display: flex;
   list-style: none;
   align-items: center;
+  padding-right: 18px;
 }
 
 .navbar li {
@@ -262,33 +263,45 @@ a:hover {
   position: relative;
 }
 
-#hero::after {
+/* #hero::after {
   content: "";
   position: absolute;
-  left: 50%;
+  left: 0%;
   top: 0;
-  width: 130%;
+  width: 200%;
   height: 95%;
   border-radius: 0 0 50% 50%;
-  background-image: url('https://up6.cc/2023/07/168923231946581.png');
+   background-image: url('https://up6.cc/2023/07/168923231946581.png');  
   transform: translateX(-50%) rotate(0deg);
+} */
+
+#hero .vedioback{
+  margin: 0%; padding: 0%; box-sizing: border-box;
+ position: absolute;
+ left: 0%; top: 0%; right: 0;
+ width: 100%;; height: 90%;
+  border-radius: 0 0 40% 40%; 
+ object-fit: cover;
+ z-index: -1; 
+ margin-left: -5%;
 }
 
-#hero::before {
+/* #hero::before {
   content: "";
   position: absolute;
   left: 50%;
   top: 0;
-  width: 130%;
+  width: 200%;
   height: 96%;
   background: #C4AE7C;
   opacity: 0.7;
   z-index: 0;
   border-radius: 0 0 50% 50%;
   transform: translateX(-50%) translateY(18px) rotate(2deg);
-}
+} */
 
 #hero .carousel-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -296,9 +309,12 @@ a:hover {
   text-align: center;
   bottom: 0;
   top: 0;
-  left: 0;
+  left: 0%;
   right: 0;
-}
+  width: 110%;
+  height: 100vh;
+  margin: 0; padding: 0;
+} 
 
 #hero h2 {
   color: #fff;
@@ -382,7 +398,7 @@ Section
 
 /* Values */
 .valuesicon{
-  font-size: 2rem; color:#ffffff;  padding: 0.5rem 1rem;
+  font-size: 2rem; color:#ffffff;  padding: 0.5rem 1.5rem; margin-bottom: 2rem;
   background-color:#C4AE7C; max-width: 4rem; border-radius: 1rem; 
 }
 
