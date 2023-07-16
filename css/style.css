@@ -296,7 +296,7 @@ margin: 0%; padding: 0%; box-sizing: border-box;
   background: #e9e5da;
   opacity: 0.7;
   z-index: 0;
-  border-radius: 0 0 40% 40%;
+  border-radius: 0 0 45% 50%;
   transform: translateX(-50%) translateY(18px) rotate(2deg);
 }
 
