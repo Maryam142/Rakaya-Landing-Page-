@@ -107,7 +107,7 @@ a:hover {
 # Desktop Navigation 
 --------------------------------------------------------------*/
 .navbar {
-  padding: 0;
+  padding: 10;
 }
 
 .navbar ul {
@@ -163,7 +163,7 @@ a:hover {
 
 @media (max-width: 991px) {
   .mobile-nav-toggle {
-    display: inline-block;
+    display:block;
    
   }
 
