@@ -107,7 +107,7 @@ a:hover {
 # Desktop Navigation 
 --------------------------------------------------------------*/
 .navbar {
-  padding: 10;
+  padding: 0;
 }
 
 .navbar ul {
@@ -119,9 +119,6 @@ a:hover {
   padding-right: 18px;
 }
 
-.navbar li {
-  position: relative;
-}
 
 .navbar a,
 .navbar a:focus {
@@ -366,6 +363,63 @@ Section
 }
 .area{
 	min-height: 150px;
+}
+/* contant */
+#contatti{
+ 
+  letter-spacing: 2px;
+  }
+#contatti a{
+  color: #fff;
+  text-decoration: none;
+}
+
+
+
+@media (max-width: 575.98px) {
+
+  #contatti{padding-bottom: 800px;}
+  #contatti .maps iframe{
+    width: 100%;
+    height: 450px;
+  }
+ }
+
+
+@media (min-width: 576px) {
+
+   #contatti{padding-bottom: 800px;}
+
+   #contatti .maps iframe{
+     width: 100%;
+     height: 450px;
+   }
+ }
+
+@media (min-width: 768px) {
+
+  #contatti{padding-bottom: 350px;}
+
+  #contatti .maps iframe{
+    width: 100%;
+    height: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  #contatti{padding-bottom: 200px;}
+
+   #contatti .maps iframe{
+     width: 100%;
+     height: 500px;
+   }
+}
+
+
+#author a{
+  color: #fff;
+  text-decoration: none;
+    
 }
 
 /* Values */
