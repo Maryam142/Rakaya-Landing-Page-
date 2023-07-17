@@ -220,7 +220,7 @@ a:hover {
   transition: 0.3s;
   text-align: center;
   padding: 25px;  
-}
+} 
 
 .navbar-mobile a,
 .navbar-mobile a:focus {
@@ -372,7 +372,6 @@ Gallary Section
 /*-----------------------------------
 # Values Section
 --------------------------------------------------------------*/
-
 .valuesicon{
   font-size: 2rem; color:#ffffff;  padding: 0.5rem 1.5rem; margin-bottom: 2rem;
   background-color:#C4AE7C; max-width: 4rem; border-radius: 1rem; 
@@ -387,6 +386,7 @@ Gallary Section
 /*-----------------------------------
 # Services Section
 --------------------------------------------------------------*/
+
 body{
   margin-top:20px;
   background:#eee;
