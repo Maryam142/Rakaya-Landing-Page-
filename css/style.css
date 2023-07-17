@@ -55,6 +55,22 @@ a:hover {
   opacity: 1;
 }
 
+/*** Spinner ***/
+#spinner {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .5s ease-out, visibility 0s linear .5s;
+  z-index: 99999;
+  
+}
+
+#spinner.show {
+  transition: opacity .5s ease-out, visibility 0s linear 0s;
+  visibility: visible;
+  opacity: 1;
+}
+
+
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -150,12 +166,13 @@ a:hover {
 # Mobile Navigation  
 --------------------------------------------------------------*/
 .mobile-nav-toggle {
-  color: #fff;
+  color: #C4AE7C;
   font-size: 28px;
   cursor: pointer;
   display: none;
   line-height: 0;
   transition: 0.5s;
+
 }
 
 @media (max-width: 991px) {
