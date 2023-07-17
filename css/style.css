@@ -183,7 +183,7 @@ a:hover {
 
   .navbar ul {
     display: none;
-    
+    list-style-type: none;
   }
 }
 
@@ -194,7 +194,7 @@ a:hover {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgb(196, 174, 124, 0.9);
+  background: rgb(238, 232, 218,0.9);
   transition: 0.3s;
   text-align: center
 }
@@ -206,12 +206,12 @@ a:hover {
 }
 
 .navbar-mobile ul {
-  display:inline-block;
+  display:block;
   position: absolute;
   top: 55px;
   right: 65px;
   left: 65px;
-  bottom: 80px;
+  bottom: 400px;
   background-color: #fff;
   transition: 0.3s;
   text-align: center;
