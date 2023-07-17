@@ -84,11 +84,11 @@ a:hover {
 
 #header.header-transparent {
   background: none;
-  background: #f3f3f3;
+  background: rgb(242, 242, 242);
 }
 
 #header.header-scrolled {
-  background: #f3f3f3;
+  background: rgb(243, 243, 243,0.9);
   height: 60px;
 }
 
@@ -350,13 +350,12 @@ Section
   width:640px;
   height:300px;
 }
-.section-b {
-  background-color: #816D4A;
-}
+
+/* animation grow */
 .grow { transition: all .2s ease-in-out; }
 .grow:hover { 
   transform: scale(1.1);
-	border: 2px solid rgba(0, 0, 0, 0.395);
+	border: 2px solid #f3f3f3;
 }
 /*contant*/
 
