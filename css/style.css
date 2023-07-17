@@ -217,9 +217,13 @@ a:hover {
   left: 65px;
   bottom: 400px;
   background-color: #fff;
+  height: max-content;
   transition: 0.3s;
   text-align: center;
-  padding: 25px;  
+  padding: 25px; 
+  text-align: center;
+  align-items: center;
+  border-radius: 10px ;
 } 
 
 .navbar-mobile a,
@@ -289,18 +293,19 @@ a:hover {
     margin: 0; padding: 0;
   } 
 
-#hero h2 {
+#hero h1 {
   color: #fff;
   margin-bottom: 30px;
   font-size: 48px;
   font-weight: 700;
 }
 
-#hero p {
-  width: 80%;
+#hero h2 {
+  /* width: 80%; */
   animation-delay: 0.4s;
-  margin: 0 auto 30px auto;
-  color: #fff;
+  /* margin: 0 auto 30px auto; */
+  color: #C4AE7C;
+  padding-right: 22px;
 }
 
 #hero .carousel-control-prev,
