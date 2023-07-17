@@ -61,6 +61,7 @@ a:hover {
   visibility: hidden;
   transition: opacity .5s ease-out, visibility 0s linear .5s;
   z-index: 99999;
+  color: #816D4A;
   
 }
 
@@ -113,6 +114,9 @@ a:hover {
   margin: 0;
   max-height: 60px;
   padding-left: 18px;
+  padding-bottom: 6px;
+  padding-top: 6px;
+
 }
 
 #main {
@@ -215,7 +219,7 @@ a:hover {
   background-color: #fff;
   transition: 0.3s;
   text-align: center;
-  
+  padding: 25px;  
 }
 
 .navbar-mobile a,
@@ -223,6 +227,9 @@ a:hover {
   padding: 10px 20px;
   font-size: 15px;
   color: #3E3E41;
+  margin-bottom: 10px;
+  align-items: center;
+
 }
 
 .navbar-mobile a:hover,
@@ -241,24 +248,12 @@ a:hover {
   position: relative;
 }
 
-/* #hero::after {
-  content: "";
-  position: absolute;
-  left: 0%;
-  top: 0;
-  width: 200%;
-  height: 95%;
-  border-radius: 0 0 50% 50%;
-   background-image: url('https://up6.cc/2023/07/168923231946581.png');  
-  transform: translateX(-50%) rotate(0deg);
-} */
-
 #hero .vedioback{
   margin: 0%; padding: 0%; box-sizing: border-box;
    position: absolute;
    left: 0%; top: 0%; right: 0;
    width: 100%;; height: 90%;
-   border-radius: 0 0 35% 35%; 
+   border-radius: 0 0 45% 45%; 
    object-fit: cover;
    z-index: -1; 
    margin-left: -5%;
@@ -271,7 +266,7 @@ a:hover {
     top: 0;
     width: 200%;
     height: 96%;
-    background: #e9e5da;
+    background: #b1a992;
     opacity: 0.7;
     z-index: 0;
     border-radius: 0 0 45% 50%;
@@ -343,22 +338,15 @@ a:hover {
   text-decoration: none;
 }
 
-/*-----------------------------------
-Section 
+/*--------------------------------------------------------------
+Gallary Section
 --------------------------------------------------------------*/
 .carousel-inner > .item > img {
   width:640px;
   height:300px;
 }
 
-/* animation grow */
-.grow { transition: all .2s ease-in-out; }
-.grow:hover { 
-  transform: scale(1.1);
-	border: 2px solid #f3f3f3;
-}
 /*contant*/
-
 .field{
 	width: 80%;
 	padding: 0.5rem 1rem;
@@ -380,72 +368,24 @@ Section
 .area{
 	min-height: 150px;
 }
-/* contant */
-#contatti{
- 
-  letter-spacing: 2px;
-  }
-#contatti a{
-  color: #fff;
-  text-decoration: none;
-}
 
+/*-----------------------------------
+# Values Section
+--------------------------------------------------------------*/
 
-
-@media (max-width: 575.98px) {
-
-  #contatti{padding-bottom: 800px;}
-  #contatti .maps iframe{
-    width: 100%;
-    height: 450px;
-  }
- }
-
-
-@media (min-width: 576px) {
-
-   #contatti{padding-bottom: 800px;}
-
-   #contatti .maps iframe{
-     width: 100%;
-     height: 450px;
-   }
- }
-
-@media (min-width: 768px) {
-
-  #contatti{padding-bottom: 350px;}
-
-  #contatti .maps iframe{
-    width: 100%;
-    height: 500px;
-  }
-}
-
-@media (min-width: 992px) {
-  #contatti{padding-bottom: 200px;}
-
-   #contatti .maps iframe{
-     width: 100%;
-     height: 500px;
-   }
-}
-
-
-#author a{
-  color: #fff;
-  text-decoration: none;
-    
-}
-
-/* Values */
 .valuesicon{
   font-size: 2rem; color:#ffffff;  padding: 0.5rem 1.5rem; margin-bottom: 2rem;
   background-color:#C4AE7C; max-width: 4rem; border-radius: 1rem; 
 }
+/* animation grow */
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { 
+  transform: scale(1.1);
+	border: 2px solid #f3f3f3;
+}
 
 /*-----------------------------------
-# Services
+# Services Section
 --------------------------------------------------------------*/
 body{
   margin-top:20px;
@@ -553,4 +493,58 @@ p, .p {
   margin-top:18px;
   color:#C4AE7C;
   font-size: 4rem;
+}
+
+
+/*-----------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+#contatti{
+  letter-spacing: 1px;
+  height: fit-content;
+}
+#contatti a{
+  color: #fff;
+  text-decoration: none;
+}
+@media (max-width: 575.98px) {
+
+  #contatti{padding-bottom: 800px;}
+  #contatti .maps iframe{
+    width: 100%;
+    height: 450px;
+  }
+ }
+
+@media (min-width: 576px) {
+  #contatti{padding-bottom: 800px;}
+
+  #contatti .maps iframe{
+     width: 100%;
+     height: 450px;
+  }
+ }
+
+@media (min-width: 768px) {
+
+  #contatti{padding-bottom: 350px;}
+
+  #contatti .maps iframe{
+    width: 100%;
+    height: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  #contatti{padding-bottom: 200px;}
+
+   #contatti .maps iframe{
+     width: 100%;
+     height: 300px;
+   }
+}
+
+#author a{
+  color: #fff;
+  text-decoration: none;    
 }
