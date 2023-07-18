@@ -213,11 +213,12 @@ a:hover {
   display:block;
   position: absolute;
   top: 55px;
-  right: 65px;
-  left: 65px;
+  right: 5px;
+  left: 5px;
   bottom: 400px;
   background-color: #fff;
   height: max-content;
+  width: 100%;
   transition: 0.3s;
   text-align: center;
   padding: 25px; 
