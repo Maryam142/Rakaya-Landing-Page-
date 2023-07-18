@@ -266,7 +266,7 @@ a:hover {
   #hero::before {
     content: "";
     position: absolute;
-    left: 50%;
+    left: 60%;
     top: 0;
     width: 200%;
     height: 96%;
@@ -280,18 +280,18 @@ a:hover {
   #hero .carousel-container {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: center; 
     align-items: center;
-    flex-direction: column;
     text-align: center;
     bottom: 0;
     top: 0;
     left: 0%;
     right: 0;
-    width: 110%;
+    width: 115%;
     height: 100vh;
     margin: 0; padding: 0;
   } 
+ 
 
 #hero h1 {
   color: #fff;
