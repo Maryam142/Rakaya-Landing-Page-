@@ -11,8 +11,9 @@ body {
   color: #444;
   padding: 0%;
   margin: 0%;
-  overflow-x: hidden
+  overflow-x: hidden;
 }
+ 
 
 a {
   color: #816D4A;
@@ -93,7 +94,7 @@ a:hover {
 
 #header.header-scrolled {
   background: rgb(243, 243, 243,0.9);
-  height: 60px;
+  height: 80px;
 }
 
 #header .logo h1 {
