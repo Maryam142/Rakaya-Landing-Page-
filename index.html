@@ -65,10 +65,10 @@
           <li><a href="#about" class="btn-get-started animate__animated animate__fadeInUp">عن ركايا</a></li>
           <li><a href="#services" class="btn-get-started animate__animated animate__fadeInUp">خدماتنا</a></li>
           <li><a href="#contact" class="btn-get-started animate__animated animate__fadeInUp me-2">للتواصل</a></li>
-          <li class=""><a href="logIn.html"
+          <li class="border-right border-secondary"><a href="logIn.html"
               class="bg-pigi px-2 py-2 ms-2 rounded animate__animated animate__fadeInUp text-light">تسجيل دخول</a></li>
           <li class="border-right border-secondary"><a href="singIn.html"
-              class="hover:bg-white border border-dark px-2 py-2 ms-2 rounded animate__animated animate__fadeInUp">تسجيل
+              class="hover:bg-white px-2 py-2 ms-2 rounded animate__animated animate__fadeInUp">تسجيل
               جديد</a></li>
         </ul>
         <i class="bi bi-list  mobile-nav-toggle me-5 mt-1"></i>
@@ -77,23 +77,31 @@
 
     </div>
   </header>
+  <div>
+    <div id="hero">
 
-  <!-- Hero -->
-  <section id="hero" class="d-flex justify-cntent-center align-items-center">
-    <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-      <div class="carousel-item active">
-        <div class="carousel-container">
-          <video src="img/vid1.mp4" class="vedioback" autoplay loop muted></video>
-          <div>
-            <h1 class="animate__animated animate__fadeInDown">ركايا</h1>
-            <h2 class="animate__animated animate__fadeInUp text-3xl mb-5 text-pigi"> الوجهة الأمثل لتطوير مشروعك
-              واستدامة نجاحه</h2>
-            <a href="" class="btn-get-started animate__animated animate__fadeInUp">إقرأ المزيد</a>
-          </div>
+
+      <div class="texture"></div>
+
+      <video loop muted autoplay preload="auto">
+        <source src="img/vid1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+
+
+
+      <div class="caption">
+        <div>
+          <h1 class="animate__animated animate__fadeInDown">ركايا</h1>
+          <h2 class="animate__animated animate__fadeInUp text-3xl mb-5 text-pigi"> الوجهة الأمثل لتطوير مشروعك
+            واستدامة نجاحه</h2>
+          <a href="" class="btn-get-started animate__animated animate__fadeInUp">إقرأ المزيد</a>
         </div>
       </div>
+
     </div>
-  </section>
+  </div>
+
 
   <!-- about -->
   <div class="" id="about">
@@ -466,7 +474,7 @@
                 <textarea class="form-control rounded-3 border-pigi text-end" rows="7"
                   placeholder="اكتب رسالتك هنا  "></textarea>
                 <center> <button class="btn bg-pigi rounded px-3 py-2 hover:bg-cohly text-light"
-                  type="submit">ارسال</button> 
+                    type="submit">ارسال</button>
                 </center>
                 <div data-aos="fade-up" data-aos-duration="3000">
                 </div>
@@ -555,6 +563,8 @@
   <script>AOS.init();</script>
   <script src="js/main.js"></script>
   <script src="js/spinner.js"></script>
+  <script src="js/object-fit-videos.js"></script>
+  <script src="js/app.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
