@@ -598,3 +598,14 @@ p, .p {
   color: #fff;
   text-decoration: none;    
 }
+
+/* Signup Error msg style */
+.error
+{
+  color: red;
+  size: 80%
+}
+.hidden
+{
+  display:none
+}
