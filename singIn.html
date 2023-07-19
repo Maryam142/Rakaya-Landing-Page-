@@ -96,14 +96,14 @@
                 <div class="col-md-6 mb-3">
                   <div class="form-outline">
                     <label class="form-label" for="form3Example1" >الاسم الاخير</label>
-                    <input type="text" id="form3Example1" class="form-control text-end" placeholder="ادخل الاسم الاخير "/>
+                    <input type="text" id="form3Example1" class="form-control text-end" required />
                     
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline ">
                     <label class="form-label " for="form3Example2" >الاسم الاول</label>
-                    <input type="text" id="form3Example2" class="form-control text-end" placeholder="ادخل الاسم الاول "/>
+                    <input type="text" id="form3Example2" class="form-control text-end" required />
                     
                   </div>
                 </div>
@@ -112,18 +112,18 @@
               <!-- Email input -->
               <div class="form-outline mb-4 text-end">
                 <label class="form-label text-end" for="form3Example3">الإيميل</label>
-                <input type="email" id="form3Example3" class="form-control text-end" placeholder="email@example.com" />
+                <input type="email" id="form3Example3" class="form-control text-end" required placeholder="email@example.com" />
                 
               </div>
   
               <!-- Password input -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example4">كلمة المرور</label>
-                <input type="password" id="form3Example4" class="form-control  text-end"  placeholder="••••••••"/>
+                <input type="password" id="form3Example4" class="form-control  text-end"  required placeholder="••••••••"/>
               </div>
               <!-- Password input2 -->
               <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example4" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمة المرور</label>
+                <label class="form-label" for="form3Example4" required placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمة المرور</label>
                 <input type="password" id="form3Example4" class="form-control  text-end" placeholder="••••••••"/>
               </div>
   
@@ -145,8 +145,8 @@
   
 
 <!-- Footer-->
-<footer class=" bg-ramadi">
-  <div class="container mx-auto flex flex-col flex-col-reverse md:flex-row text-light px-5 py-10 items-center justify-between space-y-3" >
+<footer class=" bg-ramadi fixed-bottom position-relative">
+  <div class="container sticky-bottom mx-auto flex flex-col flex-col-reverse md:flex-row text-light px-5 py-10 items-center justify-between space-y-3" >
     <div class="flex flex-col items-center justify-between space-y-2">
       <img src="img/minilogo.png" alt="logo"  style="height: 7rem; width: 6.5rem;">
       <div>

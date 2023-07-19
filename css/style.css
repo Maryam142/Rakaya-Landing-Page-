@@ -458,6 +458,7 @@ a.card {
   background-color: #fff;
   -webkit-box-shadow: 0 12px 20px 1px rgba(64,64,64,0.09);
   box-shadow: 0 12px 20px 1px rgba(64,64,64,0.09);
+  margin-bottom: 19px;
 }
 .card {
   position: relative;
@@ -566,6 +567,7 @@ p, .p {
      width: 100%;
      height: 450px;
   }
+  
  }
 
 @media (min-width: 768px) {
@@ -591,3 +593,4 @@ p, .p {
   color: #fff;
   text-decoration: none;    
 }
+
