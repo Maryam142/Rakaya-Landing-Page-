@@ -228,5 +228,4 @@
     new PureCounter();
   
   })()
-
-
+ 

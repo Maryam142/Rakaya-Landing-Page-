@@ -1,31 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>Rakaya Sign Up</title>
+  <link href="img/minilogo.png" rel="icon">
   <!-- animate -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="libraris\animate.css\animate.min.css" rel="stylesheet">
-
   <!-- font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@200;300;400;500;600;700;900;1000&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&display=swap"
     rel="stylesheet">
-
   <!--icon -->
-  <link href="img/minilogo.png" rel="icon">
-
   <link href="libraris/animate.css/animate.min.css" rel="stylesheet">
   <link href="libraris/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="libraris/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="libraris/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -37,9 +33,9 @@
       width="60px">
   </div>
   <!-- Spinner End -->
+  <!-- Navbar -->
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
-
       <div class="logo">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html">
@@ -57,18 +53,16 @@
           <li class="breadcrumb-item"><a href="logIn.html"
               class="bg-pigi px-3 py-2 ms-4 me-4 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">تسجيل
               دخول </a></li>
-
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
-
-
     </div>
   </header>
-  <!-- Section: Design Block -->
+
+  <!-- Background image -->
   <section>
-    <!-- Background image -->
-    <div class="p-5 bg-image" style="background-image: url('img/Sign_in_up.png'); height: 300px;">
+    <div class="p-5 bg-image"
+      style="background-image: url('img/Sign_in_up.png'); height: 300px; background-attachment: fixed;">
       <div class="text-center">
         <nav aria-label="breadcrumb text-light " style="float: left;">
           <ol class="breadcrumb text-light mt-5 text-xl" style="--bs-breadcrumb-divider-color:#C4AE7C;">
@@ -86,59 +80,87 @@
           <div class="col-lg-8">
             <h2 class="font-bold text-center text-3xl text-boni">انشاء حساب </h2>
             <i>
-              <p class="mb-5 font-light text-center text-2xl mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك
+              <p class="mb-5 font-light text-center text-xl mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك
                 </h2>
             </i>
-            <form class="text-end me-5 ms-5">
-              <!-- 2 column grid layout with text inputs for the first and last names -->
+            <form class="text-end me-5 ms-5 needs-validation" novalidate>
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <div class="form-outline">
-                    <label class="form-label" for="form3Example1">الاسم الاخير</label>
-                    <input type="text" id="form3Example1" class="form-control text-end"
-                      placeholder="ادخل الاسم الاخير " />
-
+                  <div class="form-outline ">
+                    <label class="form-label " for="lastName">الاسم الاخير</label>
+                    <input type="text" id="lastName" class="form-control text-end"
+                      placeholder="ادخل الاسم الاخير " required/>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline ">
-                    <label class="form-label " for="form3Example2">الاسم الاول</label>
-                    <input type="text" id="form3Example2" class="form-control text-end"
-                      placeholder="ادخل الاسم الاول " />
-
+                    <label class="form-label " for="firstName">الاسم الاول</label>
+                    <input type="text" id="firstName" class="form-control text-end"
+                      placeholder="ادخل الاسم الاول " required/>
+                      <small>error massage</small>
                   </div>
                 </div>
               </div>
-
               <!-- Email input -->
               <div class="form-outline mb-4 text-end">
-                <label class="form-label text-end" for="form3Example3">الإيميل</label>
-                <input type="email" id="form3Example3" class="form-control text-end" placeholder="email@example.com" />
-
+                <label class="form-label text-end" for="email">الإيميل</label>
+                <input type="email" id="email" class="form-control text-end" placeholder="email@example.com" required/>
+                <small>error massage</small>
               </div>
-
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example4">كلمة المرور</label>
-                <input type="password" id="form3Example4" class="form-control  text-end" placeholder="••••••••" />
+                <label class="form-label" for="password">كلمة المرور</label>
+                <input type="password" id="password" class="form-control  text-end" placeholder="••••••••" required/>
+                <small>error massage</small>
               </div>
               <!-- Password input2 -->
-              <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example4" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمة
+              <div class="form-outline mb-4">
+                <label class="form-label" for="password2" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمة
                   المرور</label>
-                <input type="password" id="form3Example4" class="form-control  text-end" placeholder="••••••••" />
+                <input type="password" id="password2" class="form-control  text-end" placeholder="••••••••" required />
+                <small>error massage</small>
               </div>
-
+              <!-- Phone -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="phone">رقم الجوال</label>
+                <input type="tel" id="phone" class="form-control text-end" placeholder="+966-99-999-9999" required />
+              </div>
+              <!-- Gender -->
+              <div class="form-outline mb-2">
+                <label>الجنس</label>
+              </div>
+              <div class="form-check-inline ">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  أنثى
+                </label>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+              </div>
+              <div class="form-check-inline mb-4">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  ذكر
+                </label>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+              </div>
+              <!-- select user type -->
+              <div class="form-outline mb-2 text-end">
+                <label class="form-label text-end">نوع المستخدم </label>
+              </div>
+              <select class="form-select text-end mb-4" aria-label="Default select example" required>
+                <option selected>استشاري</option>
+                <option value="1">مطور</option>
+                <option value="2">عميل</option>
+                <option value="3">متدرب</option>
+              </select>
               <!-- Submit button -->
               <div class="text-center">
                 <button class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" type="submit">
                   انشئ الحساب</button>
                 <div>
                   <i> لديك حساب بالفعل؟ <a href="logIn.html" class="link-underline-dark link-opacity-75 text-boni"> اضغط
-                      هنا </a> </i>
+                      هنا
+                    </a> </i>
                 </div>
               </div>
-
             </form>
           </div>
         </div>
@@ -174,13 +196,20 @@
         </div>
       </div>
       <div class="flex flex-col justify-between items-center">
-        <form action="#">
-          <input type="text" name="" placeholder="البريد الإلكتروني" id=""
-            class="mb-2 flex-1 py-2 px-6 rounded text-end">
-          <button class="btn bg-pigi rounded px-4 py-2 hover:bg-cohly text-light" type="submit">الاشتراك</button>
-        </form>
-
-        <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
+        <div class="col-sm-12">
+          <div class="single">
+            <div class="input-group">
+              <input type="email" placeholder="البريد الإلكتروني" class="px-6 rounded text-end">
+              <span class="input-group-btn">
+                <button class="btn btn-theme btn bg-pigi rounded hover:bg-boni text-light ml-3"
+                  type="submit">الاشتراك</button>
+              </span>
+            </div>
+          </div>
+          <div class="text-right">
+            <h2>اشترك لدينا ليصلك كل جديد</h2>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Copyright -->
@@ -192,6 +221,7 @@
     <!-- Copyright -->
   </footer>
 
+  <!-- scripts -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
