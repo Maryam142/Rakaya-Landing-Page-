@@ -86,15 +86,15 @@
           <div class="col-lg-8">
             <h2 class="font-bold text-center text-3xl text-boni">انشاء حساب </h2>
             <i>
-              <p class="mb-5 font-light text-center text-2xl mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك
+              <p class="mb-5 font-light text-center text-xl mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك
                 </h2>
             </i>
             <form class="text-end me-5 ms-5">
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <div class="form-outline">
-                    <label class="form-label" for="form3Example1">الاسم الاخير</label>
+                  <div class="form-outline ">
+                    <label class="form-label " for="form3Example1">الاسم الاخير</label>
                     <input type="text" id="form3Example1" class="form-control text-end"
                       placeholder="ادخل الاسم الاخير " />
 
@@ -123,11 +123,45 @@
                 <input type="password" id="form3Example4" class="form-control  text-end" placeholder="••••••••" />
               </div>
               <!-- Password input2 -->
-              <div class="form-outline mb-3">
+              <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example4" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمة
                   المرور</label>
                 <input type="password" id="form3Example4" class="form-control  text-end" placeholder="••••••••" />
               </div>
+              <!-- Phone -->
+              <div class="form-outline mb-4">
+              
+              </div>
+              <!-- Gender -->
+              <div class="form-outline mb-2">
+                <label >الجنس</label>
+              </div>
+              <div class="form-check-inline ">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  ذكر
+                </label>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                
+              </div>
+              <div class="form-check-inline mb-4">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  أنثى
+                </label>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                
+              </div>
+              
+              <!-- select user type -->
+              <div class="form-outline mb-2 text-end">
+                <label class="form-label text-end">نوع المستخدم </label>
+              </div>
+              <select class="form-select text-end mb-4" aria-label="Default select example">
+                <option selected>استشاري</option>
+                <option value="1">مطور</option>
+                <option value="2">عميل</option>
+                <option value="3">متدرب</option>
+              </select>
+              
 
               <!-- Submit button -->
               <div class="text-center">
@@ -174,13 +208,20 @@
         </div>
       </div>
       <div class="flex flex-col justify-between items-center">
-        <form action="#">
-          <input type="text" name="" placeholder="البريد الإلكتروني" id=""
-            class="mb-2 flex-1 py-2 px-6 rounded text-end">
-          <button class="btn bg-pigi rounded px-4 py-2 hover:bg-cohly text-light" type="submit">الاشتراك</button>
-        </form>
-
-        <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
+        <div class="col-sm-12">
+          <div class="single">
+            
+          <div class="input-group">
+                 <input type="email" placeholder="البريد الإلكتروني"  class="px-6 rounded text-end">
+                 <span class="input-group-btn">
+                 <button class="btn btn-theme btn bg-pigi rounded hover:bg-boni text-light ml-3" type="submit">الاشتراك</button>
+                 </span>
+                  </div>
+          </div>
+          <div class="text-right">
+          <h2>اشترك لدينا ليصلك كل جديد</h2>
+        </div>
+        </div>
       </div>
     </div>
     <!-- Copyright -->
