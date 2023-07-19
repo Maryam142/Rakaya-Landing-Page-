@@ -83,44 +83,47 @@
               <p class="mb-5 font-light text-center text-xl mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك
                 </h2>
             </i>
-            <form class="text-end me-5 ms-5">
-              <!-- 2 column grid layout with text inputs for the first and last names -->
+            <form class="text-end me-5 ms-5 needs-validation" novalidate>
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <div class="form-outline ">
-                    <label class="form-label " for="form3Example1">الاسم الاخير</label>
-                    <input type="text" id="form3Example1" class="form-control text-end"
-                      placeholder="ادخل الاسم الاخير " />
+                    <label class="form-label " for="lastName">الاسم الاخير</label>
+                    <input type="text" id="lastName" class="form-control text-end"
+                      placeholder="ادخل الاسم الاخير " required/>
                   </div>
                 </div>
                 <div class="col-md-6 mb-4">
                   <div class="form-outline ">
-                    <label class="form-label " for="form3Example2">الاسم الاول</label>
-                    <input type="text" id="form3Example2" class="form-control text-end"
-                      placeholder="ادخل الاسم الاول " />
+                    <label class="form-label " for="firstName">الاسم الاول</label>
+                    <input type="text" id="firstName" class="form-control text-end"
+                      placeholder="ادخل الاسم الاول " required/>
+                      <small>error massage</small>
                   </div>
                 </div>
               </div>
               <!-- Email input -->
               <div class="form-outline mb-4 text-end">
-                <label class="form-label text-end" for="form3Example3">الإيميل</label>
-                <input type="email" id="form3Example3" class="form-control text-end" placeholder="email@example.com" />
+                <label class="form-label text-end" for="email">الإيميل</label>
+                <input type="email" id="email" class="form-control text-end" placeholder="email@example.com" required/>
+                <small>error massage</small>
               </div>
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example4">كلمة المرور</label>
-                <input type="password" id="form3Example4" class="form-control  text-end" placeholder="••••••••" />
+                <label class="form-label" for="password">كلمة المرور</label>
+                <input type="password" id="password" class="form-control  text-end" placeholder="••••••••" required/>
+                <small>error massage</small>
               </div>
               <!-- Password input2 -->
               <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example4" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمة
+                <label class="form-label" for="password2" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمة
                   المرور</label>
-                <input type="password" id="form3Example4" class="form-control  text-end" placeholder="••••••••" />
+                <input type="password" id="password2" class="form-control  text-end" placeholder="••••••••" required />
+                <small>error massage</small>
               </div>
               <!-- Phone -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="phone">رقم الجوال</label>
-                <input type="tel" id="phone" class="form-control text-end" placeholder="+966-99-999-9999" />
+                <input type="tel" id="phone" class="form-control text-end" placeholder="+966-99-999-9999" required />
               </div>
               <!-- Gender -->
               <div class="form-outline mb-2">
@@ -142,7 +145,7 @@
               <div class="form-outline mb-2 text-end">
                 <label class="form-label text-end">نوع المستخدم </label>
               </div>
-              <select class="form-select text-end mb-4" aria-label="Default select example">
+              <select class="form-select text-end mb-4" aria-label="Default select example" required>
                 <option selected>استشاري</option>
                 <option value="1">مطور</option>
                 <option value="2">عميل</option>
