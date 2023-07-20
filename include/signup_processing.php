@@ -34,7 +34,7 @@ $gender    =  $_POST['gender'];
 $usertype  =  $_POST['usertype'];
 
 // Server-side validation///////////////////////////////////////////////////////
-   // validate first and last name
+   // validate first and last name///////////////////////////
    if(empty($firstName)){
        array_push($errors, " يجب كتابة الاسم الاول");
    }elseif(strlen($firstName)>100){
@@ -46,7 +46,7 @@ $usertype  =  $_POST['usertype'];
     array_push($errors, " يجب ان لايكون الاسم اكبر من 100 حرف ");
    }
 
-   // validate email
+   // validate email///////////////////////////
    if(empty($email)){
     array_push($errors, "يجب كتابة البريد الالكترونى");
 
@@ -54,28 +54,35 @@ $usertype  =  $_POST['usertype'];
     array_push($errors, "البريد الالكترونى غير صالح");
    }
 
-  // validate password
+  // validate password////////////////////////////
   if(empty($password)){
     array_push($errors, "يجب كتابة  كلمة المرور");
   }elseif(strlen($password)<8){
    array_push($errors, "يجب ان تحتوي كلمة المرور  اكثر  من 8 حرف ");
   }
 
-  //confirm password
+  $uppercase = preg_match('@[A-Z]@', $password);
+  $lowercase = preg_match('@[a-z]@', $password);
+  $number    = preg_match('@[0-9]@', $password);
+
+  if(!$uppercase || !$lowercase || !$number  || strlen($password) < 6) {
+  array_push($errors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
+  }
+  //confirm password///////////////////////////
   if($password != $password2){
     array_push($errors, "يجب ان تتطابق كلمات المرور ");
   }
 
-  // validate gender
+  // validate gender///////////////////////////
     if(empty($gender)){
       array_push($errors, "يرجى تحديد نوع الجنس");
     }
-  // validate userType
+  // validate userType///////////////////////////
     if(empty($usertype)){
       array_push($errors, "يرجى تحديد نوع المستخدم");
     }
 
-  // validate phone
+  // validate phone///////////////////////////
   if(empty($phone)){
     array_push($errors, "يرجى ادخال رقم الجوال");
   }
