@@ -23,7 +23,7 @@ validation
 
 // Password Validation:
     .addField("#password", [
-        {rule: "required"}, {rule: "password"}
+        {rule: "required"}, {rule: "strongPassword"}
     ])
 // Password Confirmation Validation:
     .addField("#password2", [
@@ -34,12 +34,11 @@ validation
             errorMessage: "يجب ان تتطابق كلمات المرور"
         }
     ])
-
     // Usertype Validation:
-    .addField("#usertype", [
-      {rule: "required"}
-    
-   ])
+    // .addField("#usertype", [
+    //     {rule: "required"}
+      
+    // ])
 
 // Phone Validation:
     function validateNumber(input) {

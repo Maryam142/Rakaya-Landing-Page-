@@ -89,79 +89,78 @@
                 </h2>
             </i>
 
-            <!-- Sign-up Form -->
-            <form class="text-end me-5 ms-5 needs-validation" id="signup">
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <div class="form-outline ">
-                    <label class="form-label " for="lastName">الاسم الاخير</label>
-                    <input type="text" id="lastName" class="form-control text-end" placeholder="ادخل الاسم الاخير " required/>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline ">
-                    <label class="form-label " for="firstName">الاسم الاول</label>
-                    <input type="text" id="firstName" class="form-control text-end" placeholder="ادخل الاسم الاول " required/>
-                  </div>
+           <!-- Sign-up Form -->
+           <form action="signUp_processing.php" method="post" class="text-end me-5 ms-5 needs-validation" id="signup">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="form-outline ">
+                  <label class="form-label " for="lastName">الاسم الاخير</label>
+                  <input type="text" name="lastName" id="lastName" class="form-control text-end" placeholder="ادخل الاسم الاخير " required/>
                 </div>
               </div>
-              <!-- Email input -->
-              <div class="form-outline mb-4 text-end">
-                <label class="form-label text-end" for="email">الإيميل</label>
-                <input type="email" id="email" class="form-control text-end" placeholder="email@example.com" required/>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline ">
+                  <label class="form-label " for="firstName">الاسم الاول</label>
+                  <input type="text" name="firstName" id="firstName" class="form-control text-end" placeholder="ادخل الاسم الاول " required/>
+                </div>
               </div>
-              <!-- Password input -->
-              <div class="form-outline mb-4">
-                <label class="form-label" for="password">كلمة المرور</label>
-                <input type="password" id="password" class="form-control  text-end" placeholder="••••••••" required/>
-              </div>
-              <!-- Password input2 -->
-              <div class="form-outline mb-4">
-                <label class="form-label" for="password2" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمة
-                  المرور</label>
-                <input type="password" id="password2" class="form-control  text-end" placeholder="••••••••" required />
-              </div>
-              <!-- Phone -->
-              <div class="form-outline mb-4">
-                <label class="form-label" for="phone">رقم الجوال</label>
-                <input type="tel" id="phone" class="form-control text-end" placeholder="+966-5XX-XXX-XXXX" required />
-                <div id="result"></div>
-              </div>
-              <!-- Gender -->
-              <div class="form-outline mb-2">
-                <label>الجنس</label>
-              </div>
-              <div class="form-check-inline required">
-                <label class="form-check-label" for="gender">أنثى</label>
-                <input class="form-check-input" type="radio" name="gender" id="gender">
-              </div>
-              <div class="form-check-inline mb-4">
-                <label class="form-check-label" for="gender">ذكر</label>
-                <input class="form-check-input" type="radio" name="gender" id="gender">
-              </div>
-              <div id="msg"></div>
-              <!-- select user type -->
-              <div class="form-outline mb-2 text-end">
+            </div>
+            <!-- Email input -->
+            <div class="form-outline mb-4 text-end">
+              <label class="form-label text-end" for="email">الإيميل</label>
+              <input type="email" name="email" id="email" class="form-control text-end" placeholder="email@example.com" required/>
+            </div>
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="password">كلمة المرور</label>
+              <input type="password" name="password" id="password" class="form-control  text-end" placeholder="••••••••" required/>
+            </div>
+            <!-- Password input2 -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="password2" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمة
+                المرور</label>
+              <input type="password" name="password2" id="password2" class="form-control  text-end" placeholder="••••••••" required />
+            </div>
+            <!-- Phone -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="phone">رقم الجوال</label>
+              <input type="tel" id="phone" name="phone" class="form-control text-end" placeholder="05ْX-XXX-XXXX" required  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
+              <div id="result"> </div>
+            </div>
+            <!-- Gender -->
+            <div class="form-outline mb-2">
+              <label>الجنس</label>
+            </div>
+            <div class="form-check-inline ">
+              <label class="form-check-label" for="gender">أنثى</label>
+              <input class="form-check-input" type="radio" name="gender" id="gender">
+            </div>
+            <div class="form-check-inline mb-4">
+              <label class="form-check-label" for="gender">ذكر</label>
+              <input class="form-check-input" type="radio" name="gender" id="gender">
+            </div>
+            <div id="msg"></div>
+            <!-- select user type -->
+            <div class="form-outline mb-2 text-end">
               <label class="form-label text-end">نوع المستخدم </label>
-              <select id="usertype" class="required form-select text-end mb-2" aria-label="Default select example" required="required">
-                <option value="" >استشاري</option>
-                <option value="1">مطور</option>
-                <option value="2">عميل</option>
-                <option value="3">متدرب</option>
+              <select id="usertype" class="form-select text-end mb-2" aria-label="Default select example">
+                <option value="1" >استشاري</option>
+                <option value="2">مطور</option>
+                <option value="3">عميل</option>
+                <option value="4">متدرب</option>
               </select>
             </div>
-            <div id="errorMsg"></div>
-              <!-- Submit button -->
-              <div class="text-center">
-                <button class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" type="submit">
-                  انشئ الحساب</button>
-                <div>
-                  <i> لديك حساب بالفعل؟ <a href="logIn.html" class="link-underline-dark link-opacity-75 text-boni"> اضغط
-                      هنا
-                    </a> </i>
-                </div>
+            <!-- Submit button -->
+            <div class="text-center">
+            <button name="submit" class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" type="submit">
+                انشئ الحساب</button>                
+            <div>
+                <i> لديك حساب بالفعل؟ <a href="logIn.html" class="link-underline-dark link-opacity-75 text-boni"> اضغط
+                    هنا
+                  </a> </i>
               </div>
-            </form>
+            </div>
+          </form>
           </div>
         </div>
       </div>
@@ -195,16 +194,22 @@
           <a href="#contact">للتواصل</a>
         </div>
       </div>
-      <div class="flex flex-col justify-between items-center">
-        <form action="#">
-          <input type="text" name="" placeholder="البريد الإلكتروني" id=""
-            class="mb-2 flex-1 py-2 px-6 rounded text-end">
-          <button class="btn bg-pigi rounded px-4 py-2 hover:bg-cohly text-light" type="submit">الاشتراك</button>
-        </form>
+      <div class="col-sm-12">
+        <div class="single">
 
-        <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
+        <div class="input-group">
+               <input type="email" placeholder="البريد الإلكتروني"  class="px-6 rounded text-end">
+               <span class="input-group-btn">
+               <button class="btn btn-theme btn bg-pigi rounded text-light ml-3" type="submit">الاشتراك</button>
+               </span>
+                </div>
+        </div>
+        <div class=" hidden md:block text-right">
+        <h2>اشترك لدينا ليصلك كل جديد</h2>
       </div>
     </div>
+  </div>
+
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color:#333335; color:white;">
       ركايا | جميع الحقوق محفوظة |
