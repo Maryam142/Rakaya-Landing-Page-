@@ -598,3 +598,25 @@ p, .p {
   color: #fff;
   text-decoration: none;    
 }
+
+/*-----------------------------------
+# SignUp error msg
+--------------------------------------------------------------*/
+.error{
+  width: 92%;
+  margin: 10px auto;
+  padding: 11px;
+  border: 1px solid #a94442;
+  color: a94442;
+  background-color: #f2dede;
+  border-radius: 5px;
+  text-align: right;
+}
+
+.success{
+  color: #3c763d;
+  border: 1px solid #3c763d;
+  background-color: #dff0d8;
+  margin-bottom: 10px;
+
+}

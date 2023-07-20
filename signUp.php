@@ -1,5 +1,5 @@
 <?php
-include './include/signup_processing.php';
+include ('./include/signup_processing.php');
 ?>
 
 <!DOCTYPE html>
@@ -35,12 +35,12 @@ include './include/signup_processing.php';
 
 <body>
   <!-- Spinner Start -->
-  <div id="spinner"
+  <!-- <div id="spinner"
     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
     <div class="spinner-border position-relative pg-light_pigi" style="width: 6rem; height: 6rem;" role="status"></div>
     <img class="position-absolute top-50 start-50 translate-middle" src="img/minilogo.png" alt="Icon" height="60px"
       width="60px">
-  </div>
+  </div> -->
   <!-- Spinner End -->
   <!-- Navbar -->
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
@@ -96,6 +96,7 @@ include './include/signup_processing.php';
             <!-- Sign-up Form -->
             <form action="signUp.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="signup">
               <div class="row">
+              <?php include ('./include/error.php'); ?>
                 <div class="col-md-6 mb-3">
                   <div class="form-outline ">
                     <label class="form-label " for="lastName">الاسم الاخير</label>
@@ -105,14 +106,14 @@ include './include/signup_processing.php';
                 <div class="col-md-6 mb-4">
                   <div class="form-outline ">
                     <label class="form-label " for="firstName">الاسم الاول</label>
-                    <input type="text" name="firstName" id="firstName" class="form-control text-end" placeholder="ادخل الاسم الاول " required/>
+                    <input type="text" name="firstName" id="firstName" class="form-control text-end" value="<?php if(isset($_POST['firstName'])){echo $_POST['firstName'];} ?>" placeholder="ادخل الاسم الاول " required/>
                   </div>
                 </div>
               </div>
               <!-- Email input -->
               <div class="form-outline mb-4 text-end">
                 <label class="form-label text-end" for="email">الإيميل</label>
-                <input type="email" name="email" id="email" class="form-control text-end" placeholder="email@example.com" required/>
+                <input type="email" name="email" id="email" class="form-control text-end"  value="<?php if(isset($_POST['email'])){echo $_POST['email'];} ?>" placeholder="email@example.com" required/>
               </div>
               <!-- Password input -->
               <div class="form-outline mb-4">
@@ -128,7 +129,8 @@ include './include/signup_processing.php';
               <!-- Phone -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="phone">رقم الجوال</label>
-                <input type="tel" id="phone" name="phone" class="form-control text-end" placeholder="05ْX-XXX-XXXX" required  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
+                <input type="tel" id="phone" name="phone" class="form-control text-end" value="<?php if(isset($_POST['phone'])){echo $_POST['phone'];} ?>" placeholder="05ْX-XXX-XXXX" required  /> 
+                <!-- pattern="[0-9]{3}[0-9]{3}[0-9]{4}" -->
                 <div id="result"> </div>
               </div>
               <!-- Gender -->
@@ -148,6 +150,7 @@ include './include/signup_processing.php';
               <div class="form-outline mb-2 text-end">
                 <label class="form-label text-end">نوع المستخدم </label>
                 <select name="usertype" id="usertype" class="form-select text-end mb-2" aria-label="Default select example">
+                <option value="" >- اختر -</option>
                   <option value="Consultant" >استشاري</option>
                   <option value="Developer">مطور</option>
                   <option value="Client">عميل</option>
@@ -156,12 +159,19 @@ include './include/signup_processing.php';
               </div>
               <!-- Submit button -->
               <div class="text-center">
-              <button name="submit" class="w-full btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" type="submit">
+              <button name="submit" class="w-full btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" type="submit" style="background-color: #C4AE7C;">
                   انشئ الحساب</button>
               <div>
                   <i> لديك حساب بالفعل؟ <a href="logIn.html" class="link-underline-dark link-opacity-75 text-boni"> اضغط
                       هنا
-                    </a> </i>
+                    </a> 
+                  </i>
+                <?php if (!(empty($success)) ): ?>
+
+                    <div class="success">
+                            <p> <?php echo $success; ?> </p>
+                    </div>
+                <?php endif ?>
                 </div>
               </div>
             </form>
