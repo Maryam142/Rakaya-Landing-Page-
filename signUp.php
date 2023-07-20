@@ -1,48 +1,6 @@
 <?php
-
-$conn = mysqli_connect('localhost','root','','rakaya');
-
-//to check the connection
-if($conn){
-  echo 'done: ';
-    // echo 'error: ' . mysqli_connect_error();
-}
-
-echo 'Before ';
-
-// Server-side validation
-$firstName =  filter_var($_POST['firstName'], FILTER_SANITIZE_STRING);
-$lastName =  filter_var($_POST['lastName'], FILTER_SANITIZE_STRING);
-$password =  filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-$email =  filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-$phone =  filter_var($_POST['phone'], FILTER_SANITIZE_STRING);
-$Gender =  filter_var($_POST['Gender'], FILTER_SANITIZE_STRING);
-$UserType =  filter_var($_POST['UserType'], FILTER_SANITIZE_STRING);
-
-echo $_POST['firstName'] . ' ' . $firstName;
-
-
-if(isset($_POST['submit'])){
-
-//insert query
-  $sql = "INSERT INTO users(Email, Fname, Lname, Phone, pass, Gender, UserType) 
-    VALUES ('$email','$firstName', '$lastName', '$phone','$password', '$Gender', '$UserType')";
-  //feedback  
-  if( mysqli_query($conn, $sql)){
-    header('Location: signUp.php');
-  }else{
-    echo 'fail!!!, Error:' . mysqli_error($conn);
-  }
-
-   error_reporting(E_ALL);
-   ini_set('display_errors', 1);
-
-}
-
+include './include/signup_processing.php';
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html>
@@ -136,7 +94,7 @@ if(isset($_POST['submit'])){
             </i>
 
             <!-- Sign-up Form -->
-            <form action="signUp.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="signupx">
+            <form action="signUp.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="signup">
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <div class="form-outline ">
@@ -198,7 +156,7 @@ if(isset($_POST['submit'])){
               </div>
               <!-- Submit button -->
               <div class="text-center">
-              <button name="submit" class="w-full btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-dark" type="submit">
+              <button name="submit" class="w-full btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" type="submit">
                   انشئ الحساب</button>
               <div>
                   <i> لديك حساب بالفعل؟ <a href="logIn.html" class="link-underline-dark link-opacity-75 text-boni"> اضغط
