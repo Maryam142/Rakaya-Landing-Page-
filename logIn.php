@@ -4,7 +4,6 @@ include ('./include/login_processing.php');
 
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -30,12 +29,12 @@ include ('./include/login_processing.php');
 
 <body>
   <!-- Spinner Start -->
-  <div id="spinner"
+  <!-- <div id="spinner"
     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
     <div class="spinner-border position-relative pg-light_pigi" style="width: 6rem; height: 6rem;" role="status"></div>
     <img class="position-absolute top-50 start-50 translate-middle" src="img/minilogo.png" alt="Icon" height="60px"
       width="60px">
-  </div>
+  </div> -->
   <!-- Spinner End -->
   <!-- Navbar -->
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
@@ -86,6 +85,7 @@ include ('./include/login_processing.php');
            <i><p class="mb-3 font-light text-center fs-6 mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك</h2></i>
 
             <form class="text-end ms-5 me-5">
+            <?php include ('./include/error.php'); ?>
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example3">الإيميل</label>
