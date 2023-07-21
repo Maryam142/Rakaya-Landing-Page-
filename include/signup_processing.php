@@ -112,9 +112,8 @@ if($data){
    if( mysqli_query($conn, $sql)){
     $_SESSION['firstName'] = $firstName;
     $_SESSION['success'] = "تم انشاء الحساب بنجاح";
-    // array_push($success, "تم انشاء الحساب بنجاح");
-    // header('Location: signUp.php'); //redirect the page
-    $success= "تم انشاء الحساب بنجاح";
+    header('Location: signUp_success.php'); //redirect the page
+
 
    }
  }
