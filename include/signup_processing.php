@@ -40,6 +40,8 @@ $usertype  =  $_POST['usertype'];
    }elseif(strlen($firstName)>100){
        array_push($errors,"يجب ان لايكون الاسم اكبر من 100 حرف ");
    }
+
+   
    if(empty($lastName)){
     array_push($errors, " يجب كتابة الاسم الاخير");
    }elseif(strlen($lastName)>100){

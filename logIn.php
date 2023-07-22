@@ -84,17 +84,18 @@ include ('./include/login_processing.php');
             <h2 class="font-bold text-center text-3xl text-boni mb-1">تسجيل دخول </h2>
            <i><p class="mb-3 font-light text-center fs-6 mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك</h2></i>
 
-            <form action="login.php" method="POST" class="text-end ms-5 me-5">
-            <?php include ('./include/error.php'); ?>
+           <form action="logIn.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="signup">
+              <div class="row">
+              <?php include ('./include/errorLogIn.php'); ?>
               <!-- Email input -->
               <div class="form-outline mb-4">
                 <label class="form-label" for="email">الإيميل</label>
-                <input type="email" name="email" id="email" class="form-control text-end" required placeholder="email@example.com" maxlength="16">
+                <input type="email" name="email" id="email" class="form-control text-end" required placeholder="email@example.com" >
               </div>
               <!-- Password input -->
               <div class="form-outline mb-3">
                 <label class="form-label" for="password">كلمة المرور</label>
-                <input type="password" name="password" id="password" class="form-control text-end" maxlength="16"
+                <input type="password" name="password" id="password" class="form-control text-end" 
                   placeholder="••••••••" required/>
               </div>
               <!-- Submit button -->
