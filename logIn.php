@@ -99,10 +99,10 @@ include ('./include/login_processing.php');
                   placeholder="••••••••" required/>
               </div>
               <!-- Submit button -->
-              <form action="#">
+              <div >
                 <label for="rememberMe"> تذكرنى</label>
                 <input type="checkbox" id="rememberMe" name="rememberMe" value="" class="mb-3">
-              </form>
+              </div>
               <div class="text-center">
                 <button class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light" type="submit">تسجيل
                   الدخول</button>

@@ -1,14 +1,14 @@
 <?php
-   //connection
-   $conn = mysqli_connect('localhost','root','','rakaya');
-   
-   //to check the connection
-   if(!$conn){
-       echo 'error: ' . mysqli_connect_error();
-   }
-   
 
 session_start();
+
+//connection
+$conn = mysqli_connect('localhost','root','','rakaya');
+   
+//to check the connection
+if(!$conn){
+       echo 'error: ' . mysqli_connect_error();
+} 
 
 $firstName =  "";
 $lastName  =  "";
@@ -107,8 +107,7 @@ if($data){
   //Encrypt the password
   $password=password_hash($password,PASSWORD_DEFAULT);
 
-  $sql = "INSERT INTO users(Email, Fname, Lname, Phone, pass, Gender, UserType) 
-    VALUES ('$email','$firstName', '$lastName', '$phone','$password', '$Gender', '$UserType')";
+  $sql = "INSERT INTO `users`( `Email`, `Fname`, `Lname`, `Phone`, `pass`, `Gender`, `UserType`) VALUES ('$email ','$firstName','$lastName','$phone','$password ','$gender','$usertype')";
 
   //feedback  
    if( mysqli_query($conn, $sql)){
