@@ -53,7 +53,7 @@ include ('./include/login_processing.php');
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">عن ركايا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">خدماتنا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">للتواصل</a></li>
-          <li class="breadcrumb-item"><a href="signUp.html"
+          <li class="breadcrumb-item"><a href="signUp.php"
               class="bg-pigi px-3 py-2 ms-4 me-4 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">انشاء
               حساب</a></li>
         </ul>
@@ -84,17 +84,17 @@ include ('./include/login_processing.php');
             <h2 class="font-bold text-center text-3xl text-boni mb-1">تسجيل دخول </h2>
            <i><p class="mb-3 font-light text-center fs-6 mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك</h2></i>
 
-            <form class="text-end ms-5 me-5">
+            <form action="login.php" method="POST" class="text-end ms-5 me-5">
             <?php include ('./include/error.php'); ?>
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example3">الإيميل</label>
-                <input type="email" id="" class="form-control text-end" required placeholder="email@example.com" maxlength="13">
+                <label class="form-label" for="email">الإيميل</label>
+                <input type="email" name="email" id="email" class="form-control text-end" required placeholder="email@example.com" maxlength="16">
               </div>
               <!-- Password input -->
               <div class="form-outline mb-3">
-                <label class="form-label" for="form3Example4">كلمة المرور</label>
-                <input type="password" id="form3Example4" class="form-control text-end" maxlength="13"
+                <label class="form-label" for="password">كلمة المرور</label>
+                <input type="password" name="password" id="password" class="form-control text-end" maxlength="16"
                   placeholder="••••••••" required/>
               </div>
               <!-- Submit button -->

@@ -1,41 +1,48 @@
 <?php
-session_start();
-if(isset($_POST['submit'])){
-    $conn = mysqli_connect('localhost','root','','rakaya');
+//connection
+$conn = mysqli_connect('localhost','root','','rakaya');
    
-   //to check the connection
-   if(!$conn){
-       echo 'error: ' . mysqli_connect_error();
-   }
+//to check the connection
+if(!$conn){
+    echo 'error: ' . mysqli_connect_error();
+ }
+
+session_start();
+
+$email     =  "";
+$password  =  "";
+$errors = array();
+
+if(isset($_POST['submit'])){
+
    $password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
    $email     =  filter_var($_POST['email'],     FILTER_SANITIZE_EMAIL);
 
-   $errors=[];
 
-   //email
    if(empty($email)){
-    $errors[]="يجب كتابة الايميل";
+    array_push($errors, "يجب كتابة الايميل");
    }
-
    if(empty($password)){
-    $errors[]="يجب كتابة كلمة المرور ";
+    array_push($errors, "يجب كتابة كلمة المرور");
    }
 
-   if(empty($errors)){
+   if(count($errors) == 0){
 
     $stm="SELECT * FROM users WHERE email ='$email'";
+    $data=mysqli_fetch_row(mysqli_query($conn, $stm));
+    
     $q=$conn ->prepare($stm);
     $q->execute();
     $data=$q ->fetch();
     if(!$data){
-        $errors[] = "خطأ فى تسجيل الدخول";
-     }else{
+      array_push($errors, "لايوجد حساب بهذا البريد الالكتروني");
+   }else{
          
           $password_hash=$data['password']; 
           
           if(!password_verify($password,$password_hash)){
-             $errors[] = "خطأ فى تسجيل الدخول";
-          }else{
+            array_push($errors, "كلمة المرور غير صحيحة");
+         }else{
              $_SESSION['user']=[
                  "name"=>$data['name'],
                  "email"=>$email,
@@ -43,9 +50,9 @@ if(isset($_POST['submit'])){
              header('location:index.html');
  
           }
-     }
+    }
 
-   }
+  }
 
 }
 ?>
