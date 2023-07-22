@@ -8,7 +8,6 @@ if(!$conn){
     echo 'error: ' . mysqli_connect_error();
 }
 
-
 // cookie
 if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
   $email = $_COOKIE['email']; 
@@ -17,16 +16,21 @@ if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
 }else{
   $email     =  "";
   $password  =  "";
-  // error
-  $Logerrors = array();
 }
 
-
-
+ // error
+ $Logerrors = array(); 
+ 
+if(isset($_POST['submit'])){
 // Server-side validation
 $email    =  filter_var($_POST['email'],     FILTER_SANITIZE_EMAIL);
 $password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
-  
+
+//set up cookie  
+ if (isset($_POST['rememberMe'])){
+  setcookie("email", $_POST['email'], time() +(86400 *30));
+  setcookie('password', $_POST['pass'], time() + (86400 *30));
+  } 
 
 // validate email///////////////////////////
   if(empty($email)){
@@ -39,7 +43,7 @@ $password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
    if(empty($password)){
     array_push($Logerrors, "يجب كتابة كلمة المرور");
    }
-
+//errors
    if(count($Logerrors) == 0){
 
 // From database
@@ -55,14 +59,7 @@ $password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
           
           if(!password_verify($password,$password_hash)){
             array_push($Logerrors, "كلمة المرور غير صحيحة");
-         }else{
-
-            if (isset($_POST['rememberMe'])){
-            //set up cookie 
-            setcookie("email", $_POST['email'], time() +(86400 *30));
-            setcookie('password', $_POST['pass'], time() + (86400 *30));
-            }
-
+            }else{
             $_SESSION['user']=[
               "name"=>$data['name'],
               "email"=>$email,
@@ -73,3 +70,4 @@ $password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
     }
 
   }
+}
