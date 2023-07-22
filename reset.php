@@ -76,9 +76,9 @@ include('./include/login_processing.php');
       <div class="card-body p-6 space-y-4 md:space-y-6 sm:p-8 sm-pb-4">
         <div class="row d-flex justify-content-center">
           <div class="col-lg-8">
-            <h2 class="font-bold text-center text-3xl text-boni mb-1">تسجيل دخول </h2>
+            <h2 class="font-bold text-center text-3xl text-boni mb-1">اعادة تعيين كلمة المرور</h2>
             <i>
-              <p class="mb-3 font-light text-center fs-6 mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك</h2>
+              <p class="mb-3 font-light text-center fs-6 mx-4 text-cohly"> سيتم ارسال كود الى ايميلك </h2>
             </i>
 
             <form action="logIn.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="signup">
@@ -91,17 +91,15 @@ include('./include/login_processing.php');
                                                                                                                                               echo $_COOKIE['email'];
                                                                                                                                             } ?>" />
                 </div>
-                <!-- Password input -->
+                <!-- Code input -->
                 <div class="form-outline mb-2">
-                  <label class="form-label" for="password">كلمة المرور</label>
-                  <input type="password" name="password" id="password" class="form-control text-end" placeholder="••••••••" required value="<?php if (isset($_COOKIE['email'])) {
-                                                                                                                                              echo $_COOKIE['email'];
-                                                                                                                                            } ?>" />
+                  <label class="form-label" for="">كود التحقق</label>
+                  <input type="" name="" id="" class="form-control text-end" placeholder="••••••••" required />
                 </div>
                 
                 <!-- Submit button -->
                 <div class="text-center">
-                  <button type="submit" class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light">اعادة تعيين</button>
+                  <button type="submit" class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light" style="background-color: #C4AE7C;" >اعادة تعيين</button>
                
                 </div>
             </form>

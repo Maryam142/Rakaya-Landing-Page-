@@ -110,7 +110,7 @@ include('./include/login_processing.php');
                 </div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light">تسجيل
+                  <button type="submit" class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light" style="background-color: #C4AE7C;">تسجيل
                     الدخول</button>
                   <!-- Register buttons -->
                   <div>

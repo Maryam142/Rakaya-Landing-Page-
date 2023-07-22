@@ -13,6 +13,7 @@ if(!$conn){
 if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
   $email = $_COOKIE['email']; 
   $password = $_COOKIE['password']; 
+  
 }else{
   $email     =  "";
   $password  =  "";
