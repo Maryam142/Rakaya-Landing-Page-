@@ -1,5 +1,5 @@
 # Rakaya-Landing-Page
-![7eabacac-71e3-40a1-829b-4cc60781e9dd](https://github.com/Maryam142/Rakaya-Landing-Page-/assets/108498078/af200de0-5cfc-4d64-b768-dd304039ad1f)
+<img width="960" alt="image" src="https://github.com/Maryam142/Rakaya-Landing-Page-/assets/108498078/07f1c023-2e8c-49be-b0e3-51a15c554ce2">
 
 
 This repository contains a landing page for Rakaya Company as a task during the COOP Internship. 

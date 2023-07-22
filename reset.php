@@ -76,9 +76,9 @@ include('./include/login_processing.php');
       <div class="card-body p-6 space-y-4 md:space-y-6 sm:p-8 sm-pb-4">
         <div class="row d-flex justify-content-center">
           <div class="col-lg-8">
-            <h2 class="font-bold text-center text-3xl text-boni mb-1">تسجيل دخول </h2>
+            <h2 class="font-bold text-center text-3xl text-boni mb-1">اعادة تعيين كلمة المرور</h2>
             <i>
-              <p class="mb-3 font-light text-center fs-6 mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك</h2>
+              <p class="mb-3 font-light text-center fs-6 mx-4 text-cohly"> سيتم ارسال كود الى ايميلك </h2>
             </i>
 
             <form action="logIn.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="signup">
@@ -91,32 +91,16 @@ include('./include/login_processing.php');
                                                                                                                                               echo $_COOKIE['email'];
                                                                                                                                             } ?>" />
                 </div>
-                <!-- Password input -->
+                <!-- Code input -->
                 <div class="form-outline mb-2">
-                  <label class="form-label" for="password">كلمة المرور</label>
-                  <input type="password" name="password" id="password" class="form-control text-end" placeholder="••••••••" required value="<?php if (isset($_COOKIE['email'])) {
-                                                                                                                                              echo $_COOKIE['email'];
-                                                                                                                                            } ?>" />
+                  <label class="form-label" for="">كود التحقق</label>
+                  <input type="" name="" id="" class="form-control text-end" placeholder="••••••••" required />
                 </div>
-                <div class="forgot mb-4">
-                  <a href="#">نسيت كلمة المرور ؟</a>
-                </div>
+                
                 <!-- Submit button -->
-                <div>
-                  <label for="rememberMe"> تذكرنى</label>
-                  <input type="checkbox" id="rememberMe" name="rememberMe" class="mb-3" <?php if (isset($_COOKIE["email"]) && isset($_COOKIE["password"])) {
-                                                                                          echo "checked";
-                                                                                        } ?>>
-                </div>
-
                 <div class="text-center">
-                  <button type="submit" class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light" style="background-color: #C4AE7C;">تسجيل
-                    الدخول</button>
-                  <!-- Register buttons -->
-                  <div>
-                    <i> ليس لديك حساب؟ <a href="signUp.html" class="link-underline-dark link-opacity-75 text-boni">انشئ
-                        حساب الآن </a> </i>
-                  </div>
+                  <button type="submit" class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light" style="background-color: #C4AE7C;" >اعادة تعيين</button>
+               
                 </div>
             </form>
           </div>
@@ -128,18 +112,13 @@ include('./include/login_processing.php');
   <!-- Footer-->
   <footer class=" bg-ramadi fixed-bottom position-relative">
     <div class="container mx-auto flex flex-col flex-col-reverse md:flex-row text-light px-5 py-10 items-center justify-between space-y-3">
-      
       <div class="flex flex-col items-center justify-between space-y-2">
         <img src="img/minilogo.png" alt="logo" style="height: 7rem; width: 6.5rem;">
         <div>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="tel:+966570077055" target="_blank"
-            aria-label="Phone"><i class="bi bi-telephone-fill" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="mailto:Admin@rakaya.co" target="_blank"
-            aria-label=" Email"><i class="bi bi-envelope-fill" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://www.linkedin.com/company/rakaya/"
-            target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://twitter.com/rakayaco" target="_blank"
-            aria-label="Twitter"><i class="bi bi-twitter" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="tel:+966570077055" target="_blank" aria-label="Phone"><i class="bi bi-telephone-fill" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="mailto:Admin@rakaya.co" target="_blank" aria-label=" Email"><i class="bi bi-envelope-fill" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://www.linkedin.com/company/rakaya/" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://twitter.com/rakayaco" target="_blank" aria-label="Twitter"><i class="bi bi-twitter" style="color: #ffffff;"></i></a>
         </div>
       </div>
       <div class="flex justify-around space-x-32">
@@ -152,28 +131,29 @@ include('./include/login_processing.php');
           <a href="#contact">للتواصل</a>
         </div>
       </div>
-      <div class="flex flex-col justify-between items-center">
-      <form action="">
-      <div class="single">
-      <div class="input-group">
-      <input type="text" name="" placeholder="البريد الإلكتروني" id=""class="mb-2 flex-1 py-2 px-6 rounded text-end">
-      <span class="input-group-btn">
-          <button class="ml-2 btn bg-pigi rounded px-6 py-2 hover:bg-cohly text-light" type="submit" name="Subscribe">الاشتراك</button>
-      </span>
-    </div>
-    </div>
-    </form>
-      <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
-    </div>
-</div>
+      <div class="col-sm-12">
+        <div class="single">
 
+          <div class="input-group">
+            <input type="email" placeholder="البريد الإلكتروني" class="px-6 rounded text-end">
+            <span class="input-group-btn">
+              <button class="btn btn-theme btn bg-pigi rounded text-light ml-3" type="submit">الاشتراك</button>
+            </span>
+          </div>
+        </div>
+        <div class=" hidden md:block text-right">
+          <h2>اشترك لدينا ليصلك كل جديد</h2>
+        </div>
+      </div>
+    </div>
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color:#333335; color:white;">
       ركايا | جميع الحقوق محفوظة |
       &copy; 2023
       <a class="text-white" href="#"></a>
     </div>
-</footer>
+    <!-- Copyright -->
+  </footer>
 
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
