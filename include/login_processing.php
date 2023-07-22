@@ -29,8 +29,8 @@ if(isset($_POST['submit'])){
 
  //set up cookie  
   if (isset($_POST['rememberMe'])){
-  setcookie("email", $_POST['email'], time() +(86400 *30));
-  setcookie('password', $_POST['pass'], time() + (86400 *30));
+  setcookie('email', $_POST['email'], time() +(86400 *30));
+  setcookie('pass', $_POST['password'], time() + (86400 *30));
   } 
 
   // validate email///////////////////////////
