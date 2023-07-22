@@ -1,7 +1,6 @@
 const validation = new JustValidate("#signupx");
 
 validation
-
 //Name Validation:
     .addField("#firstName", [
         {
