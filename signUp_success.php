@@ -59,7 +59,7 @@ include ('./include/signup_processing.php');
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">عن ركايا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">خدماتنا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">للتواصل</a></li>
-          <li class="breadcrumb-item"><a href="logIn.html"
+          <li class="breadcrumb-item"><a href="logIn.php"
               class="bg-pigi px-3 py-2 ms-4 me-4 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">تسجيل
               دخول </a></li>
         </ul>
@@ -107,8 +107,8 @@ include ('./include/signup_processing.php');
 
   <!-- Footer-->
   <footer class=" bg-ramadi fixed-bottom position-relative">
-    <div
-      class="container mx-auto flex flex-col flex-col-reverse md:flex-row text-light px-5 py-10 items-center justify-between space-y-3">
+    <div class="container mx-auto flex flex-col flex-col-reverse md:flex-row text-light px-5 py-10 items-center justify-between space-y-3">
+      
       <div class="flex flex-col items-center justify-between space-y-2">
         <img src="img/minilogo.png" alt="logo" style="height: 7rem; width: 6.5rem;">
         <div>
@@ -133,22 +133,27 @@ include ('./include/signup_processing.php');
         </div>
       </div>
       <div class="flex flex-col justify-between items-center">
-        <form action="#">
-          <input type="text" name="" placeholder="البريد الإلكتروني" id=""
-            class="mb-2 flex-1 py-2 px-6 rounded text-end">
-          <button class="btn bg-pigi rounded px-4 py-2 hover:bg-cohly text-light" type="submit" name="Subscribe">الاشتراك</button>
-        </form>
-
-        <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
-      </div>
+      <form action="">
+      <div class="single">
+      <div class="input-group">
+      <input type="text" name="" placeholder="البريد الإلكتروني" id=""class="mb-2 flex-1 py-2 px-6 rounded text-end">
+      <span class="input-group-btn">
+          <button class="ml-2 btn bg-pigi rounded px-6 py-2 hover:bg-cohly text-light" type="submit" name="Subscribe">الاشتراك</button>
+      </span>
     </div>
+    </div>
+    </form>
+      <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
+    </div>
+</div>
+
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color:#333335; color:white;">
       ركايا | جميع الحقوق محفوظة |
       &copy; 2023
       <a class="text-white" href="#"></a>
     </div>
-  </footer>
+</footer>
 
   <!-- scripts -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

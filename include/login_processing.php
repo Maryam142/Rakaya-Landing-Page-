@@ -31,9 +31,9 @@ if(isset($_POST['submit'])){
     $stm="SELECT * FROM users WHERE email ='$email'";
     $data=mysqli_fetch_row(mysqli_query($conn, $stm));
     
-    $q=$conn ->prepare($stm);
-    $q->execute();
-    $data=$q ->fetch();
+   //  $q=$conn ->prepare($stm);
+   //  $q->execute();
+   //  $data=$q ->fetch();
     if(!$data){
       array_push($errors, "لايوجد حساب بهذا البريد الالكتروني");
    }else{
