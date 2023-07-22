@@ -16,10 +16,10 @@ if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
 }else{
   $email     =  "";
   $password  =  "";
+  // error
+  $Logerrors = array();
 }
 
-// error
-$Logerrors = array();
 
 
 // Server-side validation

@@ -98,25 +98,11 @@ include('./include/login_processing.php');
                                                                                                                                               echo $_COOKIE['email'];
                                                                                                                                             } ?>" />
                 </div>
-                <div class="forgot mb-4">
-                  <a href="#">نسيت كلمة المرور ؟</a>
-                </div>
+                
                 <!-- Submit button -->
-                <div>
-                  <label for="rememberMe"> تذكرنى</label>
-                  <input type="checkbox" id="rememberMe" name="rememberMe" class="mb-3" <?php if (isset($_COOKIE["email"]) && isset($_COOKIE["password"])) {
-                                                                                          echo "checked";
-                                                                                        } ?>>
-                </div>
-
                 <div class="text-center">
-                  <button type="submit" class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light">تسجيل
-                    الدخول</button>
-                  <!-- Register buttons -->
-                  <div>
-                    <i> ليس لديك حساب؟ <a href="signUp.html" class="link-underline-dark link-opacity-75 text-boni">انشئ
-                        حساب الآن </a> </i>
-                  </div>
+                  <button type="submit" class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light">اعادة تعيين</button>
+               
                 </div>
             </form>
           </div>
