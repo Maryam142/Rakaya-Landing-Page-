@@ -17,9 +17,7 @@ if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
   $email     =  "";
   $password  =  "";
 }
-
- // error
- $Logerrors = array(); 
+ 
 
 if(isset($_POST['submit'])){
  // Server-side validation
@@ -31,7 +29,13 @@ if(isset($_POST['submit'])){
   if (isset($_POST['rememberMe'])){
   setcookie('email', $_POST['email'], time() +(86400 *30));
   setcookie('pass', $_POST['password'], time() + (86400 *30));
-  } 
+  }else{
+    setcookie('email', '', time() - (86400 *30));
+    setcookie('pass', '', time() - (86400 *30));
+  }
+
+  // error
+ $Logerrors = array(); 
 
   // validate email///////////////////////////
   if(empty($email)){

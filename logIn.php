@@ -87,16 +87,12 @@ include('./include/login_processing.php');
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="email">الإيميل</label>
-                  <input type="email" name="email" id="email" class="form-control text-end" required placeholder="email@example.com" value="<?php if (isset($_COOKIE['email'])) {
-                                                                                                                                              echo $_COOKIE['email'];
-                                                                                                                                            } ?>" />
+                  <input type="email" name="email" id="email" class="form-control text-end" required placeholder="email@example.com" value="<?php echo $email?>" />
                 </div>
                 <!-- Password input -->
                 <div class="form-outline mb-2">
                   <label class="form-label" for="password">كلمة المرور</label>
-                  <input type="password" name="password" id="password" class="form-control text-end" placeholder="••••••••" required value="<?php if (isset($_COOKIE['email'])) {
-                                                                                                                                              echo $_COOKIE['email'];
-                                                                                                                                            } ?>" />
+                  <input type="password" name="password" id="password" class="form-control text-end" placeholder="••••••••" required value="<?php echo $password?>" />
                 </div>
                 <div class="forgot mb-4">
                   <a href="#">نسيت كلمة المرور ؟</a>
@@ -104,9 +100,7 @@ include('./include/login_processing.php');
                 <!-- Submit button -->
                 <div>
                   <label for="rememberMe"> تذكرنى</label>
-                  <input type="checkbox" id="rememberMe" name="rememberMe" class="mb-3" <?php if (isset($_COOKIE["email"]) && isset($_COOKIE["password"])) {
-                                                                                          echo "checked";
-                                                                                        } ?>>
+                  <input type="checkbox" id="rememberMe" name="rememberMe" class="mb-3">
                 </div>
 
                 <div class="text-center">
