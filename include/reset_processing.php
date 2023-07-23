@@ -86,7 +86,7 @@ if(isset($_POST['reset2'])){
     $result = mysqli_query($conn,$query);
 
     if($result){
-      array_push($Reset2_errors, "تم تحديث كلمة المرور بنجاح ");
+     $SysMsg ="تم تحديث كلمة المرور بنجاح ";
       
     }else{
       die("لم يتم تحديث كلمة المرور , اكتب الايميل بشكل صحيح");
