@@ -20,11 +20,25 @@ if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
   $Logerrors  =  array();
 
 }
+ 
+
+if(isset($_POST['submit'])){
+ // Server-side validation
+ $email    =  filter_var($_POST['email'],     FILTER_SANITIZE_EMAIL);
+ $password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
 
 // $email     =  "";
 // $password  =  "";
 // $Logerrors = array();
 
+ //set up cookie  
+  if (isset($_POST['rememberMe'])){
+  setcookie('email', $_POST['email'], time() +(86400 *30));
+  setcookie('pass', $_POST['password'], time() + (86400 *30));
+  }else{
+    setcookie('email', '', time() - (86400 *30));
+    setcookie('pass', '', time() - (86400 *30));
+  }
 
 if(isset($_POST['submit_login'])){
 
@@ -38,10 +52,12 @@ $password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
   if(empty($email)){
     array_push($Logerrors, "يجب كتابة البريد الالكترونى");
 
-   }elseif(filter_var($email,FILTER_VALIDATE_EMAIL)==false){
-    array_push($Logerrors, "البريد الالكترونى غير صالح");
    }
-// validate password///////////////////////////
+  //  elseif(filter_var($email,FILTER_VALIDATE_EMAIL)==false){
+  //   array_push($Logerrors, "البريد الالكترونى غير صالح");
+  //  }
+
+  // validate password///////////////////////////
    if(empty($password)){
     array_push($Logerrors, "يجب كتابة كلمة المرور");
    }
@@ -75,4 +91,4 @@ if(count($Logerrors) == 0){
     }
   }
 }
-
+}
