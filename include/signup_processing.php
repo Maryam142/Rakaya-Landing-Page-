@@ -105,14 +105,13 @@ if($data){
   if(count($errors) == 0){
 
   //Encrypt the password
-  $password=password_hash($password,PASSWORD_DEFAULT);
+  // $password=password_hash($password,PASSWORD_DEFAULT);
 
   $sql = "INSERT INTO `users`( `Email`, `Fname`, `Lname`, `Phone`, `pass`, `Gender`, `UserType`) VALUES ('$email ','$firstName','$lastName','$phone','$password ','$gender','$usertype')";
 
   //feedback  
    if( mysqli_query($conn, $sql)){
     $_SESSION['firstName'] = $firstName;
-    $_SESSION['success'] = "تم انشاء الحساب بنجاح";
     header('Location: signUp_success.php'); //redirect the page
 
 
