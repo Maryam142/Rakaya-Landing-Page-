@@ -93,15 +93,21 @@
                 </div>
                 <?php endif ?>
 
+                <!-- Email input -->
+                <div class="form-outline mb-4 text-end">
+                <label class="form-label text-end" for="email">الإيميل</label>
+                <input type="email" name="email" id="email" class="form-control text-end"  value="<?php if(isset($_POST['email'])){echo $_POST['email'];} ?>" placeholder="email@example.com" required/>
+                </div>
+
                 <!-- pass1 input -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="resetpass1">من فضلك ادخل كلمة المرور الجديدة</label>
-                  <input type="password" name="resetpass1" id="resetpass1" class="form-control text-end" required placeholder="••••••••" />
+                  <input type="text" name="resetpass1" id="resetpass1" class="form-control text-end" required placeholder="••••••••" />
                 </div>
                 <!-- pass2 input -->
                 <div class="form-outline mb-2">
                   <label class="form-label" for="resetpass2">من فضلك اكد كلمة مرور الجديد </label>
-                  <input type="password" name="resetpass2" id="resetpass2" class="form-control text-end" placeholder="••••••••" required />
+                  <input type="text" name="resetpass2" id="resetpass2" class="form-control text-end" placeholder="••••••••" required />
                 </div>
 
                 <!-- Submit button -->

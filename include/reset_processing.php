@@ -53,6 +53,7 @@ $SysMsg2="";
 if(isset($_POST['reset2'])){
     $newPassword  = filter_var($_POST['resetpass1'],  FILTER_SANITIZE_STRING);
     $newPassword2 = filter_var($_POST['resetpass2'],  FILTER_SANITIZE_STRING);
+    $email     =  filter_var($_POST['email'],     FILTER_SANITIZE_EMAIL);
 
     if(empty($newPassword)){
         array_push($Reset2_errors, "يجب كتابة  كلمة المرور");
@@ -73,18 +74,29 @@ if(isset($_POST['reset2'])){
 
     if(count($Reset2_errors) == 0){
 
-    $username = "root";
-    $password = "";
-    $database = new PDO("mysql:host=localhost; dbname=rakaya;",$username,$password);
-    $updatePassword = $database->prepare("UPDATE `users` SET `pass` = :password  WHERE `Email` = :email");
-    $updatePassword->bindParam("password",$_POST['resetpass2']);
-    $updatePassword->bindParam("email",$_GET['email']);
-  
-    if($updatePassword->execute()){
-        $SysMsg2= 'تم إعادة تعيين كلمة المرور بنجاح';
-     }else{
-        $SysMsg2= 'فشل إعادة تعيين كلمة المرور بنجاح';
-     }
+    // $username = "root";
+    // $password = "";
+    // $database = new PDO("mysql:host=localhost; dbname=rakaya;",$username,$password);
+    // $updatePassword = $database->prepare("UPDATE `users` SET `pass` = :password  WHERE `Email` = :email");
+    // $updatePassword->bindParam("password",$_POST['resetpass2']);
+    // $updatePassword->bindParam("email",$_GET['email']);
+   
+    $query = "UPDATE `users` SET `pass` = '$newPassword' WHERE `users`.`Email` = '$email'";
+    
+    $result = mysqli_query($conn,$query);
+
+    if($result){
+      array_push($Reset2_errors, "تم تحديث كلمة المرور بنجاح ");
+      
+    }else{
+      die("لم يتم تحديث كلمة المرور , اكتب الايميل بشكل صحيح");
+    }
+    
+    // if($updatePassword->execute()){
+    //     $SysMsg2= 'تم إعادة تعيين كلمة المرور بنجاح';
+    //  }else{
+    //     $SysMsg2= 'فشل إعادة تعيين كلمة المرور بنجاح';
+    //  }
     } 
  } 
 ?>
