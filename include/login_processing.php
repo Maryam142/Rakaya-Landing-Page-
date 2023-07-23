@@ -20,20 +20,14 @@ if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
   $email      =  "";
   $password   =  "";
   $rememberMe =  "";
-  $Logerrors  =  array();
-
 }
  
-$Logerrors = array();
-
+$Logerrors  =  array();
 
 if(isset($_POST['submit_login'])){
  // Server-side validation
  $email    =  filter_var($_POST['email'],     FILTER_SANITIZE_EMAIL);
  $password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
-
-// $email     =  "";
-// $password  =  "";
 
  //set up cookie  
   if (isset($_POST['rememberMe'])){
