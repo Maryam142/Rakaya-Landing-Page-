@@ -89,9 +89,13 @@
                     <?php endforeach ?>
                   </div>
                 <?php endif ?>
+                
+                <?php if(!empty($SysMsg)) : ?>
                 <div class="systemMsg w-full">
                 <p><?php echo $SysMsg ?> </p>
                 </div>
+                <?php endif ?>
+
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="resetEmail">الإيميل</label>

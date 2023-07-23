@@ -86,15 +86,19 @@
                     <?php endforeach ?>
                   </div>
                 <?php endif ?>
+
+                <?php if(!empty($SysMsg)) : ?>
                 <div class="systemMsg w-full">
-                <p><?php echo $SysMsg2?> </p>
+                <p><?php echo $SysMsg ?> </p>
                 </div>
-                <!-- Email input -->
+                <?php endif ?>
+
+                <!-- pass1 input -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="resetpass1">من فضلك ادخل كلمة المرور الجديدة</label>
                   <input type="password" name="resetpass1" id="resetpass1" class="form-control text-end" required placeholder="••••••••" />
                 </div>
-                <!-- Code input -->
+                <!-- pass2 input -->
                 <div class="form-outline mb-2">
                   <label class="form-label" for="resetpass2">من فضلك اكد كلمة مرور الجديد </label>
                   <input type="password" name="resetpass2" id="resetpass2" class="form-control text-end" placeholder="••••••••" required />
