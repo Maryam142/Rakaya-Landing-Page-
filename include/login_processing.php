@@ -1,13 +1,16 @@
 <?php
 
 $conn = mysqli_connect('localhost','root','','rakaya');
-   
-//to check the connection
 if(!$conn){
     echo 'error: ' . mysqli_connect_error();
 }
 
 session_start();
+if(isset($_SESSION['user'] )){
+  header('location: home.php');
+  exit();
+}
+
 // cookie
 if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
   $email = $_COOKIE['email']; 
@@ -21,15 +24,16 @@ if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
 
 }
  
+$Logerrors = array();
 
-if(isset($_POST['submit'])){
+
+if(isset($_POST['submit_login'])){
  // Server-side validation
  $email    =  filter_var($_POST['email'],     FILTER_SANITIZE_EMAIL);
  $password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
 
 // $email     =  "";
 // $password  =  "";
-// $Logerrors = array();
 
  //set up cookie  
   if (isset($_POST['rememberMe'])){
@@ -53,9 +57,9 @@ $password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
     array_push($Logerrors, "يجب كتابة البريد الالكترونى");
 
    }
-  //  elseif(filter_var($email,FILTER_VALIDATE_EMAIL)==false){
-  //   array_push($Logerrors, "البريد الالكترونى غير صالح");
-  //  }
+   elseif(filter_var($email,FILTER_VALIDATE_EMAIL)==false){
+    array_push($Logerrors, "البريد الالكترونى غير صالح");
+   }
 
   // validate password///////////////////////////
    if(empty($password)){
@@ -63,8 +67,6 @@ $password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
    }
 
 if(count($Logerrors) == 0){
-
-
 // From database
     $stm="SELECT * FROM users WHERE Email ='$email'";
     $data=mysqli_fetch_row(mysqli_query($conn, $stm));
@@ -78,13 +80,14 @@ if(count($Logerrors) == 0){
           if($password === $password_db){
 
             $_SESSION['logged_in']= true;
-            $_SESSION['firstName'] = $data['Fname'];
+            $_SESSION['user'] = ["Fname"=>$data['Fname'],"email"=>$_email ];
+
             if(isset($_POST['rememberMe'])){
              setcookie("email", $_POST['email'], time() +(86400 *30));
              setcookie('password', $_POST['password'], time() + (86400 *30));
             }
             
-            header('location:home.php');
+            header('location: home.php');
          }else{
           array_push($Logerrors, "كلمة المرور غير صحيحة"); 
           }

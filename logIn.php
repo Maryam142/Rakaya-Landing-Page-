@@ -81,9 +81,16 @@ include('./include/login_processing.php');
               <p class="mb-3 font-light text-center fs-6 mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك</h2>
             </i>
 
-            <form action="logIn.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="signup">
+            <form action="logIn.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="login">
               <div class="row">
-                <?php include('./include/errorLogIn.php'); ?>
+              <?php if (count($Logerrors) > 0): ?>
+
+                <div class="error">
+                    <?php foreach($Logerrors as $error): ?>
+                        <p> <?php echo $error; ?> </p>
+                    <?php endforeach ?>
+                </div>
+              <?php endif ?>
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="email">الإيميل</label>

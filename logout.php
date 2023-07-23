@@ -1,6 +1,6 @@
 <?php 
 session_start();
-unset($_SESSION['logged_in']);
-header('location: logIn.php');
+session_unset();
+header('location: index.html');
 die();
 ?>
