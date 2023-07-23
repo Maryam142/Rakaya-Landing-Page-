@@ -77,8 +77,8 @@ if(isset($_POST['reset2'])){
     $password = "";
     $database = new PDO("mysql:host=localhost; dbname=rakaya;",$username,$password);
     $updatePassword = $database->prepare("UPDATE `users` SET `pass` = :password  WHERE `Email` = :email");
-    // $updatePassword->bindParam("password",$_POST['resetpass2']);
-    // $updatePassword->bindParam("email",$_GET['email']);
+    $updatePassword->bindParam("password",$_POST['resetpass2']);
+    $updatePassword->bindParam("email",$_GET['email']);
   
     if($updatePassword->execute()){
         $SysMsg2= 'تم إعادة تعيين كلمة المرور بنجاح';
