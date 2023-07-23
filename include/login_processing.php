@@ -38,13 +38,6 @@ if(isset($_POST['submit_login'])){
     setcookie('pass', '', time() - (86400 *30));
   }
 
-if(isset($_POST['submit_login'])){
-
-// Server-side validation
-$email    =  filter_var($_POST['email'],     FILTER_SANITIZE_EMAIL);
-$password =  filter_var($_POST['password'],  FILTER_SANITIZE_STRING);
-  
-
 
 // validate email///////////////////////////
   if(empty($email)){
@@ -87,5 +80,4 @@ if(count($Logerrors) == 0){
           }
     }
   }
-}
 }

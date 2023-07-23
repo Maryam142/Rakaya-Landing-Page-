@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html>
-  
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -75,31 +75,34 @@
         <div class="row d-flex justify-content-center">
           <div class="col-lg-8">
             <h2 class="font-bold text-center text-3xl text-boni mb-1">اعادة تعيين كلمة المرور</h2>
-            <i>
-              <p class="mb-3 font-light text-center fs-6 mx-4 text-cohly"> ادخل بريدك الالكتروني ليتم من خلاله اعادة تعيين كلمة المرور </h2>
-            </i>
 
-            <form action="reset.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="reset">
+            <form action="reset2.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="reset">
               <div class="row">
-                <?php if (count($Reset_errors) > 0) : ?>
+                <?php if (count($Reset2_errors) > 0) : ?>
 
                   <div class="error">
-                    <?php foreach ($Reset_errors as $error) : ?>
+                    <?php foreach ($Reset2_errors as $error) : ?>
                       <p> <?php echo $error; ?> </p>
                     <?php endforeach ?>
                   </div>
                 <?php endif ?>
                 <div class="systemMsg w-full">
-                <p><?php echo $SysMsg ?> </p>
+                <p><?php echo $SysMsg2?> </p>
                 </div>
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <label class="form-label" for="resetEmail">الإيميل</label>
-                  <input type="email" name="resetEmail" id="resetEmail" class="form-control text-end" required placeholder="email@example.com" value="<?php echo $resetEmail?>" />
+                  <label class="form-label" for="resetpass1">من فضلك ادخل كلمة المرور الجديدة</label>
+                  <input type="password" name="resetpass1" id="resetpass1" class="form-control text-end" required placeholder="••••••••" />
                 </div>
+                <!-- Code input -->
+                <div class="form-outline mb-2">
+                  <label class="form-label" for="resetpass2">من فضلك اكد كلمة مرور الجديد </label>
+                  <input type="password" name="resetpass2" id="resetpass2" class="form-control text-end" placeholder="••••••••" required />
+                </div>
+
                 <!-- Submit button -->
                 <div class="text-center">
-                  <button name="reset" type="submit" class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light" style="background-color: #C4AE7C;"> إرسال </button>
+                  <button name="reset2" type="submit" class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light" style="background-color: #C4AE7C;">اعادة تعيين</button>
 
                 </div>
             </form>

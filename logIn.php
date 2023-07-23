@@ -102,7 +102,7 @@ include('./include/login_processing.php');
                   <input type="password" name="password" id="password" class="form-control text-end" placeholder="••••••••" required value="<?php echo $password?>"/>
                 </div>
                 <div class="forgot mb-4">
-                  <a href="#">نسيت كلمة المرور ؟</a>
+                  <a href="reset.php">نسيت كلمة المرور ؟</a>
                 </div>
                 <!-- Submit button -->
                 <div>

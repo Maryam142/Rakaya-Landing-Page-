@@ -622,6 +622,15 @@ p, .p {
   text-align: center;
   border-radius: 5px;
   margin: 20px auto;
-
-
+}
+.systemMsg{
+  width: 90%;
+  padding: 5px;
+  color: #3c6476;
+  border: 1px solid #3c6476;
+  background-color: #d8eaf0;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 5px;
+  margin: 20px auto;
 }
