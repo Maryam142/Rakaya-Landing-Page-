@@ -54,16 +54,41 @@ if(!isset($_SESSION['logged_in'])){
       </div>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">الرئيسية</a></li>
-          <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">مشاريعك</a></li>
-          <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">نص وصف</a></li>
-          <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">نص وصف</a></li>
-          <li class="breadcrumb-item"><a href="logout.php" style="background-color: #C4AE7C ;" class="px-3 py-2 ms-4 me-4 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">تسجيل الخروج</a></li>
+          <li><img src="/img/about2.jpeg" class="rounded-circle" width="60px" height="60px" alt=""></li> 
+        <li>
+          <div class="dropdown">
+          <button class="btn btn-pigi text-light dropdown-toggle" style="background-color: #C4AE7C;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          اسم المستخدم
+          </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="index.html">الرئيسية</a>
+              <a class="dropdown-item" href="#">التنبيهات</a>
+              <div class="divider">
+              <a class="dropdown-item"href="logout.php">تسجيل الخروج</a>      
+            </div>
+          </div>
+        </li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
     </div>
   </header>
+
+  <!-- Background image -->
+  <section>
+    <div class="p-5 bg-image text-center align-items-center" style="background-image: url('img/Sign_in_up.png'); height: 300px; background-attachment: fixed; ">
+
+      <nav aria-label="breadcrumb text-light " style="float: left;">
+        <ol class="breadcrumb text-light mt-5 text-xl" style="--bs-breadcrumb-divider-color:#C4AE7C;">
+          <li class="breadcrumb-item text-pigi" aria-current="page"> الصفحة الشخصية </li>
+          <li class="breadcrumb-item text-light"><a href="index.html">الرئيسية</a></li>
+        </ol>
+      </nav>
+    </div>
+  <section>
+    <div class="container">
+    </div>
+  </section>
 
   <!-- Footer-->
   <footer class=" bg-ramadi fixed-bottom position-relative">
@@ -114,8 +139,36 @@ if(!isset($_SESSION['logged_in'])){
       <a class="text-white" href="#"></a>
     </div>
 </footer>
+
+<!-- scripts -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="js/main.js"></script>
+  <script src="js/spinner.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pigi: '#C4AE7C',
+            cohly: '#2C3640',
+            ramadi: '#3E3E41',
+            boni: '#816D4A',
+            light_pigi: '#EEE8DA',
+            Too_light_rmadi: '#F4F4F4'
+          }
+        }
+      }
+    }
+  </script>
 </body>
 </html>
 
 
-<
+
