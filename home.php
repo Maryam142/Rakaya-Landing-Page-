@@ -143,7 +143,7 @@ if (isset($_POST['edit'])) {
       </div>
       <div class="row flex-row-reverse">
         <div class="col-md-4 border-right">
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="img/user_profile.png" class="font-weight-bold"> رؤى فطاني </span><span class="text-black-50">omarkhan@gmail.com</span><span> </span></div>
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="img/user_profile.png" class="font-weight-bold"> <?php echo $row['Fname'], $row['Lname'] ?></span><span class="text-black-50"><?php echo $row['Email'] ?></span><span> </span></div>
         </div>
         <div class="col-md-7 border-right text-end">
           <div class="p-3 py-3 text-end">
