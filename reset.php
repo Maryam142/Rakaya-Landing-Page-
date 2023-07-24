@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Rakaya Sign In</title>
+  <title>Reset Password</title>
   <link href="img/minilogo.png" rel="icon">
   <!-- animate -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
