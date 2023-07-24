@@ -108,6 +108,7 @@ if($data){
    if( mysqli_query($conn, $sql)){
     $_SESSION['firstName'] = $firstName;
     header('Location: signUp_success.php'); //redirect the page
+
    }
  }
 

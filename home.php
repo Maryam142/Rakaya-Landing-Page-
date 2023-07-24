@@ -1,9 +1,63 @@
 <?php
+include('./include/DB_conn.php');
 
 session_start();
 if (!isset($_SESSION['logged_in'])) {
   header('location: logIn.php');
   die();
+}
+
+$user_email = $_SESSION['user_email'];
+
+$fetchquery = "SELECT * FROM users WHERE Email ='$user_email'";
+$result = mysqli_query($conn, $fetchquery);
+$row = mysqli_fetch_assoc($result);
+$userid = $row['id'];
+
+$homeerrors = array();
+if (isset($_POST['edit'])) {
+
+  $EFname     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
+  $ELname     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
+  $Eemail     =  filter_var($_POST['Eemail'],  FILTER_SANITIZE_EMAIL);
+  $Ephone     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
+  $Egender    =  $_POST['Egender'];
+  $Eusertype  =  $_POST['Eusertype'];
+
+  if (empty($EFname)) {
+    array_push($homeerrors,     " يجب كتابة الاسم الاول");
+  } elseif (strlen($EFname) > 100) {
+    array_push($homeerrors, " يجب ان لايكون الاسم الاول اكبر من 100 حرف ");
+  }
+  if (empty($ELname)) {
+    array_push($homeerrors,     " يجب تعبئة الاسم الاخير");
+  } elseif (strlen($ELname) > 100) {
+    array_push($errhomeerrorsors, " يجب ان لايكون الاسم الاخير اكبر من 100 حرف ");
+  }
+  if (empty($Eemail)) {
+    array_push($homeerrors,     " يجب تعبئة البريد الالكتروبي");
+  } elseif (filter_var($Eemail, FILTER_VALIDATE_EMAIL) == false) {
+    array_push($homeerrors, "البريد الالكترونى غير صالح");
+  }
+  if (empty($Ephone)) {
+    array_push($homeerrors,     " يجب تعبئة رقم الهاتف ");
+  } elseif (!(preg_match('/^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/', $Ephone))) {
+    array_push($homeerrors, " يرجى ادخال رقم الجوال بشكل صحيح");
+  }
+  if (empty($Eusertype)) {
+    array_push($homeerrors,     " يجب اختيار نوع المستخدم");
+  }
+  if (empty($Egender)) {
+    array_push($homeerrors,     " يجب تحديد الجنس ");
+  }
+
+  if (count($homeerrors) == 0) {
+    $query = "UPDATE `users` SET `Email` = $Eemail, `Fname` = $EFname, `Lname` =  $ELname, `Phone` = $Ephone , `Gender` = $Egender , `UserType` = $Eusertype WHERE `users`.`id` = $userID";
+    $resultofediting = mysqli_query($conn, $query);
+    if ($resultofediting) {
+      $ConfirmeditMsg = "تم تحديث كلمة المرور بنجاح ";
+    }
+  }
 }
 ?>
 
@@ -29,53 +83,47 @@ if (!isset($_SESSION['logged_in'])) {
   <link href="libraris/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="libraris/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
   <!-- Spinner Start -->
-  <!-- <div id="spinner"
+   <!-- <div id="spinner"
     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
     <div class="spinner-border position-relative pg-light_pigi" style="width: 6rem; height: 6rem;" role="status"></div>
     <img class="position-absolute top-50 start-50 translate-middle" src="img/minilogo.png" alt="Icon" height="60px"
       width="60px">
-  </div> -->
-  <!-- Spinner End -->
+   </div> -->
+   <!-- Spinner End -->
 
+  
   <!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-light">
- <div class="container-fluid">
-  <header id="header" class="fixed-top d-flex align-items-center header-transparent"> 
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
+
       <div class="logo">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand my-3 mt-3" href="index.html">
             <img src="img/rakaya.png" class="me-lg-2" height="40" class=" active btn-get-started animate__animated animate__fadeInUp" />
           </a>
         </div>
-      </div> 
-      
-        <ul>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="logout.php">تسجيل الدخول</a></li>
-          </ul>
-        </li>
-
-          <li><img src="" class="rounded-circle m-2" width="60px" height="60px" alt=""></li>
+      </div>
+      <nav>
+        <ul class="d-flex me-2" style="line-height: 0; align-items: center; justify-content: space-between; padding: 10px 0 10px 30px;">
+          <li class="flex">
+            <a href="logout.php" class="bg-pigi px-2 mx-2 py-3 ms-2 flex rounded animate__animated animate__fadeInUp text-light">
+              تسجيل الخروج</a>
+          </li>
+          <li class="flex ">
+            <img src="img/user_profile.png" class="rounded-pill h-12" height="40" alt="">
+          </li>
         </ul>
-  </div>
- </div>
-</nav>
+      </nav>
+    </div>
+  </header>
+
+
+
   <section>
     <!-- Background image -->
     <div class="p-5 bg-image" style="background-image: url('img/Sign_in_up.png'); height: 300px; background-attachment: fixed;">
@@ -90,34 +138,57 @@ if (!isset($_SESSION['logged_in'])) {
     </div>
     <!-- content -->
     <div class="container rounded bg-white mb-5 py-5" style="margin-top: -100px;">
-      <div class=" justify-content-between align-items-center mb-3 ">
-        <h4 class="text-center">اهلًا ومرحبًا رؤى</h4>
-
+      <div class=" justify-content-between align-items-center mb-1">
+        <h4 class="text-center"><span> <?php echo $row['Fname'] ?> </span> اهلًا ومرحبًا</h4>
       </div>
       <div class="row flex-row-reverse">
         <div class="col-md-4 border-right">
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="./img/team.png" class="font-weight-bold">عمر خان </span><span class="text-black-50">omarkhan@gmail.com</span><span> </span></div>
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="img/user_profile.png" class="font-weight-bold"> رؤى فطاني </span><span class="text-black-50">omarkhan@gmail.com</span><span> </span></div>
         </div>
         <div class="col-md-7 border-right text-end">
-          <div class="p-3 py-5 text-end">
-            <div class="row mt-2">
-              <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" class="form-control text-end" placeholder="الاسم الأول " value=""></div>
-              <div class="col-md-6"><label class="labels">الأسم الأخير </label><input type="text" class="form-control text-end" value="" placeholder="الاسم الأخير"></div>
-            </div>
-            <div class="row mt-3">
-              <div class="col-md-12 "><label class="labels">رقم الجوال </label><input type="text" class="form-control text-end" placeholder="رقم الجوال" value=""></div>
-              <div class="col-md-12 "><label class="labels">الايميل</label><input type="text" class="form-control text-end" placeholder="الاييميل" value=""></div>
-              <div class="col-md-12 mt-5 "><label class="labels">العنوان الأول</label><input type="text" class="form-control text-end" placeholder="العنوان الأول" value=""></div>
+          <div class="p-3 py-3 text-end">
+  <form action="home.php" method="POST" class="border border-ramadi rounded p-5">
+              <div class="row">
+                <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" name="Efname" class="form-control text-end" placeholder="الاسم الأول " value="<?php echo $row['Fname'] ?>"></div>
+                <div class="col-md-6"><label class="labels">الأسم الأخير </label><input type="text" name="Elname" class="form-control text-end" placeholder="الاسم الأخير" value="<?php echo $row['Lname'] ?>"></div>
+              </div>
+              <div class="row mt-3 space-y-3">
+                <div class="col-md-12 "><label class="labels">رقم الجوال </label><input type="text" name="Ephone" class="form-control text-end" placeholder="رقم الجوال" value="<?php echo $row['Phone'] ?>"></div>
+                <div class="col-md-12 "><label class="labels">البريد الالكتروني</label><input type="text" name="Eemail" class="form-control text-end" placeholder="البريد الالكتروني" value="<?php echo $row['Email'] ?>"></div>
+                <div class="col-md-12 "><label class="labels"> الجنس</label><input type="text" name="Egender" class="form-control text-end" placeholder="" value="<?php echo $row['Gender'] ?>"></div>
+                <div class="col-md-12 "><label class="labels"> نوع المستخدم</label><input type="text" name="EuserType" class="form-control text-end" placeholder=" " value="<?php echo $row['UserType'] ?>"></div>
+
+                <!-- <div class="col-md-12 mt-5 "><label class="labels">العنوان الأول</label><input type="text" class="form-control text-end" placeholder="العنوان الأول" value=""></div>
               <div class="col-md-12 "><label class="labels">العنوان الثاني </label><input type="text" class="form-control text-end" placeholder="العنوان الثاني " value=""></div>
               <div class="col-md-12 "><label class="labels">الرمز البريدي</label><input type="text" class="form-control text-end" placeholder="الرمز البريدي " value=""></div>
-              <div class="col-md-12 "><label class="labels">المنطقة</label><input type="text" class="form-control text-end" placeholder="المنطقة" value=""></div>
+              <div class="col-md-12 "><label class="labels">المنطقة</label><input type="text" class="form-control text-end" placeholder="المنطقة" value=""></div> -->
+              </div>
             </div>
-            <div class="mt-5 text-center"><button name="submit" class="w-full btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" type="submit" style="background-color: #C4AE7C;">حفظ</button></div>
-          </div>
-        </div>
+            <div class="row mt-3 align-items-center text-end ">
+              <div class="col-md-6 text-center"><button  type="submit" name="delete" class="btn bg-pigi mb-1 rounded px-2 py-2 hover:bg-cohly text-center text-light" style="background-color: #a94442;">حذف الحساب</button></div>
+              <div class="col-md-6 text-center"><button  type="submit" name="edit" class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" style="background-color: #816D4A">تعديل</button></div>
+            </div>
+</form>
 
+<!-- System Msgs -->
+            <?php if (count($homeerrors) > 0) : ?>
+
+              <div class="error">
+                <?php foreach ($homeerrors as $error) : ?>
+                  <p> <?php echo $error; ?> </p>
+                <?php endforeach ?>
+              </div>
+            <?php endif ?>
+
+            <?php if (!empty($ConfirmeditMsg)) : ?>
+              <div class="systemMsg w-full">
+                <p><?php echo $ConfirmeditMsg ?> </p>
+              </div>
+            <?php endif ?>
+          </div>
+
+        </div>
       </div>
-    </div>
   </section>
 
   <!-- Footer-->

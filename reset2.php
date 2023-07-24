@@ -22,6 +22,23 @@
   <link href="libraris/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="libraris/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pigi: '#C4AE7C',
+            cohly: '#2C3640',
+            ramadi: '#3E3E41',
+            boni: '#816D4A',
+            light_pigi: '#EEE8DA',
+            Too_light_rmadi: '#F4F4F4'
+          }
+        }
+      }
+    }
+</script>
 </head>
 
 <body>
@@ -185,23 +202,5 @@
   </script>
   <script src="js/main.js"></script>
   <script src="js/spinner.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            pigi: '#C4AE7C',
-            cohly: '#2C3640',
-            ramadi: '#3E3E41',
-            boni: '#816D4A',
-            light_pigi: '#EEE8DA',
-            Too_light_rmadi: '#F4F4F4'
-          }
-        }
-      }
-    }
-  </script>
 </body>
-
 </html>

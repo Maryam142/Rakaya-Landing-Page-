@@ -66,7 +66,7 @@ if(count($Logerrors) == 0){
           if($password === $password_db){
 
             $_SESSION['logged_in']= true;
-            $_SESSION['user'] = ["Fname"=>$data['Fname'],"email"=>$_email ];
+            $_SESSION['user_email'] = $email;
 
             if(isset($_POST['rememberMe'])){
              setcookie("email", $_POST['email'], time() +(86400 *30));
