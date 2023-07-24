@@ -29,6 +29,9 @@ if (!isset($_SESSION['logged_in'])) {
   <link href="libraris/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="libraris/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -43,7 +46,9 @@ if (!isset($_SESSION['logged_in'])) {
   <!-- Spinner End -->
 
   <!-- Navbar -->
-  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+<nav class="navbar navbar-expand-lg bg-light">
+ <div class="container-fluid">
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent"> 
     <div class="container d-flex justify-content-between align-items-center">
       <div class="logo">
         <div class="container-fluid">
@@ -51,87 +56,81 @@ if (!isset($_SESSION['logged_in'])) {
             <img src="img/rakaya.png" class="me-lg-2" height="40" class=" active btn-get-started animate__animated animate__fadeInUp" />
           </a>
         </div>
-      </div>
-      <nav id="navbar" class="navbar">
+      </div> 
+      
         <ul>
-        <li>
-          <div class="dropdown">
-          <button class="btn btn-pigi text-light dropdown-toggle" style="background-color: #C4AE7C;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          اسم المستخدم
-          </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="index.html">الرئيسية</a>
-              <a class="dropdown-item" href="#">التنبيهات</a>
-              <div class="divider">
-              <a class="dropdown-item"href="logout.php">تسجيل الخروج</a>      
-            </div>
-          </div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="logout.php">تسجيل الدخول</a></li>
+          </ul>
         </li>
-        <li><img src="/img/about2.jpeg" class="rounded-circle m-2" width="60px" height="60px" alt=""></li> 
+
+          <li><img src="" class="rounded-circle m-2" width="60px" height="60px" alt=""></li>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
-    </div>
-  </header>
-<section>
-  <!-- Background image -->
-  <div class="p-5 bg-image" style="background-image: url('img/Sign_in_up.png'); height: 300px; background-attachment: fixed;">
-    <div class="text-center">
-      <nav aria-label="breadcrumb text-light " style="float: left;">
-        <ol class="breadcrumb text-light mt-5 text-xl" style="--bs-breadcrumb-divider-color:#C4AE7C;">
-          <li class="breadcrumb-item text-pigi" aria-current="page"> الملف الشخصي </li>
-          <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
-        </ol>
-      </nav>
-    </div>
   </div>
-  <!-- content -->
-  <div class="container rounded bg-white mb-5 py-5" style="margin-top: -100px;">
-    <div class=" justify-content-between align-items-center mb-3 ">
-      <h4 class="text-center">اهلًا ومرحبًا رؤى</h4>
-
-    </div>
-    <div class="row flex-row-reverse">
-      <div class="col-md-4 border-right">
-        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="img\team1.jpeg" ><span class="font-weight-bold">عمر خان </span><span class="text-black-50">omarkhan@gmail.com</span><span> </span></div>
+ </div>
+</nav>
+  <section>
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="background-image: url('img/Sign_in_up.png'); height: 300px; background-attachment: fixed;">
+      <div class="text-center">
+        <nav aria-label="breadcrumb text-light " style="float: left;">
+          <ol class="breadcrumb text-light mt-5 text-xl" style="--bs-breadcrumb-divider-color:#C4AE7C;">
+            <li class="breadcrumb-item text-pigi" aria-current="page"> الملف الشخصي </li>
+            <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
+          </ol>
+        </nav>
       </div>
-      <div class="col-md-7 border-right text-end">
-        <div class="p-3 py-5 text-end">
-          <div class="row mt-2">
-            <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" class="form-control text-end" placeholder="الاسم الأول " value=""></div>
-            <div class="col-md-6"><label class="labels">الأسم الأخير </label><input type="text" class="form-control text-end" value="" placeholder="الاسم الأخير"></div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-md-12 "><label class="labels">رقم الجوال </label><input type="text" class="form-control text-end" placeholder="رقم الجوال" value=""></div>
-            <div class="col-md-12 "><label class="labels">الايميل</label><input type="text" class="form-control text-end" placeholder="الاييميل" value=""></div>
-            <div class="col-md-12 mt-5 "><label class="labels">العنوان الأول</label><input type="text" class="form-control text-end" placeholder="العنوان الأول" value=""></div>
-            <div class="col-md-12 "><label class="labels">العنوان الثاني </label><input type="text" class="form-control text-end" placeholder="العنوان الثاني " value=""></div>
-            <div class="col-md-12 "><label class="labels">الرمز البريدي</label><input type="text" class="form-control text-end" placeholder="الرمز البريدي " value=""></div>
-            <div class="col-md-12 "><label class="labels">المنطقة</label><input type="text" class="form-control text-end" placeholder="المنطقة" value=""></div>
-          </div>
-          <div class="mt-5 text-center"><button name="submit" class="w-full btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" type="submit" style="background-color: #C4AE7C;">حفظ</button></div>
+    </div>
+    <!-- content -->
+    <div class="container rounded bg-white mb-5 py-5" style="margin-top: -100px;">
+      <div class=" justify-content-between align-items-center mb-3 ">
+        <h4 class="text-center">اهلًا ومرحبًا رؤى</h4>
+
+      </div>
+      <div class="row flex-row-reverse">
+        <div class="col-md-4 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="./img/team.png" class="font-weight-bold">عمر خان </span><span class="text-black-50">omarkhan@gmail.com</span><span> </span></div>
         </div>
-      </div>
+        <div class="col-md-7 border-right text-end">
+          <div class="p-3 py-5 text-end">
+            <div class="row mt-2">
+              <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" class="form-control text-end" placeholder="الاسم الأول " value=""></div>
+              <div class="col-md-6"><label class="labels">الأسم الأخير </label><input type="text" class="form-control text-end" value="" placeholder="الاسم الأخير"></div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12 "><label class="labels">رقم الجوال </label><input type="text" class="form-control text-end" placeholder="رقم الجوال" value=""></div>
+              <div class="col-md-12 "><label class="labels">الايميل</label><input type="text" class="form-control text-end" placeholder="الاييميل" value=""></div>
+              <div class="col-md-12 mt-5 "><label class="labels">العنوان الأول</label><input type="text" class="form-control text-end" placeholder="العنوان الأول" value=""></div>
+              <div class="col-md-12 "><label class="labels">العنوان الثاني </label><input type="text" class="form-control text-end" placeholder="العنوان الثاني " value=""></div>
+              <div class="col-md-12 "><label class="labels">الرمز البريدي</label><input type="text" class="form-control text-end" placeholder="الرمز البريدي " value=""></div>
+              <div class="col-md-12 "><label class="labels">المنطقة</label><input type="text" class="form-control text-end" placeholder="المنطقة" value=""></div>
+            </div>
+            <div class="mt-5 text-center"><button name="submit" class="w-full btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" type="submit" style="background-color: #C4AE7C;">حفظ</button></div>
+          </div>
+        </div>
 
+      </div>
     </div>
-  </div>
   </section>
-  
+
   <!-- Footer-->
   <footer class=" bg-ramadi fixed-bottom position-relative">
     <div class="container mx-auto flex flex-col flex-col-reverse md:flex-row text-light px-5 py-10 items-center justify-between space-y-3">
-      
+
       <div class="flex flex-col items-center justify-between space-y-2">
         <img src="img/minilogo.png" alt="logo" style="height: 7rem; width: 6.5rem;">
         <div>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="tel:+966570077055" target="_blank"
-            aria-label="Phone"><i class="bi bi-telephone-fill" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="mailto:Admin@rakaya.co" target="_blank"
-            aria-label=" Email"><i class="bi bi-envelope-fill" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://www.linkedin.com/company/rakaya/"
-            target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://twitter.com/rakayaco" target="_blank"
-            aria-label="Twitter"><i class="bi bi-twitter" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="tel:+966570077055" target="_blank" aria-label="Phone"><i class="bi bi-telephone-fill" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="mailto:Admin@rakaya.co" target="_blank" aria-label=" Email"><i class="bi bi-envelope-fill" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://www.linkedin.com/company/rakaya/" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://twitter.com/rakayaco" target="_blank" aria-label="Twitter"><i class="bi bi-twitter" style="color: #ffffff;"></i></a>
         </div>
       </div>
       <div class="flex justify-around space-x-32">
@@ -145,19 +144,19 @@ if (!isset($_SESSION['logged_in'])) {
         </div>
       </div>
       <div class="flex flex-col justify-between items-center">
-      <form action="">
-      <div class="single">
-      <div class="input-group">
-      <input type="text" name="" placeholder="البريد الإلكتروني" id=""class="mb-2 flex-1 py-2 px-6 rounded text-end">
-      <span class="input-group-btn">
-          <button class="ml-2 btn bg-pigi rounded px-6 py-2 hover:bg-cohly text-light" type="submit" name="Subscribe">الاشتراك</button>
-      </span>
+        <form action="">
+          <div class="single">
+            <div class="input-group">
+              <input type="text" name="" placeholder="البريد الإلكتروني" id="" class="mb-2 flex-1 py-2 px-6 rounded text-end">
+              <span class="input-group-btn">
+                <button class="ml-2 btn bg-pigi rounded px-6 py-2 hover:bg-cohly text-light" type="submit" name="Subscribe">الاشتراك</button>
+              </span>
+            </div>
+          </div>
+        </form>
+        <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
+      </div>
     </div>
-    </div>
-    </form>
-      <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
-    </div>
-</div>
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color:#333335; color:white;">
@@ -165,23 +164,20 @@ if (!isset($_SESSION['logged_in'])) {
       &copy; 2023
       <a class="text-white" href="#"></a>
     </div>
-</footer>
+  </footer>
 
 
   <!-- back to top btn -->
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i
-      class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
-    integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init();</script>
+  <script>
+    AOS.init();
+  </script>
   <script src="js/main.js"></script>
   <script src="js/spinner.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -190,16 +186,19 @@ if (!isset($_SESSION['logged_in'])) {
       theme: {
         extend: {
           colors: {
-            white: '#ffffff', pigi: '#C4AE7C', cohly: '#2C3640', ramadi: '#3E3E41', boni: '#816D4A', light_pigi: '#EEE8DA', Too_light_rmadi: '#F4F4F4'
+            white: '#ffffff',
+            pigi: '#C4AE7C',
+            cohly: '#2C3640',
+            ramadi: '#3E3E41',
+            boni: '#816D4A',
+            light_pigi: '#EEE8DA',
+            Too_light_rmadi: '#F4F4F4'
           }
         }
       }
     }
   </script>
-  
+
 </body>
 
 </html>
-
-
-

@@ -2,13 +2,8 @@
 
 session_start();
 
-//connection
-$conn = mysqli_connect('localhost','root','','rakaya');
-   
-//to check the connection
-if(!$conn){
-       echo 'error: ' . mysqli_connect_error();
-} 
+include ('./include/DB_conn.php');
+ 
 
 $firstName =  "";
 $lastName  =  "";
@@ -113,8 +108,6 @@ if($data){
    if( mysqli_query($conn, $sql)){
     $_SESSION['firstName'] = $firstName;
     header('Location: signUp_success.php'); //redirect the page
-
-
    }
  }
 

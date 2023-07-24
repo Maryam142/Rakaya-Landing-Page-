@@ -1,9 +1,8 @@
 <?php
 
-$conn = mysqli_connect('localhost','root','','rakaya');
-if(!$conn){
-    echo 'error: ' . mysqli_connect_error();
-}
+include ('./include/DB_conn.php');
+
+
 
 session_start();
 if(isset($_SESSION['user'] )){
