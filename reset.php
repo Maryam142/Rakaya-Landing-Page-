@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Rakaya Sign In</title>
+  <title>Reset Password</title>
   <link href="img/minilogo.png" rel="icon">
   <!-- animate -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -116,13 +116,18 @@
   <!-- Footer-->
   <footer class=" bg-ramadi fixed-bottom position-relative">
     <div class="container mx-auto flex flex-col flex-col-reverse md:flex-row text-light px-5 py-10 items-center justify-between space-y-3">
+      
       <div class="flex flex-col items-center justify-between space-y-2">
         <img src="img/minilogo.png" alt="logo" style="height: 7rem; width: 6.5rem;">
         <div>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="tel:+966570077055" target="_blank" aria-label="Phone"><i class="bi bi-telephone-fill" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="mailto:Admin@rakaya.co" target="_blank" aria-label=" Email"><i class="bi bi-envelope-fill" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://www.linkedin.com/company/rakaya/" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://twitter.com/rakayaco" target="_blank" aria-label="Twitter"><i class="bi bi-twitter" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="tel:+966570077055" target="_blank"
+            aria-label="Phone"><i class="bi bi-telephone-fill" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="mailto:Admin@rakaya.co" target="_blank"
+            aria-label=" Email"><i class="bi bi-envelope-fill" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://www.linkedin.com/company/rakaya/"
+            target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://twitter.com/rakayaco" target="_blank"
+            aria-label="Twitter"><i class="bi bi-twitter" style="color: #ffffff;"></i></a>
         </div>
       </div>
       <div class="flex justify-around space-x-32">
@@ -135,29 +140,28 @@
           <a href="#contact">للتواصل</a>
         </div>
       </div>
-      <div class="col-sm-12">
-        <div class="single">
-
-          <div class="input-group">
-            <input type="email" placeholder="البريد الإلكتروني" class="px-6 rounded text-end">
-            <span class="input-group-btn">
-              <button class="btn btn-theme btn bg-pigi rounded text-light ml-3" type="submit">الاشتراك</button>
-            </span>
-          </div>
-        </div>
-        <div class=" hidden md:block text-right">
-          <h2>اشترك لدينا ليصلك كل جديد</h2>
-        </div>
-      </div>
+      <div class="flex flex-col justify-between items-center">
+      <form action="">
+      <div class="single">
+      <div class="input-group">
+      <input type="text" name="" placeholder="البريد الإلكتروني" id=""class="mb-2 flex-1 py-2 px-6 rounded text-end">
+      <span class="input-group-btn">
+          <button class="ml-2 btn bg-pigi rounded px-6 py-2 hover:bg-cohly text-light" type="submit" name="Subscribe">الاشتراك</button>
+      </span>
     </div>
+    </div>
+    </form>
+      <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
+    </div>
+</div>
+
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color:#333335; color:white;">
       ركايا | جميع الحقوق محفوظة |
       &copy; 2023
       <a class="text-white" href="#"></a>
     </div>
-    <!-- Copyright -->
-  </footer>
+</footer>
 
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
