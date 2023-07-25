@@ -1,5 +1,5 @@
 <?php
-include('./include/DB_conn.php');
+include ('./DB_conn.php');
 
 session_start();
 if (!isset($_SESSION['logged_in'])) {
@@ -84,7 +84,7 @@ if (isset($_POST['edit'])) {
 
   if (count($homeerrors) == 0) {
     $query = "UPDATE `users` SET `Email` = $Eemail, `Fname` = $EFname, `Lname` =  $ELname, `Phone` = $Ephone , `Gender` = $Egender , `UserType` = $Eusertype WHERE `users`.`id` = $userID";
-    
+
     $resultofediting = mysqli_query($conn, $query);
     if ($resultofediting) {
       $ConfirmeditMsg = "تم تحديث بياناتك بنجاح ";

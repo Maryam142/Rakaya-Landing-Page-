@@ -1,6 +1,6 @@
 <?php
 
-include ('./include/DB_conn.php');
+include ('./DB_conn.php');
 
 
 
