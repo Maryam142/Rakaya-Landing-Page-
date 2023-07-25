@@ -17,7 +17,7 @@ $image     =  "";
 $errors = array();
 
 
-if(isset($_POST['submit']) && isset($_POST['image'])){
+if(isset($_POST['submit'])){
 
 // Server-side validation
 $firstName =  filter_var($_POST['firstName'], FILTER_SANITIZE_STRING);
@@ -29,11 +29,13 @@ $phone     =  filter_var($_POST['phone'],     FILTER_SANITIZE_STRING);
 $gender    =  $_POST['gender'];
 $usertype  =  $_POST['usertype'];
 
-$filename  =  $_FILES['image']['name'];
+$img_name  =  $_FILES['image']['name'];
+$img_size  =  $_FILES['image']['size'];
+$img_type  =  $_FILES['image']['type'];
+$tmp_name  =  $_FILES['image']['tmp_name'];
 
 
 
-move_uploaded_file($temp,$folder);
 
 
 
