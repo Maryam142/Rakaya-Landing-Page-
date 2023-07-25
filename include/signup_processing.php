@@ -107,7 +107,7 @@ if (isset($_POST['submit'])) {
     $allowed_exs = array("jpg", "jpeg", "png");
 
     if (in_array($image_ex_lc, $allowed_exs)) {
-      $image_upload_path = 'usersImg/' . uniqid() . '.' . $image_ex_lc;
+      $image_upload_path = 'img/' . uniqid() . '.' . $image_ex_lc;
     }
 
     if (!in_array($image_extension, $allowed_extensions)) {
@@ -128,7 +128,7 @@ if (isset($_POST['submit'])) {
       //Encrypt the password
       // $password=password_hash($password,PASSWORD_DEFAULT);
 
-      $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$email ','$firstName','$lastName','$phone','$password ','$gender','$usertype','$image_name')";
+      $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$email ','$firstName','$lastName','$phone','$password ','$gender','$usertype','$image_upload_path')";
       //feedback  
       if (mysqli_query($conn, $sql)) {
 
