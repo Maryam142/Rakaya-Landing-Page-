@@ -177,7 +177,7 @@ if(!empty($row['Image'])){
               تسجيل الخروج</a>
           </li>
           <li class="flex ">
-            <img src="<?php echo $imgsrc ?>" class="rounded-pill h-12" height="40" alt="">
+            <img src="<?php echo $imgsrc ?>" class="rounded-pill h-12" height="40" alt="profile image">
           </li>
         </ul>
       </nav>
@@ -207,7 +207,7 @@ if(!empty($row['Image'])){
         <div class="col-md-4 border-right">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 
-          <img class="rounded-circle mt-5" width="150px" src="<?php echo $imgsrc ?>" class="font-weight-bold">
+          <img class="rounded-circle mt-5" width="150px" src="<?php echo $imgsrc ?>" alt="profile image" class="font-weight-bold">
 
           <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
           <?php echo $row['Email'] ?></span><span> </span></div>
