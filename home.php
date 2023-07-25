@@ -23,7 +23,10 @@ $Egender    =  "";
 $Eusertype  =  "";
 $Epassword2 =  "";
 $Epassword2 =  "";
+$image     =  "";
 
+
+// initialize the form's varibales 
 if (isset($_POST['edit']) ||  isset($_POST['delete'])) {
   $EFname     =  filter_var($_POST['Efname'],  FILTER_SANITIZE_STRING);
   $ELname     =  filter_var($_POST['Elname'],  FILTER_SANITIZE_STRING);
@@ -34,7 +37,7 @@ if (isset($_POST['edit']) ||  isset($_POST['delete'])) {
   $Epassword     =  filter_var($_POST['Epassword'],  FILTER_SANITIZE_STRING);
   $Epassword2     =  filter_var($_POST['Epassword2'],  FILTER_SANITIZE_STRING);
 }
-
+// edit the profile
 if (isset($_POST['edit'])) {
   if (empty($EFname)) {
     array_push($homeerrors,     " يجب كتابة الاسم الاول");
@@ -80,8 +83,15 @@ if (isset($_POST['edit'])) {
     array_push($homeerrors, "يجب ان تتطابق كلمات المرور ");
   }
 
+  $image_name      =  $_FILES['Eimage']['name'];
+  $image_size      =  $_FILES['Eimage']['size'];
+  $image_type      =  $_FILES['Eimage']['type'];
+  $image_tmp_name  =  $_FILES['Eimage']['tmp_name'];
+  $image_error     =  $_FILES['Eimage']['error'];
+  $image_folder    =  'img/' . $image_name;
+
   if (count($homeerrors) == 0) {
-    $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype' WHERE `users`.`id` = '$userID'";
+    $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype',`Image` = '$image_name'  WHERE `users`.`id` = '$userID'";
     $resultofediting = mysqli_query($conn, $query);
     if ($resultofediting) {
       $ConfirmeditMsg = "تم تحديث بياناتك بنجاح ";
@@ -90,7 +100,7 @@ if (isset($_POST['edit'])) {
     }
   }
 }
-
+// delete the profile
 if (isset($_POST['delete'])) {
   if (count($homeerrors) == 0) {
     $query =  "DELETE FROM users WHERE `users`.`id` = $userid";
@@ -103,6 +113,14 @@ if (isset($_POST['delete'])) {
     }
   }
 }
+
+// view image profile
+if(!empty($row['Image'])){
+  $imgsrc= "<img scr='img/".$row['Image']."' class='rounded-circle mt-5' width='150px'>";
+  }else{
+    $imgsrc="img/user_profile.png";
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -159,7 +177,7 @@ if (isset($_POST['delete'])) {
               تسجيل الخروج</a>
           </li>
           <li class="flex ">
-            <img src="img/user_profile.png" class="rounded-pill h-12" height="40" alt="">
+            <img src="<?php echo $imgsrc ?>" class="rounded-pill h-12" height="40" alt="">
           </li>
         </ul>
       </nav>
@@ -188,26 +206,15 @@ if (isset($_POST['delete'])) {
       <div class="row flex-row-reverse">
         <div class="col-md-4 border-right">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-          <!-- <img class="rounded-circle mt-5" width="150px" src="img/user_profile.png" class="font-weight-bold"> -->
-          <?php 
-          $sel = "SELECT * FROM users";
-          $que = mysqli_query($con,$sel);
 
-          $output = "";
+          <img class="rounded-circle mt-5" width="150px" src="<?php echo $imgsrc ?>" class="font-weight-bold">
 
-          if (mysqli_num_rows($que)<1){
-
-            array_push($homeerrors, "لا توجد صورة للرفع");
-
-          }
-
-          while ($row = mysqli_fetch_array($que)){
-
-            $output .= "<img scr='".$row['Image']."' class='rounded-circle mt-5' width='150px'  >";
-          }
-          ?>
           <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
           <?php echo $row['Email'] ?></span><span> </span></div>
+        <form action="home.php" method="POST" enctype="multipart/form-data">
+          <div class="form mb-4 text-end">
+              <input type="file" name="Eimage" class="box" accept="img/jpg, img/jpeg, img/png">
+              </div>
         </div>
         <div class="col-md-7 border-right text-end">
           <div class="p-3 py-3 text-end">

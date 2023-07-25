@@ -115,10 +115,7 @@ if (isset($_POST['submit'])) {
     //Encrypt the password
     // $password=password_hash($password,PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO `users`( `Email`, `Fname`, `Lname`, `Phone`, `pass`, `Gender`,UserType,Image) VALUES ('$email ','$firstName','$lastName','$phone','$password ','$gender','$usertype','$image_name' )";
-    echo $sql;
-    echo $image_tmp_name;
-
+    $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$email ','$firstName','$lastName','$phone','$password ','$gender','$usertype','$image_name')";
     //feedback  
     if (mysqli_query($conn, $sql)) {
 
