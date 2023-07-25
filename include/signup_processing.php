@@ -115,11 +115,14 @@ if (isset($_POST['submit'])) {
     //Encrypt the password
     // $password=password_hash($password,PASSWORD_DEFAULT);
 
+    
+  
+    //Image Validation
+
+    move_uploaded_file($image_tmp_name, $image_folder);
     $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$email ','$firstName','$lastName','$phone','$password ','$gender','$usertype','$image_name')";
     //feedback  
     if (mysqli_query($conn, $sql)) {
-
-      move_uploaded_file($image_tmp_name, $image_folder);
 
       if (move_uploaded_file($image_tmp_name, $image_folder)) {
         echo 'The file was moved successfully.';

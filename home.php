@@ -90,8 +90,21 @@ if (isset($_POST['edit'])) {
   $image_error     =  $_FILES['Eimage']['error'];
   $image_folder    =  'img/' . $image_name;
 
+  // Image Validation
+  $ValidImageExtention = ['jpg', 'jpeg', 'png'];
+  $imageExtention = explode('.', $image_name);
+  $imageExtention = strtolower(end($imageExtention));
+  if (!in_array($imageExtention, $ValidImageExtention)) {
+    array_push($homeerrors, "png, jpg, jepg يجب ان يكون امتداد الصورةاحدى هذه الامتدادات");
+  } elseif ($image_size > 1000000) {
+    array_push($homeerrors, "يجب ان يكون حجم الصورة اقل من 1 كيلوبايت");
+  }
+
   if (count($homeerrors) == 0) {
-    $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype',`Image` = '$image_name'  WHERE `users`.`id` = '$userID'";
+    $newImageName = uniqid();
+    $newImageName .= '.' . $imageExtention;
+    move_uploaded_file($image_tmp_name, $newImageName);
+    $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype',`Image` = '$newImageName'  WHERE `users`.`id` = '$userID'";
     $resultofediting = mysqli_query($conn, $query);
     if ($resultofediting) {
       $ConfirmeditMsg = "تم تحديث بياناتك بنجاح ";
@@ -115,10 +128,10 @@ if (isset($_POST['delete'])) {
 }
 
 // view image profile
-if(!empty($row['Image'])){
-  $imgsrc= "<img scr='img/".$row['Image']."' class='rounded-circle mt-5' width='150px'>";
-  }else{
-    $imgsrc="img/user_profile.png";
+if (!empty($row['Image'])) {
+  $imgsrc = "<img scr='img/" . $row['Image'] . "' class='rounded-circle mt-5' width='150px'>";
+} else {
+  $imgsrc = "img/user_profile.png";
 }
 
 ?>
@@ -202,19 +215,35 @@ if(!empty($row['Image'])){
     <div class="container rounded bg-white mb-5 py-5" style="margin-top: -100px;">
       <div class=" justify-content-between align-items-center mb-1">
         <h4 class="text-center text-bold text-3xl"> <span class="text-pigi"><?php echo $row['Fname'] ?> </span> اهلًا ومرحبًا</h4>
+        <!-- System Msgs -->
+        <?php if (count($homeerrors) > 0) : ?>
+
+          <div class="error">
+            <?php foreach ($homeerrors as $error) : ?>
+              <p> <?php echo $error; ?> </p>
+            <?php endforeach ?>
+          </div>
+        <?php endif ?>
+
+        <?php if (!empty($ConfirmeditMsg)) : ?>
+          <div class="systemMsg">
+            <p><?php echo $ConfirmeditMsg ?> </p>
+          </div>
+        <?php endif ?>
       </div>
       <div class="row flex-row-reverse">
         <div class="col-md-4 border-right">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 
-          <img class="rounded-circle mt-5" width="150px" src="<?php echo $imgsrc ?>" alt="profile image" class="font-weight-bold">
+            <img class="rounded-circle mt-5" width="150px" src="<?php echo $imgsrc ?>" alt="profile image" class="font-weight-bold">
 
-          <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
-          <?php echo $row['Email'] ?></span><span> </span></div>
-        <form action="home.php" method="POST" enctype="multipart/form-data">
-          <div class="form mb-4 text-end">
+            <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
+              <?php echo $row['Email'] ?></span><span> </span>
+          </div>
+          <form action="home.php" method="POST" enctype="multipart/form-data">
+            <div class="form mb-4 text-end">
               <input type="file" name="Eimage" class="box" accept="img/jpg, img/jpeg, img/png">
-              </div>
+            </div>
         </div>
         <div class="col-md-7 border-right text-end">
           <div class="p-3 py-3 text-end">
@@ -247,22 +276,6 @@ if(!empty($row['Image'])){
             <div class="col-md-6 text-center"><button type="submit" name="edit" class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" style="background-color: #816D4A">تعديل</button></div>
           </div>
           </form>
-
-          <!-- System Msgs -->
-          <?php if (count($homeerrors) > 0) : ?>
-
-            <div class="error">
-              <?php foreach ($homeerrors as $error) : ?>
-                <p> <?php echo $error; ?> </p>
-              <?php endforeach ?>
-            </div>
-          <?php endif ?>
-
-          <?php if (!empty($ConfirmeditMsg)) : ?>
-            <div class="systemMsg w-full">
-              <p><?php echo $ConfirmeditMsg ?> </p>
-            </div>
-          <?php endif ?>
         </div>
 
       </div>
