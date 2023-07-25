@@ -161,7 +161,7 @@ include ('./include/signup_processing.php');
               <label class="form-label" >ارفع صورة شخصية </label>
               </div>
               <div class="form-outline mb-4 text-center">
-              <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png">
+              <input type="file" name="image" class="box" accept="img/jpg, img/jpeg, img/png">
               </div>
               <!-- Submit button -->
               <div class="text-center">
