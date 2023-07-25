@@ -25,15 +25,14 @@ $Epassword2 =  "";
 $Epassword2 =  "";
 
 if (isset($_POST['edit']) ||	isset($_POST['delete'])) {
-$EFname     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
-$ELname     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
+$EFname     =  filter_var($_POST['Efname'],  FILTER_SANITIZE_STRING);
+$ELname     =  filter_var($_POST['Elname'],  FILTER_SANITIZE_STRING);
 $Eemail     =  filter_var($_POST['Eemail'],  FILTER_SANITIZE_EMAIL);
 $Ephone     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
 $Egender    =  $_POST['Egender'];
 $Eusertype  =  $_POST['Eusertype'];
 $Epassword     =  filter_var($_POST['Epassword'],  FILTER_SANITIZE_STRING);
 $Epassword2     =  filter_var($_POST['Epassword2'],  FILTER_SANITIZE_STRING);
-
 }
 
 if (isset($_POST['edit'])) {
@@ -77,14 +76,12 @@ if (isset($_POST['edit'])) {
   array_push($homeerrors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
   }
   //confirm password///////////////////////////
-  if($password != $Epassword2){
+  if($Epassword != $Epassword2){
     array_push($homeerrors, "يجب ان تتطابق كلمات المرور ");
   }
   
-
   if (count($homeerrors) == 0) {
-    $query = "UPDATE `users` SET `Email` = $Eemail, `Fname` = $EFname, `Lname` =  $ELname, `Phone` = $Ephone , `Gender` = $Egender , `UserType` = $Eusertype WHERE `users`.`id` = $userID";
-
+    $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype' WHERE `users`.`id` = '$userID'";
     $resultofediting = mysqli_query($conn, $query);
     if ($resultofediting) {
       $ConfirmeditMsg = "تم تحديث بياناتك بنجاح ";
@@ -206,11 +203,11 @@ if (isset($_POST['delete'])) {
                 <div class="col-md-12 "><label class="labels"> نوع المستخدم</label><input type="text" name="Eusertype" class="form-control text-end" placeholder=" " value="<?php echo $row['UserType'] ?>"></div>
               <!-- Password input -->
               <div class="col-md-12 "><label class="form-label" for="Epassword">كلمة المرور</label>
-                <input type="password" name="Epassword" id="Epassword" class="form-control  text-end" placeholder="••••••••" required/>
+                <input type="password" name="Epassword" id="Epassword" class="form-control  text-end" placeholder="••••••••" required value="<?php echo $row['pass'] ?>"/>
               </div>
               <!-- Password input2 -->
               <div class="col-md-12 "><label class="form-label" for="Epassword2" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمةالمرور</label>
-                <input type="password" name="Epassword2" id="Epassword2" class="form-control  text-end" placeholder="••••••••" required />
+                <input type="password" name="Epassword2" id="Epassword2" class="form-control  text-end" placeholder="••••••••" required  value="<?php echo $row['pass'] ?>"/>
               </div>
                 <!-- <div class="col-md-12 mt-5 "><label class="labels">العنوان الأول</label><input type="text" class="form-control text-end" placeholder="العنوان الأول" value=""></div>
               <div class="col-md-12 "><label class="labels">العنوان الثاني </label><input type="text" class="form-control text-end" placeholder="العنوان الثاني " value=""></div>
