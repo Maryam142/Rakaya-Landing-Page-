@@ -29,9 +29,6 @@ if (isset($_POST['submit'])) {
   $gender    =  $_POST['gender'];
   $usertype  =  $_POST['usertype'];
 
-  print_r($_FILES['image']);
-  
-
   $image_name      =  $_FILES['image']['name'];
   $image_size      =  $_FILES['image']['size'];
   $image_type      =  $_FILES['image']['type'];
@@ -99,9 +96,23 @@ if (isset($_POST['submit'])) {
     array_push($errors, " يرجى ادخال رقم الجوال بشكل صحيح");
   }
 
-  if($image_size > 2000000){
-     array_push($errors, "يرجى اختيار صورة بحجم أصغر ");
+  if ($image_size > 2000000) {
+    array_push($errors, "يرجى اختيار صورة بحجم أصغر ");
+  } 
+
+  // Get the extension of the uploaded image.
+  $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
+
+  // Create an array of allowed image extensions.
+  $allowed_extensions = ['jpg', 'jpeg','png', 'gif'];
+
+  // Check if the extension of the uploaded image is in the array of allowed extensions.
+  if (!in_array($image_extension, $allowed_extensions)) {
+      array_push($errors, "هذا الامتداد غير مسموح");
+      
   }
+  
+
 
 
 
