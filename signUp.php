@@ -93,7 +93,7 @@ include ('./include/signup_processing.php');
             </i>
 
             <!-- Sign-up Form -->
-            <form action="signUp.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="signup">
+            <form action="signUp.php" method="POST" enctype="multipart/form-data" class="text-end me-5 ms-5 needs-validation" id="signup">
               <div class="row">
               <?php include ('./include/error.php'); ?>
                 <div class="col-md-6 mb-3">

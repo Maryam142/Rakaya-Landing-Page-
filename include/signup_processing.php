@@ -13,10 +13,11 @@ $email     =  "";
 $phone     =  "";
 $gender    =  "";
 $usertype  =  "";
+$image     =  "";
 $errors = array();
 
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit']) && isset($_POST['image'])){
 
 // Server-side validation
 $firstName =  filter_var($_POST['firstName'], FILTER_SANITIZE_STRING);
@@ -27,6 +28,14 @@ $email     =  filter_var($_POST['email'],     FILTER_SANITIZE_EMAIL);
 $phone     =  filter_var($_POST['phone'],     FILTER_SANITIZE_STRING);
 $gender    =  $_POST['gender'];
 $usertype  =  $_POST['usertype'];
+
+$filename  =  $_FILES['image']['name'];
+
+
+
+move_uploaded_file($temp,$folder);
+
+
 
 // Server-side validation///////////////////////////////////////////////////////
    // validate first and last name///////////////////////////
@@ -88,6 +97,8 @@ $usertype  =  $_POST['usertype'];
 
   }
 
+
+
 //prevent dublicate emails query/////////////////////////////////////////////////
 $statment="SELECT email FROM users WHERE email ='$email'";
 $data=mysqli_fetch_row(mysqli_query($conn, $statment));
@@ -102,7 +113,7 @@ if($data){
   //Encrypt the password
   // $password=password_hash($password,PASSWORD_DEFAULT);
 
-  $sql = "INSERT INTO `users`( `Email`, `Fname`, `Lname`, `Phone`, `pass`, `Gender`, `UserType`) VALUES ('$email ','$firstName','$lastName','$phone','$password ','$gender','$usertype')";
+  $sql = "INSERT INTO `users`( `Email`, `Fname`, `Lname`, `Phone`, `pass`, `Gender`, `UserType` ,'Image') VALUES ('$email ','$firstName','$lastName','$phone','$password ','$gender','$usertype' ,'$image')";
 
   //feedback  
    if( mysqli_query($conn, $sql)){
