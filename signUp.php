@@ -95,7 +95,8 @@ include ('./include/signup_processing.php');
             <!-- Sign-up Form -->
             <form action="signUp.php" method="POST" enctype="multipart/form-data" class="text-end me-5 ms-5 needs-validation" id="signup">
               <div class="row">
-              <?php include ('./include/error.php'); ?>
+              <?php include ('./include/error.php');
+              ?>
                 <div class="col-md-6 mb-3">
                   <div class="form-outline ">
                     <label class="form-label " for="lastName">الاسم الاخير</label>

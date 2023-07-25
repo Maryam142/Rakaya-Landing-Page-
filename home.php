@@ -1,5 +1,5 @@
 <?php
-include ('./DB_conn.php');
+include('./DB_conn.php');
 
 session_start();
 if (!isset($_SESSION['logged_in'])) {
@@ -24,15 +24,15 @@ $Eusertype  =  "";
 $Epassword2 =  "";
 $Epassword2 =  "";
 
-if (isset($_POST['edit']) ||	isset($_POST['delete'])) {
-$EFname     =  filter_var($_POST['Efname'],  FILTER_SANITIZE_STRING);
-$ELname     =  filter_var($_POST['Elname'],  FILTER_SANITIZE_STRING);
-$Eemail     =  filter_var($_POST['Eemail'],  FILTER_SANITIZE_EMAIL);
-$Ephone     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
-$Egender    =  $_POST['Egender'];
-$Eusertype  =  $_POST['Eusertype'];
-$Epassword     =  filter_var($_POST['Epassword'],  FILTER_SANITIZE_STRING);
-$Epassword2     =  filter_var($_POST['Epassword2'],  FILTER_SANITIZE_STRING);
+if (isset($_POST['edit']) ||  isset($_POST['delete'])) {
+  $EFname     =  filter_var($_POST['Efname'],  FILTER_SANITIZE_STRING);
+  $ELname     =  filter_var($_POST['Elname'],  FILTER_SANITIZE_STRING);
+  $Eemail     =  filter_var($_POST['Eemail'],  FILTER_SANITIZE_EMAIL);
+  $Ephone     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
+  $Egender    =  $_POST['Egender'];
+  $Eusertype  =  $_POST['Eusertype'];
+  $Epassword     =  filter_var($_POST['Epassword'],  FILTER_SANITIZE_STRING);
+  $Epassword2     =  filter_var($_POST['Epassword2'],  FILTER_SANITIZE_STRING);
 }
 
 if (isset($_POST['edit'])) {
@@ -62,30 +62,30 @@ if (isset($_POST['edit'])) {
   if (empty($Egender)) {
     array_push($homeerrors, " يجب تحديد الجنس ");
   }
-  if(empty($Epassword)){
+  if (empty($Epassword)) {
     array_push($homeerrors, "يجب كتابة  كلمة المرور");
-  }elseif(strlen($Epassword)<8){
-   array_push($homeerrors, "يجب ان تحتوي كلمة المرور  اكثر  من 8 حرف ");
+  } elseif (strlen($Epassword) < 8) {
+    array_push($homeerrors, "يجب ان تحتوي كلمة المرور  اكثر  من 8 حرف ");
   }
 
   $uppercase = preg_match('@[A-Z]@', $Epassword);
   $lowercase = preg_match('@[a-z]@', $Epassword);
   $number    = preg_match('@[0-9]@', $Epassword);
 
-  if(!$uppercase || !$lowercase || !$number  || strlen($Epassword) < 6) {
-  array_push($homeerrors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
+  if (!$uppercase || !$lowercase || !$number  || strlen($Epassword) < 6) {
+    array_push($homeerrors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
   }
   //confirm password///////////////////////////
-  if($Epassword != $Epassword2){
+  if ($Epassword != $Epassword2) {
     array_push($homeerrors, "يجب ان تتطابق كلمات المرور ");
   }
-  
+
   if (count($homeerrors) == 0) {
     $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype' WHERE `users`.`id` = '$userID'";
     $resultofediting = mysqli_query($conn, $query);
     if ($resultofediting) {
       $ConfirmeditMsg = "تم تحديث بياناتك بنجاح ";
-    }else{
+    } else {
       $ConfirmeditMsg = "لم يتم تحديث بياناتك في قاعدة البيانات لدينا ";
     }
   }
@@ -187,7 +187,27 @@ if (isset($_POST['delete'])) {
       </div>
       <div class="row flex-row-reverse">
         <div class="col-md-4 border-right">
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="img/user_profile.png" class="font-weight-bold"> <?php echo $row['Fname']," ", $row['Lname'] ?></span><span class="text-black-50"><?php echo $row['Email'] ?></span><span> </span></div>
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+          <!-- <img class="rounded-circle mt-5" width="150px" src="img/user_profile.png" class="font-weight-bold"> -->
+          <?php 
+          $sel = "SELECT * FROM users";
+          $que = mysqli_query($con,$sel);
+
+          $output = "";
+
+          if (mysqli_num_rows($que)<1){
+
+            array_push($homeerrors, "لا توجد صورة للرفع");
+
+          }
+
+          while ($row = mysqli_fetch_array($que)){
+
+            $output .= "<img scr='".$row['Image']."' class='rounded-circle mt-5' width='150px'  >";
+          }
+          ?>
+          <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
+          <?php echo $row['Email'] ?></span><span> </span></div>
         </div>
         <div class="col-md-7 border-right text-end">
           <div class="p-3 py-3 text-end">
@@ -201,14 +221,14 @@ if (isset($_POST['delete'])) {
                 <div class="col-md-12 "><label class="labels">البريد الالكتروني</label><input type="text" name="Eemail" class="form-control text-end" placeholder="البريد الالكتروني" value="<?php echo $row['Email'] ?>"></div>
                 <div class="col-md-12 "><label class="labels"> الجنس</label><input type="text" name="Egender" class="form-control text-end" placeholder="" value="<?php echo $row['Gender'] ?>"></div>
                 <div class="col-md-12 "><label class="labels"> نوع المستخدم</label><input type="text" name="Eusertype" class="form-control text-end" placeholder=" " value="<?php echo $row['UserType'] ?>"></div>
-              <!-- Password input -->
-              <div class="col-md-12 "><label class="form-label" for="Epassword">كلمة المرور</label>
-                <input type="password" name="Epassword" id="Epassword" class="form-control  text-end" placeholder="••••••••" required value="<?php echo $row['pass'] ?>"/>
-              </div>
-              <!-- Password input2 -->
-              <div class="col-md-12 "><label class="form-label" for="Epassword2" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمةالمرور</label>
-                <input type="password" name="Epassword2" id="Epassword2" class="form-control  text-end" placeholder="••••••••" required  value="<?php echo $row['pass'] ?>"/>
-              </div>
+                <!-- Password input -->
+                <div class="col-md-12 "><label class="form-label" for="Epassword">كلمة المرور</label>
+                  <input type="password" name="Epassword" id="Epassword" class="form-control  text-end" placeholder="••••••••" required value="<?php echo $row['pass'] ?>" />
+                </div>
+                <!-- Password input2 -->
+                <div class="col-md-12 "><label class="form-label" for="Epassword2" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمةالمرور</label>
+                  <input type="password" name="Epassword2" id="Epassword2" class="form-control  text-end" placeholder="••••••••" required value="<?php echo $row['pass'] ?>" />
+                </div>
                 <!-- <div class="col-md-12 mt-5 "><label class="labels">العنوان الأول</label><input type="text" class="form-control text-end" placeholder="العنوان الأول" value=""></div>
               <div class="col-md-12 "><label class="labels">العنوان الثاني </label><input type="text" class="form-control text-end" placeholder="العنوان الثاني " value=""></div>
               <div class="col-md-12 "><label class="labels">الرمز البريدي</label><input type="text" class="form-control text-end" placeholder="الرمز البريدي " value=""></div>
