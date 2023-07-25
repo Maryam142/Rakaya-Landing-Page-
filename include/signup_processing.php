@@ -112,10 +112,6 @@ if (isset($_POST['submit'])) {
       
   }
   
-
-
-
-
   //prevent dublicate emails query/////////////////////////////////////////////////
   $statment = "SELECT email FROM users WHERE email ='$email'";
   $data = mysqli_fetch_row(mysqli_query($conn, $statment));
