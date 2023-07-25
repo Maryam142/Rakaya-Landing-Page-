@@ -99,6 +99,10 @@ if (isset($_POST['submit'])) {
     array_push($errors, " يرجى ادخال رقم الجوال بشكل صحيح");
   }
 
+  if($image_size > 2000000){
+     array_push($errors, "يرجى اختيار صورة بحجم أصغر ");
+  }
+
 
 
   //prevent dublicate emails query/////////////////////////////////////////////////
