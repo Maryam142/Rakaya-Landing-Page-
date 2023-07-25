@@ -12,18 +12,31 @@ $user_email = $_SESSION['user_email'];
 $fetchquery = "SELECT * FROM users WHERE Email ='$user_email'";
 $result = mysqli_query($conn, $fetchquery);
 $row = mysqli_fetch_assoc($result);
-$userid = $row['id'];
+$userID = $row['id'];
 
 $homeerrors = array();
+$EFname     =  "";
+$ELname     =  "";
+$Eemail     =  "";
+$Ephone     =  "";
+$Egender    =  "";
+$Eusertype  =  "";
+$Epassword2 =  "";
+$Epassword2 =  "";
+
+if (isset($_POST['edit']) ||	isset($_POST['delete'])) {
+$EFname     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
+$ELname     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
+$Eemail     =  filter_var($_POST['Eemail'],  FILTER_SANITIZE_EMAIL);
+$Ephone     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
+$Egender    =  $_POST['Egender'];
+$Eusertype  =  $_POST['Eusertype'];
+$Epassword     =  filter_var($_POST['Epassword'],  FILTER_SANITIZE_STRING);
+$Epassword2     =  filter_var($_POST['Epassword2'],  FILTER_SANITIZE_STRING);
+
+}
+
 if (isset($_POST['edit'])) {
-
-  $EFname     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
-  $ELname     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
-  $Eemail     =  filter_var($_POST['Eemail'],  FILTER_SANITIZE_EMAIL);
-  $Ephone     =  filter_var($_POST['Ephone'],  FILTER_SANITIZE_STRING);
-  $Egender    =  $_POST['Egender'];
-  $Eusertype  =  $_POST['Eusertype'];
-
   if (empty($EFname)) {
     array_push($homeerrors,     " يجب كتابة الاسم الاول");
   } elseif (strlen($EFname) > 100) {
@@ -35,7 +48,7 @@ if (isset($_POST['edit'])) {
     array_push($errhomeerrorsors, " يجب ان لايكون الاسم الاخير اكبر من 100 حرف ");
   }
   if (empty($Eemail)) {
-    array_push($homeerrors,     " يجب تعبئة البريد الالكتروبي");
+    array_push($homeerrors, " يجب تعبئة البريد الالكتروبي");
   } elseif (filter_var($Eemail, FILTER_VALIDATE_EMAIL) == false) {
     array_push($homeerrors, "البريد الالكترونى غير صالح");
   }
@@ -45,17 +58,51 @@ if (isset($_POST['edit'])) {
     array_push($homeerrors, " يرجى ادخال رقم الجوال بشكل صحيح");
   }
   if (empty($Eusertype)) {
-    array_push($homeerrors,     " يجب اختيار نوع المستخدم");
+    array_push($homeerrors, " يجب اختيار نوع المستخدم");
   }
   if (empty($Egender)) {
-    array_push($homeerrors,     " يجب تحديد الجنس ");
+    array_push($homeerrors, " يجب تحديد الجنس ");
   }
+  if(empty($Epassword)){
+    array_push($homeerrors, "يجب كتابة  كلمة المرور");
+  }elseif(strlen($Epassword)<8){
+   array_push($homeerrors, "يجب ان تحتوي كلمة المرور  اكثر  من 8 حرف ");
+  }
+
+  $uppercase = preg_match('@[A-Z]@', $Epassword);
+  $lowercase = preg_match('@[a-z]@', $Epassword);
+  $number    = preg_match('@[0-9]@', $Epassword);
+
+  if(!$uppercase || !$lowercase || !$number  || strlen($Epassword) < 6) {
+  array_push($homeerrors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
+  }
+  //confirm password///////////////////////////
+  if($password != $Epassword2){
+    array_push($homeerrors, "يجب ان تتطابق كلمات المرور ");
+  }
+  
 
   if (count($homeerrors) == 0) {
     $query = "UPDATE `users` SET `Email` = $Eemail, `Fname` = $EFname, `Lname` =  $ELname, `Phone` = $Ephone , `Gender` = $Egender , `UserType` = $Eusertype WHERE `users`.`id` = $userID";
+    
     $resultofediting = mysqli_query($conn, $query);
     if ($resultofediting) {
-      $ConfirmeditMsg = "تم تحديث كلمة المرور بنجاح ";
+      $ConfirmeditMsg = "تم تحديث بياناتك بنجاح ";
+    }else{
+      $ConfirmeditMsg = "لم يتم تحديث بياناتك في قاعدة البيانات لدينا ";
+    }
+  }
+}
+
+if (isset($_POST['delete'])) {
+  if (count($homeerrors) == 0) {
+    $query =  "DELETE FROM users WHERE `users`.`id` = $userid";
+    $resultofediting = mysqli_query($conn, $query);
+    if ($resultofediting) {
+      $ConfirmeditMsg = "تم حذف الحساب ";
+      session_unset();
+      header('location: index.html');
+      die();
     }
   }
 }
@@ -88,15 +135,15 @@ if (isset($_POST['edit'])) {
 <body>
 
   <!-- Spinner Start -->
-   <!-- <div id="spinner"
+  <!-- <div id="spinner"
     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
     <div class="spinner-border position-relative pg-light_pigi" style="width: 6rem; height: 6rem;" role="status"></div>
     <img class="position-absolute top-50 start-50 translate-middle" src="img/minilogo.png" alt="Icon" height="60px"
       width="60px">
    </div> -->
-   <!-- Spinner End -->
+  <!-- Spinner End -->
 
-  
+
   <!-- Navbar -->
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
@@ -139,15 +186,15 @@ if (isset($_POST['edit'])) {
     <!-- content -->
     <div class="container rounded bg-white mb-5 py-5" style="margin-top: -100px;">
       <div class=" justify-content-between align-items-center mb-1">
-        <h4 class="text-center"><span> <?php echo $row['Fname'] ?> </span> اهلًا ومرحبًا</h4>
+        <h4 class="text-center text-bold text-3xl"> <span class="text-pigi"><?php echo $row['Fname'] ?> </span> اهلًا ومرحبًا</h4>
       </div>
       <div class="row flex-row-reverse">
         <div class="col-md-4 border-right">
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="img/user_profile.png" class="font-weight-bold"> <?php echo $row['Fname'], $row['Lname'] ?></span><span class="text-black-50"><?php echo $row['Email'] ?></span><span> </span></div>
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="img/user_profile.png" class="font-weight-bold"> <?php echo $row['Fname']," ", $row['Lname'] ?></span><span class="text-black-50"><?php echo $row['Email'] ?></span><span> </span></div>
         </div>
         <div class="col-md-7 border-right text-end">
           <div class="p-3 py-3 text-end">
-  <form action="home.php" method="POST" class="border border-ramadi rounded p-5">
+            <form action="home.php" method="POST" class="border border-ramadi rounded p-5">
               <div class="row">
                 <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" name="Efname" class="form-control text-end" placeholder="الاسم الأول " value="<?php echo $row['Fname'] ?>"></div>
                 <div class="col-md-6"><label class="labels">الأسم الأخير </label><input type="text" name="Elname" class="form-control text-end" placeholder="الاسم الأخير" value="<?php echo $row['Lname'] ?>"></div>
@@ -156,39 +203,46 @@ if (isset($_POST['edit'])) {
                 <div class="col-md-12 "><label class="labels">رقم الجوال </label><input type="text" name="Ephone" class="form-control text-end" placeholder="رقم الجوال" value="<?php echo $row['Phone'] ?>"></div>
                 <div class="col-md-12 "><label class="labels">البريد الالكتروني</label><input type="text" name="Eemail" class="form-control text-end" placeholder="البريد الالكتروني" value="<?php echo $row['Email'] ?>"></div>
                 <div class="col-md-12 "><label class="labels"> الجنس</label><input type="text" name="Egender" class="form-control text-end" placeholder="" value="<?php echo $row['Gender'] ?>"></div>
-                <div class="col-md-12 "><label class="labels"> نوع المستخدم</label><input type="text" name="EuserType" class="form-control text-end" placeholder=" " value="<?php echo $row['UserType'] ?>"></div>
-
+                <div class="col-md-12 "><label class="labels"> نوع المستخدم</label><input type="text" name="Eusertype" class="form-control text-end" placeholder=" " value="<?php echo $row['UserType'] ?>"></div>
+              <!-- Password input -->
+              <div class="col-md-12 "><label class="form-label" for="Epassword">كلمة المرور</label>
+                <input type="password" name="Epassword" id="Epassword" class="form-control  text-end" placeholder="••••••••" required/>
+              </div>
+              <!-- Password input2 -->
+              <div class="col-md-12 "><label class="form-label" for="Epassword2" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمةالمرور</label>
+                <input type="password" name="Epassword2" id="Epassword2" class="form-control  text-end" placeholder="••••••••" required />
+              </div>
                 <!-- <div class="col-md-12 mt-5 "><label class="labels">العنوان الأول</label><input type="text" class="form-control text-end" placeholder="العنوان الأول" value=""></div>
               <div class="col-md-12 "><label class="labels">العنوان الثاني </label><input type="text" class="form-control text-end" placeholder="العنوان الثاني " value=""></div>
               <div class="col-md-12 "><label class="labels">الرمز البريدي</label><input type="text" class="form-control text-end" placeholder="الرمز البريدي " value=""></div>
               <div class="col-md-12 "><label class="labels">المنطقة</label><input type="text" class="form-control text-end" placeholder="المنطقة" value=""></div> -->
               </div>
-            </div>
-            <div class="row mt-3 align-items-center text-end ">
-              <div class="col-md-6 text-center"><button  type="submit" name="delete" class="btn bg-pigi mb-1 rounded px-2 py-2 hover:bg-cohly text-center text-light" style="background-color: #a94442;">حذف الحساب</button></div>
-              <div class="col-md-6 text-center"><button  type="submit" name="edit" class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" style="background-color: #816D4A">تعديل</button></div>
-            </div>
-</form>
-
-<!-- System Msgs -->
-            <?php if (count($homeerrors) > 0) : ?>
-
-              <div class="error">
-                <?php foreach ($homeerrors as $error) : ?>
-                  <p> <?php echo $error; ?> </p>
-                <?php endforeach ?>
-              </div>
-            <?php endif ?>
-
-            <?php if (!empty($ConfirmeditMsg)) : ?>
-              <div class="systemMsg w-full">
-                <p><?php echo $ConfirmeditMsg ?> </p>
-              </div>
-            <?php endif ?>
           </div>
+          <div class="row mt-3 align-items-center text-end ">
+            <div class="col-md-6 text-center"><button type="submit" name="delete" class="btn bg-pigi mb-1 rounded px-2 py-2 hover:bg-cohly text-center text-light" style="background-color: #a94442;" onclick="confirmDeleteAccount()">حذف الحساب</button></div>
+            <div class="col-md-6 text-center"><button type="submit" name="edit" class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" style="background-color: #816D4A">تعديل</button></div>
+          </div>
+          </form>
 
+          <!-- System Msgs -->
+          <?php if (count($homeerrors) > 0) : ?>
+
+            <div class="error">
+              <?php foreach ($homeerrors as $error) : ?>
+                <p> <?php echo $error; ?> </p>
+              <?php endforeach ?>
+            </div>
+          <?php endif ?>
+
+          <?php if (!empty($ConfirmeditMsg)) : ?>
+            <div class="systemMsg w-full">
+              <p><?php echo $ConfirmeditMsg ?> </p>
+            </div>
+          <?php endif ?>
         </div>
+
       </div>
+    </div>
   </section>
 
   <!-- Footer-->
@@ -231,8 +285,7 @@ if (isset($_POST['edit'])) {
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color:#333335; color:white;">
-      ركايا | جميع الحقوق محفوظة |
-      &copy; 2023
+      ركايا | جميع الحقوق محفوظة |g&copy; 2023
       <a class="text-white" href="#"></a>
     </div>
   </footer>

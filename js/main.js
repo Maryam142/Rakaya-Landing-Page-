@@ -228,3 +228,12 @@
     new PureCounter();
   
   })()
+
+  //// confirm delete account in profile page //////////////////////////////////////////////////////
+  function geek() {
+    var doc;
+    var result = confirm("هل انت متاكد من الغاء حسابك؟");
+    if (result == true) {
+        doc = "تم الغاء الحساب";
+    } 
+}
