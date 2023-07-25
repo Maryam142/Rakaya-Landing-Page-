@@ -146,7 +146,7 @@ include ('./include/signup_processing.php');
               </div>
               <div id="msg"></div>
               <!-- select user type -->
-              <div class="form-outline mb-2 text-end">
+              <div class="form-outline mb-4 text-end">
                 <label class="form-label text-end">نوع المستخدم </label>
                 <select name="usertype" id="usertype" class="form-select text-end mb-2" aria-label="Default select example">
                 <option value="" >- اختر -</option>
@@ -155,6 +155,12 @@ include ('./include/signup_processing.php');
                   <option value="Client">عميل</option>
                   <option value="Intern">متدرب</option>
                 </select>
+              </div>
+              <div class="form-outline mb-4 text-end">
+              <label class="form-label" >ارفع صورة شخصية </label>
+              </div>
+              <div class="form-outline mb-4 text-center">
+              <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png">
               </div>
               <!-- Submit button -->
               <div class="text-center">
