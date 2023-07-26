@@ -8,10 +8,13 @@ if (!isset($_SESSION['logged_in'])) {
   die();
 }
 
+
+
+
 $user_email = $_SESSION['user_email'];
 
 $fetchquery = "SELECT * FROM users WHERE Email ='$user_email'";
-$fetchqueryAll = "SELECT * FROM users";
+$fetchqueryAll = "SELECT * FROM users LIMIT $start, $limit";
 
 $result = mysqli_query($conn, $fetchquery);
 $resultall = mysqli_query($conn, $fetchqueryAll);
