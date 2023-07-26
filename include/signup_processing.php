@@ -96,6 +96,7 @@ if (isset($_POST['submit'])) {
     array_push($errors, " يرجى ادخال رقم الجوال بشكل صحيح");
   }
 
+  //Image Validation //////////////////////////////////////////////
   $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
 
   $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];

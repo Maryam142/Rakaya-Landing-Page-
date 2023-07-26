@@ -89,30 +89,38 @@ if (isset($_POST['edit'])) {
   $image_tmp_name  =  $_FILES['Eimage']['tmp_name'];
   $image_error     =  $_FILES['Eimage']['error'];
   $image_folder    =  'img/' . $image_name;
-    // Get the extension of the uploaded image.
-    $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
 
-    // Create an array of allowed image extensions.
-    $allowed_extensions = ['jpg', 'jpeg','png', 'gif'];
-  
-    // Check if the extension of the uploaded image is in the array of allowed extensions.
-    if (!in_array($image_extension, $allowed_extensions)) {
-        array_push($errors, "هذا الامتداد غير مسموح");
-        
+//Image Validation //////////////////////////////////////////////
+  $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
+
+  $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
+
+  if ($image_size > 2000000) {
+    array_push($homeerrors, "يرجى اختيار صورة بحجم أصغر ");
+  } else {
+    $image_ex_lc = strtolower($image_extension);
+    $allowed_exs = array("jpg", "jpeg", "png");
+
+    if (in_array($image_ex_lc, $allowed_exs)) {
+      $image_upload_path = 'img/' . uniqid() . '.' . $image_ex_lc;
     }
 
+    if (!in_array($image_extension, $allowed_extensions)) {
+      array_push($homeerrors, "هذا الامتداد غير مسموح");
+    }
+
+
   if (count($homeerrors) == 0) {
-    $newImageName = uniqid();
-    $newImageName .= '.' . $imageExtention;
-    move_uploaded_file($image_tmp_name, $newImageName);
-    $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype',`Image` = '$newImageName'  WHERE `users`.`id` = '$userID'";
+    $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype',`Image` = '$image_upload_path'  WHERE `users`.`id` = '$userID'";
     $resultofediting = mysqli_query($conn, $query);
     if ($resultofediting) {
+      move_uploaded_file($image_tmp_name, $image_upload_path);
       $ConfirmeditMsg = "تم تحديث بياناتك بنجاح ";
     } else {
       $ConfirmeditMsg = "لم يتم تحديث بياناتك في قاعدة البيانات لدينا ";
     }
   }
+ }
 }
 // delete the profile
 if (isset($_POST['delete'])) {
@@ -162,17 +170,6 @@ if(!empty($row['Image'])){
 </head>
 
 <body>
-
-  <!-- Spinner Start -->
-  <!-- <div id="spinner"
-    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-border position-relative pg-light_pigi" style="width: 6rem; height: 6rem;" role="status"></div>
-    <img class="position-absolute top-50 start-50 translate-middle" src="img/minilogo.png" alt="Icon" height="60px"
-      width="60px">
-   </div> -->
-  <!-- Spinner End -->
-
-
   <!-- Navbar -->
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
@@ -221,7 +218,7 @@ if(!empty($row['Image'])){
         <div class="col-md-4 border-right">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 
-            <img class="rounded-circle mt-5" width="150px" src="<?php echo $imgsrc ?>" alt="profile image" class="font-weight-bold">
+            <img class="rounded-circle mt-5" width="150px" src="<?php echo $row['Image'] ?>" alt="profile image" class="font-weight-bold">
 
           <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
           <?php echo $row['Email'] ?></span><span> </span></div>
