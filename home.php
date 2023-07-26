@@ -89,6 +89,17 @@ if (isset($_POST['edit'])) {
   $image_tmp_name  =  $_FILES['Eimage']['tmp_name'];
   $image_error     =  $_FILES['Eimage']['error'];
   $image_folder    =  'img/' . $image_name;
+    // Get the extension of the uploaded image.
+    $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
+
+    // Create an array of allowed image extensions.
+    $allowed_extensions = ['jpg', 'jpeg','png', 'gif'];
+  
+    // Check if the extension of the uploaded image is in the array of allowed extensions.
+    if (!in_array($image_extension, $allowed_extensions)) {
+        array_push($errors, "هذا الامتداد غير مسموح");
+        
+    }
 
   if (count($homeerrors) == 0) {
     $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype',`Image` = '$image_folder'  WHERE `users`.`id` = '$userID'";
