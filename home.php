@@ -125,7 +125,7 @@ if (isset($_POST['edit'])) {
 // delete the profile
 if (isset($_POST['delete'])) {
   if (count($homeerrors) == 0) {
-    $query =  "DELETE FROM users WHERE `users`.`id` = $userid";
+    $query =  "DELETE FROM users WHERE `users`.`id` = $userID";
     $resultofediting = mysqli_query($conn, $query);
     if ($resultofediting) {
       $ConfirmeditMsg = "تم حذف الحساب ";
