@@ -27,16 +27,24 @@ $nextPage = $currentPage + 1;
 
 //query with pages from begain and end 
 
-
+//the start page
 $perPage = 5;
 $start = ($currentPage - 1) * 5;
 
-$fetchquery = "SELECT * FROM users limit $start , $perPage ";
 
-
+$fetchquery = "SELECT SQL_CALC_FOUND_ROWS * FROM users limit $start , $perPage ";
 
 $result = mysqli_query($conn, $fetchquery);
 $row = mysqli_fetch_assoc($result);
+
+//the last page
+
+// $rows_result = mysqli_query("SELECT COUNT(*) as rows FROM users");
+// $rows = mysqli_fetch_assoc($rows_result);
+// $totalRows=$rows['rows'];
+
+$lastPage = ceil($totalRows/$perPage) ;
+
 
 
 
@@ -129,7 +137,7 @@ $row = mysqli_fetch_assoc($result);
             <li class="page-item">
 
                 <?php
-                if ($currentPage == 1) {
+                if ($currentPage == $lastPage) {
 
                     echo '    ';
                 } else {
