@@ -41,7 +41,7 @@ $row = mysqli_fetch_assoc($result);
 
 // $rows_result = mysqli_query("SELECT COUNT(*) as rows FROM users");
 // $rows = mysqli_fetch_assoc($rows_result);
-// $totalRows=$rows['rows'];
+$totalRows= mysqli_num_rows($result);
 
 $lastPage = ceil($totalRows/$perPage) ;
 
