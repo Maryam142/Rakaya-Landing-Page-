@@ -91,7 +91,10 @@ if (isset($_POST['edit'])) {
   $image_folder    =  'img/' . $image_name;
 
   if (count($homeerrors) == 0) {
-    $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype',`Image` = '$image_name'  WHERE `users`.`id` = '$userID'";
+    $newImageName = uniqid();
+    $newImageName .= '.' . $imageExtention;
+    move_uploaded_file($image_tmp_name, $newImageName);
+    $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype',`Image` = '$newImageName'  WHERE `users`.`id` = '$userID'";
     $resultofediting = mysqli_query($conn, $query);
     if ($resultofediting) {
       $ConfirmeditMsg = "تم تحديث بياناتك بنجاح ";
@@ -177,7 +180,7 @@ if(!empty($row['Image'])){
               تسجيل الخروج</a>
           </li>
           <li class="flex ">
-            <img src="<?php echo $imgsrc ?>" class="rounded-pill h-12" height="40" alt="profile image">
+            <img src="<?php echo $row['Image'] ?>" class="rounded-pill h-12" height="40" alt="profile image">
           </li>
         </ul>
       </nav>
@@ -207,7 +210,7 @@ if(!empty($row['Image'])){
         <div class="col-md-4 border-right">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 
-          <img class="rounded-circle mt-5" width="150px" height="150px" src="<?php echo $row['Image'] ?>" alt="profile image" class="font-weight-bold">
+            <img class="rounded-circle mt-5" width="150px" src="<?php echo $imgsrc ?>" alt="profile image" class="font-weight-bold">
 
           <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
           <?php echo $row['Email'] ?></span><span> </span></div>
