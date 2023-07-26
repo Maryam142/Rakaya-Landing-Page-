@@ -73,7 +73,11 @@ if(count($Logerrors) == 0){
              setcookie('password', $_POST['password'], time() + (86400 *30));
             }
             
-            header('location: home.php');
+            if($email != 'myadmin@rakaya.co'){
+              header('location: home.php');
+            }else{
+              header('location: MyAdmin.php');
+            }
          }else{
           array_push($Logerrors, "كلمة المرور غير صحيحة"); 
           }
