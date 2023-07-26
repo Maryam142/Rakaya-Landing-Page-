@@ -111,10 +111,10 @@ if (isset($_POST['edit'])) {
 
 
   if (count($homeerrors) == 0) {
+    move_uploaded_file($image_tmp_name, $image_upload_path);
     $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype',`Image` = '$image_upload_path'  WHERE `users`.`id` = '$userID'";
     $resultofediting = mysqli_query($conn, $query);
     if ($resultofediting) {
-      move_uploaded_file($image_tmp_name, $image_upload_path);
       $ConfirmeditMsg = "تم تحديث بياناتك بنجاح ";
     } else {
       $ConfirmeditMsg = "لم يتم تحديث بياناتك في قاعدة البيانات لدينا ";
