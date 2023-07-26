@@ -96,56 +96,58 @@ if (isset($_POST['submit'])) {
     array_push($errors, " يرجى ادخال رقم الجوال بشكل صحيح");
   }
 
-  if ($image_size > 2000000) {
-    array_push($errors, "يرجى اختيار صورة بحجم أصغر ");
-  } 
-
-  // Get the extension of the uploaded image.
   $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
 
-  // Create an array of allowed image extensions.
-  $allowed_extensions = ['jpg', 'jpeg','png', 'gif'];
+  $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif'];
 
-  // Check if the extension of the uploaded image is in the array of allowed extensions.
-  if (!in_array($image_extension, $allowed_extensions)) {
-      array_push($errors, "هذا الامتداد غير مسموح");
-      
-  }
-  
-  //prevent dublicate emails query/////////////////////////////////////////////////
-  $statment = "SELECT email FROM users WHERE email ='$email'";
-  $data = mysqli_fetch_row(mysqli_query($conn, $statment));
-
-  if ($data) {
-    array_push($errors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
-  }
-
-  //insert query/////////////////////////////////////////////////////////////////////
-  if (count($errors) == 0) {
-
-    //Encrypt the password
-    // $password=password_hash($password,PASSWORD_DEFAULT);
-
-    
-  
-    //Image Validation
-
-    move_uploaded_file($image_tmp_name, $image_folder);
-    $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$email ','$firstName','$lastName','$phone','$password ','$gender','$usertype','$image_name')";
-    //feedback  
-    if (mysqli_query($conn, $sql)) {
-
-      if (move_uploaded_file($image_tmp_name, $image_folder)) {
-        echo 'The file was moved successfully.';
-      } else {
-        echo 'The file could not be moved.';
-      }
-
-      $_SESSION['firstName'] = $firstName;
-      header('Location: signUp_success.php'); //redirect the page
-
-    }
+  if ($image_size > 2000000) {
+    array_push($errors, "يرجى اختيار صورة بحجم أصغر ");
   } else {
-    echo $image_error;
+    $image_ex_lc = strtolower($image_extension);
+    $allowed_exs = array("jpg", "jpeg", "png");
+
+    if (in_array($image_ex_lc, $allowed_exs)) {
+      $image_upload_path = 'img/' . uniqid() . '.' . $image_ex_lc;
+    }
+
+    if (!in_array($image_extension, $allowed_extensions)) {
+      array_push($errors, "هذا الامتداد غير مسموح");
+    }
+
+    //prevent dublicate emails query/////////////////////////////////////////////////
+    $statment = "SELECT email FROM users WHERE email ='$email'";
+    $data = mysqli_fetch_row(mysqli_query($conn, $statment));
+
+    if ($data) {
+      array_push($errors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
+    }
+
+    //insert query/////////////////////////////////////////////////////////////////////
+    if (count($errors) == 0) {
+
+      //Encrypt the password
+      // $password=password_hash($password,PASSWORD_DEFAULT);
+
+      $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$email ','$firstName','$lastName','$phone','$password ','$gender','$usertype','$image_upload_path')";
+      //feedback  
+      if (mysqli_query($conn, $sql)) {
+
+
+
+        move_uploaded_file($image_tmp_name, $image_upload_path);
+
+        if (move_uploaded_file($image_tmp_name, $image_upload_path)) {
+          echo 'The file was moved successfully.';
+        } else {
+          echo 'The file could not be moved.';
+        }
+
+        $_SESSION['firstName'] = $firstName;
+        header('Location: signUp_success.php'); //redirect the page
+
+      }
+    } else {
+      echo $image_error;
+    }
   }
 }
