@@ -30,19 +30,18 @@ $perPage = 5;
 $start = ($currentPage - 1) * $perPage;
 
 $fetchquery = "SELECT  SQL_CALC_FOUND_ROWS * FROM users limit  $start , $perPage";
-
-
 $result = mysqli_query($conn, $fetchquery);
 $row = mysqli_fetch_assoc($result);
 
-//the last page
-$fetchquery2 = "SELECT FOUND_ROWS() FROM users as rows ";
-$rows_result =mysqli_query($conn, $fetchquery2);
 
-$rows = mysqli_fetch_assoc($rows_result);
-$totalRows = $rows['rows'];
+//Conut total db rows 
+$connpdo = new PDO("mysql:host=localhost;dbname=rakaya", "root", "");
+$sql = "SELECT * FROM users";
+$statement = $connpdo->query($sql);
+$number_of_rows = $statement->rowCount();
 
-$lastPage = ceil($totalRows / $perPage);
+
+$lastPage = ceil($number_of_rows / $perPage);
 
 
 ?>
@@ -112,32 +111,34 @@ $lastPage = ceil($totalRows / $perPage);
             <ul class="pagination">
                 <li class="page-item">
 
-                <?php
+                    <?php
 
                     if ($currentPage == 1) {
 
-                    echo ' ';
+                        echo '<a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span></a>';
                     } else {
 
-                    echo '<a class="page-link" href="?page=' . $prevPage . '" aria-label="Previous">
+                        echo '<a class="page-link" href="?page=' . $prevPage . '" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>';
-
+                        <span class="sr-only">Previous</span></a>';
                     }
                     ?>
 
                 </li>
-                 <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
                  <li class="page-item"><a class="page-link" href="#">2</a></li>
                  <li class="page-item"><a class="page-link" href="#">3</a></li> -->
                 <li class="page-item">
 
                     <?php
-                    if ($currentPage == $lastPage
-                    ) {
+                    if ($currentPage == $lastPage) {
 
-                        echo '    ';
+                        echo '<a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                        </a>';
                     } else {
 
                         echo '<a class="page-link" href="?page=' . $nextPage . '" aria-label="Next">
@@ -146,7 +147,7 @@ $lastPage = ceil($totalRows / $perPage);
                         </a>';
                     }
                     ?>
-                   
+
                 </li>
             </ul>
         </nav>
