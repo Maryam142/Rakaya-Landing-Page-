@@ -95,11 +95,11 @@ include('include\editHome.php');
               <div class="row mt-3 space-y-3">
                 <div class="col-md-12 "><label class="labels">رقم الجوال </label><input type="text" name="Ephone" class="form-control text-end" placeholder="رقم الجوال" value="<?php echo $row['Phone'] ?>"></div>
                 <div class="col-md-12 "><label class="labels">البريد الالكتروني</label><input type="text" name="Eemail" class="form-control text-end" placeholder="البريد الالكتروني" value="<?php echo $row['Email'] ?>"></div>
-                <!-- <div class="col-md-12 "><label class="labels"> الجنس</label><input type="text" name="Egender" class="form-control text-end" placeholder="" value="<?php echo $row['Gender'] ?>"></div>
-                <div class="col-md-12 "><label class="labels"> نوع المستخدم</label><input type="text" name="Eusertype" class="form-control text-end" placeholder=" " value="<?php echo $row['UserType'] ?>"></div> -->
+                <div class="col-md-12 "><label class="labels"> الجنس</label><input type="text" name="Egender" class="form-control text-end" placeholder="" value="<?php echo $row['Gender'] ?>"></div>
+                <div class="col-md-12 "><label class="labels"> نوع المستخدم</label><input type="text" name="Eusertype" class="form-control text-end" placeholder=" " value="<?php echo $row['UserType'] ?>"></div>
 
                 <!-- select sex  -->
-                <div class="form-check-inline ">
+                <!-- <div class="form-check-inline ">
                   <label class="form-check-label" for="gender">أنثى</label>
                   <input class="form-check-input" type="radio" name="Egender" value="female" id="gender">
                 </div>
@@ -107,9 +107,9 @@ include('include\editHome.php');
                   <label class="form-check-label" for="gender">ذكر</label>
                   <input class="form-check-input" type="radio" name="Egender" value="male" id="gender">
                 </div>
-                <div id="msg"></div>
+                <div id="msg"></div> -->
                 <!-- select user type -->
-                <div class="form-outline mb-4 text-end">
+                <!-- <div class="form-outline mb-4 text-end">
                   <label class="form-label text-end">نوع المستخدم </label>
                   <select name="Eusertype" id="usertype" class="form-select text-end mb-2" aria-label="Default select example">
                     <option value="">- اختر -</option>
@@ -118,7 +118,7 @@ include('include\editHome.php');
                     <option value="Client">عميل</option>
                     <option value="Intern">متدرب</option>
                   </select>
-                </div>
+                </div> -->
                 <!-- Password input -->
                 <div class="col-md-12 "><label class="form-label" for="Epassword">كلمة المرور</label>
                   <input type="password" name="Epassword" id="Epassword" class="form-control  text-end" placeholder="••••••••" required value="<?php echo $row['pass'] ?>" />
