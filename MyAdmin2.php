@@ -41,9 +41,9 @@ $row = mysqli_fetch_assoc($result);
 
 // $rows_result = mysqli_query("SELECT COUNT(*) as rows FROM users");
 // $rows = mysqli_fetch_assoc($rows_result);
-$totalRows= mysqli_num_rows($result);
+$totalRows = mysqli_num_rows($result);
 
-$lastPage = ceil($totalRows/$perPage) ;
+$lastPage = ceil($totalRows / $perPage);
 
 
 
@@ -93,7 +93,7 @@ $lastPage = ceil($totalRows/$perPage) ;
                 <?php
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>
-            <td> " . $row["id"] . "</td>
+                <td> " . $row["id"] . "</td>
             <td> " . $row["Fname"] . "</td>
             <td> " . $row["Lname"] . "</td>
             <td> " . $row["Email"] . "</td>
@@ -123,11 +123,10 @@ $lastPage = ceil($totalRows/$perPage) ;
                     echo '    ';
                 } else {
 
-                    echo '<a class="page-link" href="?page='. $prevPage.'" aria-label="Previous">
+                    echo '<a class="page-link" href="?page=' . $prevPage . '" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     <span class="sr-only">Previous</span>
                      </a>';
-
                 }
                 ?>
             </li>
@@ -142,11 +141,10 @@ $lastPage = ceil($totalRows/$perPage) ;
                     echo '    ';
                 } else {
 
-                    echo '<a class="page-link" href="?page='.$nextPage .'" aria-label="Next">
+                    echo '<a class="page-link" href="?page=' . $nextPage . '" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
                     </a>';
-
                 }
                 ?>
             </li>

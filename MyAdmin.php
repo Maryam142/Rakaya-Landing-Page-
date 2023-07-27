@@ -8,10 +8,13 @@ if (!isset($_SESSION['logged_in'])) {
   die();
 }
 
+
+
+
 $user_email = $_SESSION['user_email'];
 
 $fetchquery = "SELECT * FROM users WHERE Email ='$user_email'";
-$fetchqueryAll = "SELECT * FROM users";
+$fetchqueryAll = "SELECT * FROM users LIMIT $start, $limit";
 
 $result = mysqli_query($conn, $fetchquery);
 $resultall = mysqli_query($conn, $fetchqueryAll);
@@ -98,8 +101,9 @@ $adminerrors = array();
 
             <img class="rounded-circle mt-5" width="150px" src="<?php echo $row['Image'] ?>" alt="profile image" class="font-weight-bold">
 
-          <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
-          <?php echo $row['Email'] ?></span><span> </span></div>
+            <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
+              <?php echo $row['Email'] ?></span><span> </span>
+          </div>
         </div>
         <div class="col-md-10 border-right text-end"><!-- right side  -->
           <!-- System Msgs -->
@@ -118,46 +122,46 @@ $adminerrors = array();
           <?php endif ?>
           <div class="container">
             <div class="row mt-5">
-                <div class="col">
-                    <div class="card mt-5">
-                        <div class="card-header">
-                            <h2 class="display-6 text-center"> بيانات المستخدمين</h2>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-bordered text-center flex">
-                                <tr class=" bg-pigi text-white">
-                                  <td>الرقم التعريفي</td>
-                                  <td>البريد الالكتروني</td>
-                                  <td>الاسم الاول</td>
-                                  <td>الاسم الثاني</td>
-                                  <td>كلمة المرور</td>
-                                  <td> نوع المستخدم</td>
-                                  <td> تعديل</td>
-                                  <td> حذف</td>
+              <div class="col">
+                <div class="card mt-5">
+                  <div class="card-header">
+                    <h2 class="display-6 text-center"> بيانات المستخدمين</h2>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-bordered text-center flex">
+                      <tr class=" bg-pigi text-white">
+                        <td>الرقم التعريفي</td>
+                        <td>البريد الالكتروني</td>
+                        <td>الاسم الاول</td>
+                        <td>الاسم الثاني</td>
+                        <td>كلمة المرور</td>
+                        <td> نوع المستخدم</td>
+                        <td> تعديل</td>
+                        <td> حذف</td>
 
-                                </tr>
+                      </tr>
 
-                            <tr>
-                              <?php 
-                               while($rowUser = mysqli_fetch_assoc($resultall)){                                
-                              ?> 
-                              <td> <?php echo $rowUser['id'] ?> </td>
-                              <td> <?php echo $rowUser['Email'] ?> </td>
-                              <td> <?php echo $rowUser['Fname']." ".$rowUser['Lname'] ?></td>
-                              <td> <?php echo $rowUser['Phone'] ?> </td>
-                              <td> <?php echo $rowUser['pass'] ?> </td>
-                              <td> <?php echo $rowUser['UserType'] ?> </td>
-                              <td> <a href="#" class="bg-pigi rounded px-2 text-white"> e</a> </td>
-                              <td> <a href="#" class="bg-danger px-2 rounded text-white"> d</a></td>
+                      <tr>
+                        <?php
+                        while ($rowUser = mysqli_fetch_assoc($resultall)) {
+                        ?>
+                          <td> <?php echo $rowUser['id'] ?> </td>
+                          <td> <?php echo $rowUser['Email'] ?> </td>
+                          <td> <?php echo $rowUser['Fname'] . " " . $rowUser['Lname'] ?></td>
+                          <td> <?php echo $rowUser['Phone'] ?> </td>
+                          <td> <?php echo $rowUser['pass'] ?> </td>
+                          <td> <?php echo $rowUser['UserType'] ?> </td>
+                          <td> <a href="#" class="bg-pigi rounded px-2 text-white"> e</a> </td>
+                          <td> <a href="#" class="bg-danger px-2 rounded text-white"> d</a></td>
 
-                            </tr>
-                            <?php 
-                             }
-                            ?>
-                        </table>
-                        </div>
-                    </div>
+                      </tr>
+                    <?php
+                        }
+                    ?>
+                    </table>
+                  </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>

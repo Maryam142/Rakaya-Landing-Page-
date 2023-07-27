@@ -1,8 +1,8 @@
-<?php include ('./include/reset_processing.php'); ?>
+<?php include('./include/reset_processing.php'); ?>
 
 <!DOCTYPE html>
 <html>
-  
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -49,10 +49,8 @@
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">عن ركايا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">خدماتنا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">للتواصل</a></li>
-          <li class="border-right border-secondary"><a href="logIn.php"
-              class="bg-pigi px-2 py-2 ms-2 rounded animate__animated animate__fadeInUp text-light">تسجيل دخول</a></li>
-          <li class="border-right border-secondary"><a href="signUp.php"
-              class="hover:bg-white px-2 py-2 ms-2 rounded animate__animated animate__fadeInUp">تسجيل
+          <li class="border-right border-secondary"><a href="logIn.php" class="bg-pigi px-2 py-2 ms-2 rounded animate__animated animate__fadeInUp text-light">تسجيل دخول</a></li>
+          <li class="border-right border-secondary"><a href="signUp.php" class="hover:bg-white px-2 py-2 ms-2 rounded animate__animated animate__fadeInUp">تسجيل
               جديد</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -92,17 +90,17 @@
                     <?php endforeach ?>
                   </div>
                 <?php endif ?>
-                
-                <?php if(!empty($SysMsg)) : ?>
-                <div class="systemMsg w-full">
-                <p><?php echo $SysMsg ?> </p>
-                </div>
+
+                <?php if (!empty($SysMsg)) : ?>
+                  <div class="systemMsg w-full">
+                    <p><?php echo $SysMsg ?> </p>
+                  </div>
                 <?php endif ?>
 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="resetEmail">الإيميل</label>
-                  <input type="email" name="resetEmail" id="resetEmail" class="form-control text-end" required placeholder="email@example.com" value="<?php echo $resetEmail?>" />
+                  <input type="email" name="resetEmail" id="resetEmail" class="form-control text-end" required placeholder="email@example.com" value="<?php echo $resetEmail ?>" />
                 </div>
                 <!-- Submit button -->
                 <div class="text-center">
@@ -119,18 +117,14 @@
   <!-- Footer-->
   <footer class=" bg-ramadi fixed-bottom position-relative">
     <div class="container mx-auto flex flex-col flex-col-reverse md:flex-row text-light px-5 py-10 items-center justify-between space-y-3">
-      
+
       <div class="flex flex-col items-center justify-between space-y-2">
         <img src="img/minilogo.png" alt="logo" style="height: 7rem; width: 6.5rem;">
         <div>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="tel:+966570077055" target="_blank"
-            aria-label="Phone"><i class="bi bi-telephone-fill" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="mailto:Admin@rakaya.co" target="_blank"
-            aria-label=" Email"><i class="bi bi-envelope-fill" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://www.linkedin.com/company/rakaya/"
-            target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin" style="color: #ffffff;"></i></a>
-          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://twitter.com/rakayaco" target="_blank"
-            aria-label="Twitter"><i class="bi bi-twitter" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="tel:+966570077055" target="_blank" aria-label="Phone"><i class="bi bi-telephone-fill" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="mailto:Admin@rakaya.co" target="_blank" aria-label=" Email"><i class="bi bi-envelope-fill" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://www.linkedin.com/company/rakaya/" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin" style="color: #ffffff;"></i></a>
+          <a class="btn bg-pigi btn-social mx-2 rounded-circle" href="https://twitter.com/rakayaco" target="_blank" aria-label="Twitter"><i class="bi bi-twitter" style="color: #ffffff;"></i></a>
         </div>
       </div>
       <div class="flex justify-around space-x-32">
@@ -144,19 +138,19 @@
         </div>
       </div>
       <div class="flex flex-col justify-between items-center">
-      <form action="">
-      <div class="single">
-      <div class="input-group">
-      <input type="text" name="" placeholder="البريد الإلكتروني" id=""class="mb-2 flex-1 py-2 px-6 rounded text-end">
-      <span class="input-group-btn">
-          <button class="ml-2 btn bg-pigi rounded px-6 py-2 hover:bg-cohly text-light" type="submit" name="Subscribe">الاشتراك</button>
-      </span>
+        <form action="">
+          <div class="single">
+            <div class="input-group">
+              <input type="text" name="" placeholder="البريد الإلكتروني" id="" class="mb-2 flex-1 py-2 px-6 rounded text-end">
+              <span class="input-group-btn">
+                <button class="ml-2 btn bg-pigi rounded px-6 py-2 hover:bg-cohly text-light" type="submit" name="Subscribe">الاشتراك</button>
+              </span>
+            </div>
+          </div>
+        </form>
+        <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
+      </div>
     </div>
-    </div>
-    </form>
-      <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
-    </div>
-</div>
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color:#333335; color:white;">
@@ -164,7 +158,7 @@
       &copy; 2023
       <a class="text-white" href="#"></a>
     </div>
-</footer>
+  </footer>
 
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
