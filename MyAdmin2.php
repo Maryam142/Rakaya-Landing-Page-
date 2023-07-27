@@ -107,20 +107,20 @@ $lastPage = ceil($number_of_rows / $perPage);
     </table>
     <div>
 
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
+        <nav class="" aria-label="Page navigation example">
+            <ul class="pagination ">
                 <li class="page-item">
 
                     <?php
 
                     if ($currentPage == 1) {
 
-                        echo '<a class="page-link" href="#" aria-label="Previous">
+                        echo '<a class="page-link" style="color: #816D4A" href="#" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Previous</span></a>';
                     } else {
 
-                        echo '<a class="page-link" href="?page=' . $prevPage . '" aria-label="Previous">
+                        echo '<a class="page-link" style="color: #C4AE7C" href="?page=' . $prevPage . '" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Previous</span></a>';
                     }
@@ -135,13 +135,13 @@ $lastPage = ceil($number_of_rows / $perPage);
                     <?php
                     if ($currentPage == $lastPage) {
 
-                        echo '<a class="page-link" href="#" aria-label="Next">
+                        echo '<a class="page-link" style="color: #816D4A" href="#" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Next</span>
                         </a>';
                     } else {
 
-                        echo '<a class="page-link" href="?page=' . $nextPage . '" aria-label="Next">
+                        echo '<a class="page-link" style="color: #C4AE7C" href="?page=' . $nextPage . '" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                         <span class="sr-only">Next</span>
                         </a>';
