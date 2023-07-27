@@ -27,23 +27,22 @@ $nextPage = $currentPage + 1;
 
 //the start page
 $perPage = 5;
-$start = ($currentPage - 1) * $perPage ;
+$start = ($currentPage - 1) * $perPage;
 
-$fetchquery = "SELECT  * FROM users limit  $start , $perPage";
+$fetchquery = "SELECT  SQL_CALC_FOUND_ROWS * FROM users limit  $start , $perPage";
 
 
 $result = mysqli_query($conn, $fetchquery);
 $row = mysqli_fetch_assoc($result);
 
 //the last page
+$fetchquery2 = "SELECT FOUND_ROWS() FROM users as rows ";
+$rows_result =mysqli_query($conn, $fetchquery2);
 
-// $rows_result = mysqli_query("SELECT COUNT(*) as rows FROM users");
-// $rows = mysqli_fetch_assoc($rows_result);
-$totalRows = mysqli_num_rows($result);
+$rows = mysqli_fetch_assoc($rows_result);
+$totalRows = $rows['rows'];
 
 $lastPage = ceil($totalRows / $perPage);
-
-
 
 
 ?>
@@ -108,52 +107,49 @@ $lastPage = ceil($totalRows / $perPage);
         </thead>
     </table>
     <div>
-        
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <li class="page-item">
 
-                <!-- // if ($currentPage == 1) {
-
-                //     echo '    ';
-                // } else {
-
-                //     echo '<a class="page-link" href="?page=' . $prevPage . '" aria-label="Previous">
-                //     <span aria-hidden="true">&laquo;</span>
-                //     <span class="sr-only">Previous</span>
-                //      </a>';
-                // } -->
-             
-
-                <a class="page-link" href="?page=<?php echo $prevPage ?>" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
-                 <li class="page-item"><a class="page-link" href="#">2</a></li>
-                 <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-            <li class="page-item">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
 
                 <?php
-                // if ($currentPage == 1) {
 
-                //     echo '    ';
-                // } else {
+                    if ($currentPage == 1) {
 
-                //     // echo '<a class="page-link" href="?page=' . $nextPage . '" aria-label="Next">
-                //     // <span aria-hidden="true">&raquo;</span>
-                //     // <span class="sr-only">Next</span>
-                //     // </a>';
-                // }
-                ?>
-                <a class="page-link" href="?page=<?php echo $nextPage ?>" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                    </a>
-            </li>
-        </ul>
-    </nav>
+                    echo ' ';
+                    } else {
+
+                    echo '<a class="page-link" href="?page=' . $prevPage . '" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>';
+
+                    }
+                    ?>
+
+                </li>
+                 <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
+                 <li class="page-item"><a class="page-link" href="#">2</a></li>
+                 <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                <li class="page-item">
+
+                    <?php
+                    if ($currentPage == $lastPage
+                    ) {
+
+                        echo '    ';
+                    } else {
+
+                        echo '<a class="page-link" href="?page=' . $nextPage . '" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                        </a>';
+                    }
+                    ?>
+                   
+                </li>
+            </ul>
+        </nav>
 
     </div>
 
