@@ -1,4 +1,4 @@
-<?php include('./DB_conn.php');
+<?php include('DB_conn.php');
 
 session_start();
 if (!isset($_SESSION['logged_in'])) {
@@ -18,9 +18,7 @@ if (isset($_GET['page'])) {
     $currentPage = 1;
 }
 
-
 //pages numbers 
-
 $prevPage = $currentPage - 1;
 $nextPage = $currentPage + 1;
 
@@ -29,10 +27,10 @@ $nextPage = $currentPage + 1;
 
 //the start page
 $perPage = 5;
-$start = ($currentPage - 1) * 5;
+$start = ($currentPage - 1) * $perPage ;
 
+$fetchquery = "SELECT  * FROM users limit  $start , $perPage";
 
-$fetchquery = "SELECT SQL_CALC_FOUND_ROWS * FROM users limit $start , $perPage ";
 
 $result = mysqli_query($conn, $fetchquery);
 $row = mysqli_fetch_assoc($result);
@@ -94,14 +92,14 @@ $lastPage = ceil($totalRows / $perPage);
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>
                 <td> " . $row["id"] . "</td>
-            <td> " . $row["Fname"] . "</td>
-            <td> " . $row["Lname"] . "</td>
-            <td> " . $row["Email"] . "</td>
-            <td> " . $row["Phone"] . "</td>
-            <td>
+                <td> " . $row["Fname"] . "</td>
+                <td> " . $row["Lname"] . "</td>
+                <td> " . $row["Email"] . "</td>
+                <td> " . $row["Phone"] . "</td>
+                <td>
                <a href='update'>Update</a>
                <a href='delete'>Delete</a>
-            </td>";
+               </td>";
                 }
 
 
@@ -109,26 +107,28 @@ $lastPage = ceil($totalRows / $perPage);
             </tr>
         </thead>
     </table>
-
-
-
-
+    <div>
+        
     <nav aria-label="Page navigation example">
         <ul class="pagination">
             <li class="page-item">
 
-                <?php
-                if ($currentPage == 1) {
+                <!-- // if ($currentPage == 1) {
 
-                    echo '    ';
-                } else {
+                //     echo '    ';
+                // } else {
 
-                    echo '<a class="page-link" href="?page=' . $prevPage . '" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span class="sr-only">Previous</span>
-                     </a>';
-                }
-                ?>
+                //     echo '<a class="page-link" href="?page=' . $prevPage . '" aria-label="Previous">
+                //     <span aria-hidden="true">&laquo;</span>
+                //     <span class="sr-only">Previous</span>
+                //      </a>';
+                // } -->
+             
+
+                <a class="page-link" href="?page=<?php echo $prevPage ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+                </a>
             </li>
             <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
                  <li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -136,20 +136,26 @@ $lastPage = ceil($totalRows / $perPage);
             <li class="page-item">
 
                 <?php
-                if ($currentPage == $lastPage) {
+                // if ($currentPage == 1) {
 
-                    echo '    ';
-                } else {
+                //     echo '    ';
+                // } else {
 
-                    echo '<a class="page-link" href="?page=' . $nextPage . '" aria-label="Next">
+                //     // echo '<a class="page-link" href="?page=' . $nextPage . '" aria-label="Next">
+                //     // <span aria-hidden="true">&raquo;</span>
+                //     // <span class="sr-only">Next</span>
+                //     // </a>';
+                // }
+                ?>
+                <a class="page-link" href="?page=<?php echo $nextPage ?>" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     <span class="sr-only">Next</span>
-                    </a>';
-                }
-                ?>
+                    </a>
             </li>
         </ul>
     </nav>
+
+    </div>
 
 </body>
 
