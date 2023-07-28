@@ -237,7 +237,7 @@ if(!empty($row['Image'])){
               <div class="row mt-3 space-y-3">
                 <div class="col-md-12 "><label class="labels">رقم الجوال </label><input type="text" name="Ephone" class="form-control text-end" placeholder="رقم الجوال" value="<?php echo $row['Phone'] ?>"></div>
                 <div class="col-md-12 "><label class="labels">البريد الالكتروني</label><input type="text" name="Eemail" class="form-control text-end" placeholder="البريد الالكتروني" value="<?php echo $row['Email'] ?>"></div>
-                <div class="col-md-12 "><label class="labels"> الجنس</label><input type="text" name="Egender" class="form-control text-end" placeholder="" value="<?php echo $row['Gender'] ?>"></div>
+                <div class="col-md-12 "><label class="labels"> الجنس</label><input type="text"  name="Egender" class="form-control text-end" placeholder="" value="<?php echo $row['Gender'] ?>"></div>
                 <div class="col-md-12 "><label class="labels"> نوع المستخدم</label><input type="text" name="Eusertype" class="form-control text-end" placeholder=" " value="<?php echo $row['UserType'] ?>"></div>
                 <!-- Password input -->
                 <div class="col-md-12 "><label class="form-label" for="Epassword">كلمة المرور</label>

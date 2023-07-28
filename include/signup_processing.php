@@ -95,6 +95,13 @@ if (isset($_POST['submit'])) {
   if (!(preg_match('/^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/', $phone))) {
     array_push($errors, " يرجى ادخال رقم الجوال بشكل صحيح");
   }
+  //prevent dublicate emails query/////////////////////////////////////////////////
+   $statment = "SELECT email FROM users WHERE email ='$email'";
+   $data = mysqli_fetch_row(mysqli_query($conn, $statment));
+  
+    if ($data) {
+      array_push($errors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
+    }
 
   //Image Validation //////////////////////////////////////////////
   $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
@@ -113,14 +120,6 @@ if (isset($_POST['submit'])) {
 
     if (!in_array($image_extension, $allowed_extensions)) {
       array_push($errors, "هذا الامتداد غير مسموح");
-    }
-
-    //prevent dublicate emails query/////////////////////////////////////////////////
-    $statment = "SELECT email FROM users WHERE email ='$email'";
-    $data = mysqli_fetch_row(mysqli_query($conn, $statment));
-
-    if ($data) {
-      array_push($errors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
     }
 
     //insert query/////////////////////////////////////////////////////////////////////
