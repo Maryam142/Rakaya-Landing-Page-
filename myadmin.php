@@ -1,6 +1,30 @@
 <?php
-include('./include/login_processing.php');
+
+include('./DB_conn.php');
+
+session_start();
+if (!isset($_SESSION['logged_in'])) {
+  header('location: logIn.php');
+  die();
+}
+
+
+
+
+$user_email = $_SESSION['user_email'];
+
+$fetchquery = "SELECT * FROM users WHERE Email ='$user_email'";
+$fetchqueryAll = "SELECT * FROM users LIMIT $start, $limit";
+
+$result = mysqli_query($conn, $fetchquery);
+$resultall = mysqli_query($conn, $fetchqueryAll);
+
+$row = mysqli_fetch_assoc($result);
+$userID = $row['id'];
+
+$adminerrors = array();
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +33,7 @@ include('./include/login_processing.php');
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Rakaya Sign In</title>
+  <title>Rakaya home</title>
   <link href="img/minilogo.png" rel="icon">
   <!-- animate -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -27,101 +51,121 @@ include('./include/login_processing.php');
 </head>
 
 <body>
-  <!-- Spinner Start -->
-  <!-- <div id="spinner"
-    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-border position-relative pg-light_pigi" style="width: 6rem; height: 6rem;" role="status"></div>
-    <img class="position-absolute top-50 start-50 translate-middle" src="img/minilogo.png" alt="Icon" height="60px"
-      width="60px">
-  </div> -->
-  <!-- Spinner End -->
   <!-- Navbar -->
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
+
       <div class="logo">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand my-3 mt-3" href="index.html">
             <img src="img/rakaya.png" class="me-lg-2" height="40" class=" active btn-get-started animate__animated animate__fadeInUp" />
           </a>
         </div>
       </div>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">الرئيسية</a></li>
-          <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">عن ركايا</a></li>
-          <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">خدماتنا</a></li>
-          <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">للتواصل</a></li>
-          <li class="breadcrumb-item"><a href="signUp.php" class="bg-pigi px-3 py-2 ms-4 me-4 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">انشاء
-              حساب</a></li>
+      <nav>
+        <ul class="d-flex me-2" style="line-height: 0; align-items: center; justify-content: space-between; padding: 10px 0 10px 30px;">
+          <li class="flex">
+            <a href="logout.php" class="bg-pigi px-2 mx-2 py-3 ms-2 flex rounded animate__animated animate__fadeInUp text-light">
+              تسجيل الخروج</a>
+          </li>
+          <li class="flex ">
+            <img src="<?php echo $row['Image'] ?>" class="rounded-pill h-12" height="40" alt="profile image">
+          </li>
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
     </div>
   </header>
 
-  <!-- Background image -->
-  <section class=" text-end">
-    <div class="p-5 bg-image text-center align-items-center" style="background-image: url('img/Sign_in_up.png'); height: 300px; background-attachment: fixed; ">
 
-      <nav aria-label="breadcrumb text-light " style="float: left;">
-        <ol class="breadcrumb text-light mt-5 text-xl" style="--bs-breadcrumb-divider-color:#C4AE7C;">
-          <li class="breadcrumb-item text-pigi" aria-current="page">تسجيل الدخول </li>
-          <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
-        </ol>
-      </nav>
+
+  <section>
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="background-image: url('img/Sign_in_up.png'); height: 300px; background-attachment: fixed;">
+      <div class="text-center">
+        <nav aria-label="breadcrumb text-light " style="float: left;">
+          <ol class="breadcrumb text-light mt-5 text-xl" style="--bs-breadcrumb-divider-color:#C4AE7C;">
+            <li class="breadcrumb-item text-pigi" aria-current="page"> الملف الشخصي </li>
+            <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
+          </ol>
+        </nav>
+      </div>
     </div>
+    <!-- content -->
+    <div class="container rounded bg-white mb-5 py-5" style="margin-top: -100px;">
+      <div class=" justify-content-between align-items-center mb-1">
+        <h4 class="text-center text-bold text-3xl"> <span class="text-pigi"><?php echo $row['Fname'] ?> </span> اهلًا ومرحبًا</h4>
+      </div>
+      <div class="row flex-row-reverse">
+        <div class="col-md-2 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 
-    <!-- card -->
-    <div data-aos="fade-up" data-aos-duration="6000" class="card-body rounded-5 mx-5 mx-md-5 shadow-strong" style=" margin-top: -100px; background: hsla(0, 0%, 100%, 0.9); backdrop-filter: blur(50px);">
-      <div class="card-body p-6 space-y-4 md:space-y-6 sm:p-8 sm-pb-4">
-        <div class="row d-flex justify-content-center">
-          <div class="col-lg-8">
-            <h2 class="font-bold text-center text-3xl text-boni mb-1">تسجيل دخول </h2>
-            <i>
-              <p class="mb-3 font-light text-center fs-6 mx-4 text-cohly"> اهلا ومرحبــا عميلنا العزيز تسرنا زيارتك</h2>
-            </i>
+            <img class="rounded-circle mt-5" width="150px" src="<?php echo $row['Image'] ?>" alt="profile image" class="font-weight-bold">
 
-            <form action="logIn.php" method="POST" class="text-end me-5 ms-5 needs-validation" id="login">
-              <div class="row">
-                <?php if (count($Logerrors) > 0) : ?>
-
-                  <div class="error">
-                    <?php foreach ($Logerrors as $error) : ?>
-                      <p> <?php echo $error; ?> </p>
-                    <?php endforeach ?>
-                  </div>
-                <?php endif ?>
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="email">الإيميل</label>
-                  <input type="email" name="email" id="email" class="form-control text-end" required placeholder="email@example.com" value="<?php echo $email ?>" />
-                </div>
-                <!-- Password input -->
-                <div class="form-outline mb-2">
-                  <label class="form-label" for="password">كلمة المرور</label>
-                  <input type="password" name="password" id="password" class="form-control text-end" placeholder="••••••••" required value="<?php echo $password ?>" />
-                </div>
-                <div class="forgot mb-4">
-                  <a href="reset.php">نسيت كلمة المرور ؟</a>
-                </div>
-                <!-- Submit button -->
-                <div>
-                  <label for="rememberMe"> تذكرنى</label>
-                  <input type="checkbox" id="rememberMe" name="rememberMe" class="mb-3" value="<?php echo $rememberMe ?>">
-                </div>
-
-                <div class="text-center">
-                  <button type="submit" name="submit_login" class="btn bg-pigi mb-1 rounded px-5 py-2 hover:bg-cohly text-light" style="background-color: #C4AE7C;">تسجيل
-                    الدخول</button>
-                  <!-- Register buttons -->
-                  <div>
-                    <i> ليس لديك حساب؟ <a href="signUp.html" class="link-underline-dark link-opacity-75 text-boni">انشئ
-                        حساب الآن </a> </i>
-                  </div>
-                </div>
-            </form>
+            <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
+              <?php echo $row['Email'] ?></span><span> </span>
           </div>
         </div>
+        <div class="col-md-10 border-right text-end"><!-- right side  -->
+          <!-- System Msgs -->
+          <?php if (count($adminerrors) > 0) : ?>
+            <div class="error">
+              <?php foreach ($adminerrors as $error) : ?>
+                <p> <?php echo $error; ?> </p>
+              <?php endforeach ?>
+            </div>
+          <?php endif ?>
+
+          <?php if (!empty($ConfirmeditMsg)) : ?>
+            <div class="systemMsg w-full">
+              <p><?php echo $ConfirmeditMsg ?> </p>
+            </div>
+          <?php endif ?>
+          <div class="container">
+            <div class="row mt-5">
+              <div class="col">
+                <div class="card mt-5">
+                  <div class="card-header">
+                    <h2 class="display-6 text-center"> بيانات المستخدمين</h2>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-bordered text-center flex">
+                      <tr class=" bg-pigi text-white">
+                        <td>الرقم التعريفي</td>
+                        <td>البريد الالكتروني</td>
+                        <td>الاسم الاول</td>
+                        <td>الاسم الثاني</td>
+                        <td>كلمة المرور</td>
+                        <td> نوع المستخدم</td>
+                        <td> تعديل</td>
+                        <td> حذف</td>
+
+                      </tr>
+
+                      <tr>
+                        <?php
+                        while ($rowUser = mysqli_fetch_assoc($resultall)) {
+                        ?>
+                          <td> <?php echo $rowUser['id'] ?> </td>
+                          <td> <?php echo $rowUser['Email'] ?> </td>
+                          <td> <?php echo $rowUser['Fname'] . " " . $rowUser['Lname'] ?></td>
+                          <td> <?php echo $rowUser['Phone'] ?> </td>
+                          <td> <?php echo $rowUser['pass'] ?> </td>
+                          <td> <?php echo $rowUser['UserType'] ?> </td>
+                          <td> <a href="#" class="bg-pigi rounded px-2 text-white"> e</a> </td>
+                          <td> <a href="#" class="bg-danger px-2 rounded text-white"> d</a></td>
+
+                      </tr>
+                    <?php
+                        }
+                    ?>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -166,13 +210,16 @@ include('./include/login_processing.php');
 
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color:#333335; color:white;">
-      ركايا | جميع الحقوق محفوظة |
-      &copy; 2023
+      ركايا | جميع الحقوق محفوظة |g&copy; 2023
       <a class="text-white" href="#"></a>
     </div>
   </footer>
 
 
+  <!-- back to top btn -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center active"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
@@ -188,6 +235,7 @@ include('./include/login_processing.php');
       theme: {
         extend: {
           colors: {
+            white: '#ffffff',
             pigi: '#C4AE7C',
             cohly: '#2C3640',
             ramadi: '#3E3E41',
@@ -199,6 +247,7 @@ include('./include/login_processing.php');
       }
     }
   </script>
+
 </body>
 
 </html>

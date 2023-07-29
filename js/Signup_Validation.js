@@ -1,11 +1,11 @@
 const validation = new JustValidate("#signupx");
 
 validation
-//Name Validation:
+    //Name Validation:
     .addField("#firstName", [
         {
             rule: "required"
-          }        
+        }
     ])
 
     .addField("#lastName", [
@@ -14,46 +14,46 @@ validation
         }
     ])
 
-// Email Validation:
+    // Email Validation:
     .addField("#email", [
-        {rule: "required"}, {rule: "email"}
+        { rule: "required" }, { rule: "email" }
 
     ])
 
-// Password Validation:
+    // Password Validation:
     .addField("#password", [
-        {rule: "required"}, {rule: "strongPassword"}
+        { rule: "required" }, { rule: "strongPassword" }
     ])
-// Password Confirmation Validation:
+    // Password Confirmation Validation:
     .addField("#password2", [
         {
             validator: (value, fields) => {
-                return value === fields["#password"].elem.value;  
-          },
+                return value === fields["#password"].elem.value;
+            },
             errorMessage: "يجب ان تتطابق كلمات المرور"
         }
     ])
-    // Usertype Validation:
-    // .addField("#usertype", [
-    //     {rule: "required"}
-      
-    // ])
+// Usertype Validation:
+// .addField("#usertype", [
+//     {rule: "required"}
+
+// ])
 
 // Phone Validation:
-    function validateNumber(input) {
-      var re = /^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/;
+function validateNumber(input) {
+    var re = /^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/;
 
-      return re.test(input)
-    }
+    return re.test(input)
+}
 
-    function validateForm(event) {
-      var number = document.getElementById('phone').value
-      if (!validateNumber(number)) {
+function validateForm(event) {
+    var number = document.getElementById('phone').value
+    if (!validateNumber(number)) {
         const ele = document.getElementById('result')
         ele.innerHTML = 'يرجى ادخال رقم هاتف صحيح'
         ele.style.color = 'red'
-       }
-      event.preventDefault()
     }
+    event.preventDefault()
+}
 
-    document.getElementById('signup').addEventListener('submit', validateForm);
+document.getElementById('signup').addEventListener('submit', validateForm);

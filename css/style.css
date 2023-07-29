@@ -1,11 +1,11 @@
-
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
- *{
+* {
   font-family: 'Almarai', sans-serif;
   font-family: 'Cairo', sans-serif;
-} 
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   color: #444;
@@ -13,7 +13,7 @@ body {
   margin: 0%;
   overflow-x: hidden;
 }
- 
+
 
 a {
   color: #816D4A;
@@ -66,7 +66,7 @@ a:hover {
   transition: opacity .5s ease-out, visibility 0s linear .5s;
   z-index: 99999;
   color: #816D4A;
-  
+
 }
 
 #spinner.show {
@@ -93,7 +93,7 @@ a:hover {
 }
 
 #header.header-scrolled {
-  background: rgb(243, 243, 243,0.9);
+  background: rgb(243, 243, 243, 0.9);
   height: 80px;
 }
 
@@ -151,7 +151,7 @@ a:hover {
   justify-content: space-between;
   padding: 10px 0 10px 30px;
   font-size: 14px;
-  color:#3E3E41;
+  color: #3E3E41;
   white-space: nowrap;
   transition: 0.3s;
 }
@@ -185,8 +185,8 @@ a:hover {
 
 @media (max-width: 991px) {
   .mobile-nav-toggle {
-    display:block;
-   
+    display: block;
+
   }
 
   .navbar ul {
@@ -202,7 +202,7 @@ a:hover {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgb(238, 232, 218,0.9);
+  background: rgb(238, 232, 218, 0.9);
   transition: 0.3s;
   text-align: center
 }
@@ -214,7 +214,7 @@ a:hover {
 }
 
 .navbar-mobile ul {
-  display:block;
+  display: block;
   position: absolute;
   top: 55px;
   right: 5px;
@@ -225,11 +225,11 @@ a:hover {
   width: 100%;
   transition: 0.3s;
   text-align: center;
-  padding: 25px; 
+  padding: 25px;
   text-align: center;
   align-items: center;
-  border-radius: 10px ;
-} 
+  border-radius: 10px;
+}
 
 .navbar-mobile a,
 .navbar-mobile a:focus {
@@ -253,74 +253,74 @@ a:hover {
 
 
 #hero {
-  height:95vh;
-  width:100%;
-  background:rgb(177, 169, 146,0.7);
+  height: 95vh;
+  width: 100%;
+  background: rgb(177, 169, 146, 0.7);
   /* background:#EEE8DA; */
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  border-radius: 0 0 43% 43%; 
+  border-radius: 0 0 43% 43%;
 }
 
 
 
 #hero::after {
-width:100%;
-height:100%;
-content: '';
-position:absolute;
-z-index:10;
-top:0;
-left:0;
-/* background:rgba(0,0,0,0.5) */
+  width: 100%;
+  height: 100%;
+  content: '';
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  /* background:rgba(0,0,0,0.5) */
 }
 
 
 #hero video {
-width:100%;
-height:90%;
-position:absolute;
-top:0;
-left:0;
-z-index:5;
-object-fit:cover;
-font-family:'object-fit: cover';
-border-radius: 0 0 40% 40%; 
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  object-fit: cover;
+  font-family: 'object-fit: cover';
+  border-radius: 0 0 40% 40%;
 }
 
 
 #hero .texture {
-width:100%;
-height:100%;
-position:absolute;
-top:0;
-left:0;
-z-index:15;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 15;
 }
 
 
 #hero .caption {
 
-position:relative;
-z-index:20;
-text-align:center;
-color:#ffffff;
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  color: #ffffff;
 }
 
 
 
 #hero .caption h1 {
 
-text-transform: uppercase;
-font-size:2em;
-margin-bottom:0.5rem;
+  text-transform: uppercase;
+  font-size: 2em;
+  margin-bottom: 0.5rem;
 }
 
 #hero .caption h2 {
-font-weight:400;
-font-size:1.5em;
-margin:0;
+  font-weight: 400;
+  font-size: 1.5em;
+  margin: 0;
 
 }
 
@@ -347,98 +347,109 @@ margin:0;
 
 
 
-@media screen and (min-width:768px)
-{
-#hero .caption h1 {
-  font-size:2.5rem;
-}
+@media screen and (min-width:768px) {
+  #hero .caption h1 {
+    font-size: 2.5rem;
+  }
 
-#hero .caption h2 {
-  font-size:2.5rem;
-}
-}
-
-
-
-
-@media screen and (min-width:992px)
-{
-#hero .caption h1 {
-  font-size:3rem;
-}
-
-#hero .caption h2 {
-  font-size:2.5rem;
-}
+  #hero .caption h2 {
+    font-size: 2.5rem;
+  }
 }
 
 
 
-@media screen and (min-width:1200px)
-{
-#hero .caption h1 {
-  font-size:4rem;
+
+@media screen and (min-width:992px) {
+  #hero .caption h1 {
+    font-size: 3rem;
+  }
+
+  #hero .caption h2 {
+    font-size: 2.5rem;
+  }
 }
 
-#hero .caption h2 {
-  font-size:2.5rem;
-}
+
+
+@media screen and (min-width:1200px) {
+  #hero .caption h1 {
+    font-size: 4rem;
+  }
+
+  #hero .caption h2 {
+    font-size: 2.5rem;
+  }
 }
 
 /*--------------------------------------------------------------
 Gallary Section
 --------------------------------------------------------------*/
-.carousel-inner > .item > img {
-  width:100%;
-  height:300px;
+.carousel-inner>.item>img {
+  width: 100%;
+  height: 300px;
 }
+
 /*--------------------------------------------------------------
 Contact
 --------------------------------------------------------------*/
-.field{
-	width: 80%;
-	padding: 0.5rem 1rem;
-	outline: none;
-	border: 2px solid rgba(0,0,0,0);
-	background-color: rgba(230,230,230,0.6);
-	font-size: 1.1rem;
-	margin-bottom: 22px;
-	transition: .3s;
+.field {
+  width: 80%;
+  padding: 0.5rem 1rem;
+  outline: none;
+  border: 2px solid rgba(0, 0, 0, 0);
+  background-color: rgba(230, 230, 230, 0.6);
+  font-size: 1.1rem;
+  margin-bottom: 22px;
+  transition: .3s;
 }
-.field:hover{
-	background-color: rgba(0,0,0,0.1);
+
+.field:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 
 }
-.field:focus{
-	background-color: #fff;
-	border: 2px solid #816D4A;
+
+.field:focus {
+  background-color: #fff;
+  border: 2px solid #816D4A;
 }
-.area{
-	min-height: 150px;
+
+.area {
+  min-height: 150px;
 }
 
 /*-----------------------------------
 # Values Section
 --------------------------------------------------------------*/
-.valuesicon{
-  font-size: 2rem; color:#ffffff;  padding: 0.5rem 1.5rem; margin-bottom: 2rem;
-  background-color:#C4AE7C; max-width: 4rem; border-radius: 1rem; 
+.valuesicon {
+  font-size: 2rem;
+  color: #ffffff;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 2rem;
+  background-color: #C4AE7C;
+  max-width: 4rem;
+  border-radius: 1rem;
 }
+
 /* animation grow */
-.grow { transition: all .2s ease-in-out; }
-.grow:hover { 
+.grow {
+  transition: all .2s ease-in-out;
+}
+
+.grow:hover {
   transform: scale(1.1);
-	border: 2px solid #f3f3f3;
+  border: 2px solid #f3f3f3;
 }
 
 /*-----------------------------------
 # Services Section
 --------------------------------------------------------------*/
 
-body{
-  margin-top:20px;
-  background:#eee;
+body {
+  margin-top: 20px;
+  background: #eee;
 }
+
 .card::after {
   display: block;
   position: absolute;
@@ -447,11 +458,12 @@ body{
   width: calc(100% - 40px);
   height: 35px;
   background-color: #fff;
-  -webkit-box-shadow: 0 19px 28px 5px rgba(64,64,64,0.09);
-  box-shadow: 0 19px 28px 5px rgba(64,64,64,0.09);
+  -webkit-box-shadow: 0 19px 28px 5px rgba(64, 64, 64, 0.09);
+  box-shadow: 0 19px 28px 5px rgba(64, 64, 64, 0.09);
   content: '';
   z-index: -1;
 }
+
 a.card {
   text-decoration: none;
 }
@@ -461,10 +473,11 @@ a.card {
   border: 0;
   border-radius: 0;
   background-color: #fff;
-  -webkit-box-shadow: 0 12px 20px 1px rgba(64,64,64,0.09);
-  box-shadow: 0 12px 20px 1px rgba(64,64,64,0.09);
+  -webkit-box-shadow: 0 12px 20px 1px rgba(64, 64, 64, 0.09);
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, 0.09);
   margin-bottom: 19px;
 }
+
 .card {
   position: relative;
   display: -webkit-box;
@@ -478,39 +491,49 @@ a.card {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0,0,0,0.125);
+  border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.5rem;
 }
 
 .box-shadow {
-  -webkit-box-shadow: 0 12px 20px 1px rgba(64,64,64,0.09) !important;
-  box-shadow: 0 12px 20px 1px rgba(64,64,64,0.09) !important;
+  -webkit-box-shadow: 0 12px 20px 1px rgba(64, 64, 64, 0.09) !important;
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, 0.09) !important;
 }
 
-.ml-auto, .mx-auto {
+.ml-auto,
+.mx-auto {
   margin-left: auto !important;
 }
-.mr-auto, .mx-auto {
+
+.mr-auto,
+.mx-auto {
   margin-right: auto !important;
 }
+
 .rounded-circle {
   border-radius: 50% !important;
 }
+
 .bg-white {
   background-color: #fff !important;
 }
 
-.ml-auto, .mx-auto {
+.ml-auto,
+.mx-auto {
   margin-left: auto !important;
 }
 
-.mr-auto, .mx-auto {
+.mr-auto,
+.mx-auto {
   margin-right: auto !important;
 }
+
 .d-block {
   display: block !important;
 }
-img, figure {
+
+img,
+figure {
   max-width: 100%;
   height: auto;
   vertical-align: middle;
@@ -524,7 +547,9 @@ img, figure {
 .text-sm {
   font-size: 12px !important;
 }
-p, .p {
+
+p,
+.p {
   margin: 0 0 16px;
 }
 
@@ -534,13 +559,14 @@ p, .p {
   font-weight: 900;
 }
 
-.pt-1, .py-1 {
+.pt-1,
+.py-1 {
   padding-top: .25rem !important;
 }
 
-.head-icon{
-  margin-top:18px;
-  color:#C4AE7C;
+.head-icon {
+  margin-top: 18px;
+  color: #C4AE7C;
   font-size: 4rem;
 }
 
@@ -548,61 +574,72 @@ p, .p {
 /*-----------------------------------
 # Contact Section
 --------------------------------------------------------------*/
-#contatti{
+#contatti {
   letter-spacing: 1px;
   height: fit-content;
 }
-#contatti a{
+
+#contatti a {
   color: #fff;
   text-decoration: none;
 }
+
 @media (max-width: 575.98px) {
 
-  #contatti{padding-bottom: 800px;}
-  #contatti .maps iframe{
+  #contatti {
+    padding-bottom: 800px;
+  }
+
+  #contatti .maps iframe {
     width: 100%;
     height: 450px;
   }
- }
+}
 
 @media (min-width: 576px) {
-  #contatti{padding-bottom: 800px;}
-
-  #contatti .maps iframe{
-     width: 100%;
-     height: 450px;
+  #contatti {
+    padding-bottom: 800px;
   }
-  
- }
+
+  #contatti .maps iframe {
+    width: 100%;
+    height: 450px;
+  }
+
+}
 
 @media (min-width: 768px) {
 
-  #contatti{padding-bottom: 350px;}
+  #contatti {
+    padding-bottom: 350px;
+  }
 
-  #contatti .maps iframe{
+  #contatti .maps iframe {
     width: 100%;
     height: 500px;
   }
 }
 
 @media (min-width: 992px) {
-  #contatti{padding-bottom: 200px;}
+  #contatti {
+    padding-bottom: 200px;
+  }
 
-   #contatti .maps iframe{
-     width: 100%;
-     height: 300px;
-   }
+  #contatti .maps iframe {
+    width: 100%;
+    height: 300px;
+  }
 }
 
-#author a{
+#author a {
   color: #fff;
-  text-decoration: none;    
+  text-decoration: none;
 }
 
 /*-----------------------------------
 # SignUp error msg
 --------------------------------------------------------------*/
-.error{
+.error {
   width: 92%;
   margin: 10px auto;
   padding: 11px;
@@ -613,7 +650,7 @@ p, .p {
   text-align: right;
 }
 
-.success{
+.success {
   width: 90%;
   color: #3c763d;
   border: 1px solid #3c763d;
@@ -623,7 +660,8 @@ p, .p {
   border-radius: 4px;
   margin: 20px auto;
 }
-.systemMsg{
+
+.systemMsg {
   width: 90%;
   color: #3c6476;
   border: 1px solid #3c6476;
