@@ -276,7 +276,7 @@ if(count($INSERTerrors) == 0)
                                             if ($rowsNum > 0) {
                                                 while ($rowUser = mysqli_fetch_assoc($resultall)) {
                                                     echo "<tr> 
-                                                <form action='MyAdmin.php' method='POST'> 
+                                                <form action='Admin.php' method='POST'> 
                                                     <td>".$rowUser['id']."</td>
                                                     <td>  <input  type='text' name='EnewEmail' placeholder=".$rowUser['Email']."></td>
                                                     <td>  <input  type='text' name='EnewFname'maxlength='5' placeholder=".$rowUser['Fname'] . "></td>
@@ -300,7 +300,7 @@ if(count($INSERTerrors) == 0)
                                 <div>
                                     <h5 class="text-3xl text-center mt-1 my-3"> اضافة مستخدم جديد</h5>
                                 </div>
-                                <form action="MyAdmin.php" method="POST" class="flex flex-row pe-1">
+                                <form action="Admin.php" method="POST" class="flex flex-row pe-1">
                                     <input class="border py-1 mx-0 text-center" type="text" name="newEmail" placeholder="البريد الالكتروني">
                                     <input class="border py-1 mx-0 text-center" type="text" name="newFname" placeholder="الاسم الاول "> 
                                     <input class="border py-1 mx-0 text-center" type="text" name="newLname" placeholder="الاسم الثاني">

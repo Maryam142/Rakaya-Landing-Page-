@@ -73,7 +73,7 @@ if (isset($_POST['submit_login'])) {
         // check if he is admin or user 
         $AdminEmail = "myadmin@rakaya.co";
         if ($email == $AdminEmail) {
-          header('location: MyAdmin.php');
+          header('location: Admin.php');
         } else {
           header('location: home.php');
         }
