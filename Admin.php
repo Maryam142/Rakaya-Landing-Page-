@@ -236,7 +236,8 @@ $lastPage = ceil($number_of_rows / $perPage);
                     </li>
                     <li class="flex ">
                         <img src="
-                        <?php // echo $row['Image'] ?>
+                        <?php // echo $row['Image'] 
+                        ?>
                         " class="rounded-pill h-12" height="40" alt="profile image">
                     </li>
                 </ul>
@@ -268,7 +269,8 @@ $lastPage = ceil($number_of_rows / $perPage);
 
                 <img class="rounded-circle mt-5" width="150px" src="<?php echo $row['Image'] ?>" alt="profile image" class="font-weight-bold">
 
-                <?php //echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
+                <?php //echo $row['Fname'], " ", $row['Lname'] 
+                ?></span><span class="text-black-50">
                     <?php echo $row['Email'] ?></span><span> </span>
             </div>
             <!-- System Msgs -->
