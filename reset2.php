@@ -66,9 +66,10 @@
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">عن ركايا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">خدماتنا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">للتواصل</a></li>
-          <li class="border-right border-secondary"><a href="logIn.php" class="bg-pigi px-2 py-2 ms-2 rounded animate__animated animate__fadeInUp text-light">تسجيل دخول</a></li>
-          <li class="border-right border-secondary"><a href="signUp.php" class="hover:bg-white px-2 py-2 ms-2 rounded animate__animated animate__fadeInUp">تسجيل
-              جديد</a></li>
+          <li class="breadcrumb-item"><a href="logIn.php" class="bg-boni px-3 py-2 ms-4 me-1 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">تسجيل
+              دخول </a></li>
+          <li><a href="signUp.php" class="bg-pigi px-3 py-2 ms-1 me-4 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">انشاء
+              حساب</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>

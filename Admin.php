@@ -27,8 +27,8 @@ if (isset($_GET['deleteid'])) {
     $Dquery = "DELETE FROM `users` WHERE `users`.`id` = '$id'";
     $delete = mysqli_query($conn, $Dquery);
 
-    if($delete){
-    echo "<script> alert('delete the user account successfully!'); </script>";
+    if ($delete) {
+        echo "<script> alert('delete the user account successfully!'); </script>";
     }
 }
 
@@ -46,36 +46,36 @@ $INSERTerrors =  "";
 $INSERTerrors = array();
 
 //Edit a User using php/////////////////////
-    $edit_id="";
-    $EnewEmail="";
-    $EnewFname="";
-    $EnewLname="";
-    $EnewGender="";
-    $EnewPass="";
-    $EnewUserTyper="";
-    $EnewPhone="";
+$edit_id = "";
+$EnewEmail = "";
+$EnewFname = "";
+$EnewLname = "";
+$EnewGender = "";
+$EnewPass = "";
+$EnewUserTyper = "";
+$EnewPhone = "";
 
-    if (isset($_GET['Editid'])) {
-        // $edit_id=$_POST['Editid'];
-        // $EnewEmail=$_POST['EnewEmail'];
-        // $EnewFname=$_POST['EnewFname'];
-        // $EnewLname=$_POST['EnewLname'];
-        // $EnewGender=$_POST['EnewGender'];
-        // $EnewPass=$_POST['EnewPass'];
-        // $EnewUserTyper=$_POST['EnewUserTyper'];
-        // $EnewPhone=$_POST['EnewPhone'];
+if (isset($_GET['Editid'])) {
+    // $edit_id=$_POST['Editid'];
+    // $EnewEmail=$_POST['EnewEmail'];
+    // $EnewFname=$_POST['EnewFname'];
+    // $EnewLname=$_POST['EnewLname'];
+    // $EnewGender=$_POST['EnewGender'];
+    // $EnewPass=$_POST['EnewPass'];
+    // $EnewUserTyper=$_POST['EnewUserTyper'];
+    // $EnewPhone=$_POST['EnewPhone'];
 
-        // $query = "UPDATE `users` SET `Email` = '$EnewEmail ',`Fname`='$EnewFname', `Lname` = '$EnewLname', `Phone` = '$EnewPhone', `Gender` = '$EnewGender', `pass`= '$EnewPass', `UserType` = '$EnewUserTyper'  WHERE `users`.`id` = '$edit_id'";
-        // $resultofediting = mysqli_query($conn, $query);
-        // if ($resultofediting) {
-        // $ConfirmeditMsg = "تم تحديث البيانات بنجاح ";
-        // } else {
-        // $ConfirmeditMsg = "لم يتم تحديث البيانات في قاعدة البيانات  ";
-        // }
-    }
+    // $query = "UPDATE `users` SET `Email` = '$EnewEmail ',`Fname`='$EnewFname', `Lname` = '$EnewLname', `Phone` = '$EnewPhone', `Gender` = '$EnewGender', `pass`= '$EnewPass', `UserType` = '$EnewUserTyper'  WHERE `users`.`id` = '$edit_id'";
+    // $resultofediting = mysqli_query($conn, $query);
+    // if ($resultofediting) {
+    // $ConfirmeditMsg = "تم تحديث البيانات بنجاح ";
+    // } else {
+    // $ConfirmeditMsg = "لم يتم تحديث البيانات في قاعدة البيانات  ";
+    // }
+}
 
 
-    
+
 if (isset($_POST['insertNewUser'])) {
     $newFname =  filter_var($_POST['newFname'], FILTER_SANITIZE_STRING);
     $newLname  =  filter_var($_POST['newLname'],  FILTER_SANITIZE_STRING);
@@ -85,7 +85,7 @@ if (isset($_POST['insertNewUser'])) {
     $newGender    =  $_POST['newGender'];
     $newUsertype  =  $_POST['newUsertype'];
 
-// Server-side validation///////////////////////////////////////////////////////
+    // Server-side validation///////////////////////////////////////////////////////
     // validate first and last name///////////////////////////
     if (empty($newFname)) {
         array_push($INSERTerrors, " يجب كتابة الاسم الاول");
@@ -147,13 +147,48 @@ if (isset($_POST['insertNewUser'])) {
 
 
 
-// no insert erorrs
-if(count($INSERTerrors) == 0)
- $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$newEmail ','$newFname','$newLname','$newPhone','$newPass ','$newGender','$newUsertype','')";
- if (mysqli_query($conn, $sql)) {
-   echo "<script> alert('a new user is inserted successfully!')</script>";
- }
+    // no insert erorrs
+    if (count($INSERTerrors) == 0)
+        $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$newEmail ','$newFname','$newLname','$newPhone','$newPass ','$newGender','$newUsertype','')";
+    if (mysqli_query($conn, $sql)) {
+        echo "<script> alert('a new user is inserted successfully!')</script>";
+    }
 }
+
+// Pagenation//////////////////////////////////////////////////////////////////////
+//to move from pages
+if (isset($_GET['page'])) {
+    //more pages
+    $currentPage = $_GET['page'];
+} else {
+    //page now 
+    $currentPage = 1;
+}
+
+//pages numbers 
+$prevPage = $currentPage - 1;
+$nextPage = $currentPage + 1;
+
+//the start page
+$perPage = 5;
+$start = ($currentPage - 1) * $perPage;
+
+$fetchquery = "SELECT  SQL_CALC_FOUND_ROWS * FROM users limit  $start , $perPage";
+$result = mysqli_query($conn, $fetchquery);
+$row = mysqli_fetch_assoc($result);
+
+
+//Conut total db rows 
+$connpdo = new PDO("mysql:host=localhost;dbname=rakaya", "root", "");
+$sql = "SELECT * FROM users";
+$statement = $connpdo->query($sql);
+$number_of_rows = $statement->rowCount();
+
+
+$lastPage = ceil($number_of_rows / $perPage);
+
+
+
 ?>
 
 
@@ -227,102 +262,154 @@ if(count($INSERTerrors) == 0)
             <div class=" justify-content-between align-items-center mb-1">
                 <h4 class="text-center text-bold text-3xl"> <span class="text-pigi"><?php echo $row['Fname'] ?> </span> اهلًا ومرحبًا</h4>
             </div>
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 
-                        <img class="rounded-circle mt-5" width="150px" src="<?php echo $row['Image'] ?>" alt="profile image" class="font-weight-bold">
+                <img class="rounded-circle mt-5" width="150px" src="<?php echo $row['Image'] ?>" alt="profile image" class="font-weight-bold">
 
-                        <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
-                            <?php echo $row['Email'] ?></span><span> </span>
-                    </div>
-                    <!-- System Msgs -->
-                    <?php if (count($adminerrors) > 0) : ?>
-                        <div class="error">
-                            <?php foreach ($adminerrors as $error) : ?>
-                                <p> <?php echo $error; ?> </p>
-                            <?php endforeach ?>
-                        </div>
-                    <?php endif ?>
+                <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
+                    <?php echo $row['Email'] ?></span><span> </span>
+            </div>
+            <!-- System Msgs -->
+            <?php if (count($adminerrors) > 0) : ?>
+                <div class="error">
+                    <?php foreach ($adminerrors as $error) : ?>
+                        <p> <?php echo $error; ?> </p>
+                    <?php endforeach ?>
+                </div>
+            <?php endif ?>
 
-                    <?php if (!empty($ConfirmeditMsg)) : ?>
-                        <div class="systemMsg">
-                            <p><?php echo $ConfirmeditMsg ?> </p>
-                        </div>
-                    <?php endif ?>
-                    <div class="container" >
-                        <div class="row mt-5">
-                            <div class="col">
-                                <div class="card mt-5" style="width: fit-content;">
-                                    <div class="card-header">
-                                        <h2 class="display-6 text-center"> بيانات المستخدمين</h2>
-                                    </div>
-                                    <div class="card-body">
-                                        <table class="table table-bordered text-center flex">
-                                            <tr class=" bg-pigi text-white">
-                                                <td>الرقم التعريفي</td>
-                                                <td>البريد الالكتروني</td>
-                                                <td>الاسم الاول</td>
-                                                <!-- <td>الاسم الثاني</td> -->
-                                                <td>رقم الهاتف</td>
-                                                <td>كلمة المرور</td>
-                                                <td> نوع المستخدم</td>
-                                                <td> الجنس</td>
-                                                <td> تعديل</td>
-                                                <td> حذف</td>
+            <?php if (!empty($ConfirmeditMsg)) : ?>
+                <div class="systemMsg">
+                    <p><?php echo $ConfirmeditMsg ?> </p>
+                </div>
+            <?php endif ?>
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col">
+                        <div class="card mt-5" style="width: fit-content;">
+                            <div class="card-header">
+                                <h2 class="display-6 text-center"> بيانات المستخدمين</h2>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-bordered text-center flex">
+                                    <tr class=" bg-pigi text-white">
+                                        <td>الرقم التعريفي</td>
+                                        <td>البريد الالكتروني</td>
+                                        <td>الاسم الاول</td>
+                                        <!-- <td>الاسم الثاني</td> -->
+                                        <td>رقم الهاتف</td>
+                                        <td>كلمة المرور</td>
+                                        <td> نوع المستخدم</td>
+                                        <td> الجنس</td>
+                                        <td> تعديل</td>
+                                        <td> حذف</td>
 
-                                            </tr>
+                                    </tr>
 
-                                            <?php
-                                            $rowsNum = mysqli_num_rows($resultall);
-                                            if ($rowsNum > 0) {
-                                                while ($rowUser = mysqli_fetch_assoc($resultall)) {
-                                                    echo "<tr> 
+                                    <?php
+                                    $rowsNum = mysqli_num_rows($resultall);
+                                    if ($rowsNum > 0) {
+                                        while ($rowUser = mysqli_fetch_assoc($resultall)) {
+                                            echo "<tr> 
                                                 <form action='Admin.php' method='POST'> 
-                                                    <td>".$rowUser['id']."</td>
-                                                    <td>  <input  type='text' name='EnewEmail' placeholder=".$rowUser['Email']."></td>
-                                                    <td>  <input  type='text' name='EnewFname'maxlength='5' placeholder=".$rowUser['Fname'] . "></td>
-                                                    <td>  <input  type='text' name='EnewPhone' placeholder=".$rowUser['Phone']."></td>
-                                                    <td>  <input  type='text' name='EnewPass' placeholder=".$rowUser['pass']."></td>
-                                                    <td>  <input  type='text' name='EnewUserTyper' placeholder=".$rowUser['UserType'] . "></td>
-                                                    <td>  <input  type='text' name='EnewGender' placeholder=".$rowUser['Gender']."></td>
+                                                    <td>" . $rowUser['id'] . "</td>
+                                                    <td>  <input  type='text' name='EnewEmail' placeholder=" . $rowUser['Email'] . "></td>
+                                                    <td>  <input  type='text' name='EnewFname'maxlength='5' placeholder=" . $rowUser['Fname'] . "></td>
+                                                    <td>  <input  type='text' name='EnewPhone' placeholder=" . $rowUser['Phone'] . "></td>
+                                                    <td>  <input  type='text' name='EnewPass' placeholder=" . $rowUser['pass'] . "></td>
+                                                    <td>  <input  type='text' name='EnewUserTyper' placeholder=" . $rowUser['UserType'] . "></td>
+                                                    <td>  <input  type='text' name='EnewGender' placeholder=" . $rowUser['Gender'] . "></td>
                                                     <td> <div><button type='submit' name='editUser' class='btn  py-1 px-2  text-center text-light'style='background-color: #C4AE7C;'><i class='bi bi-pencil-square'></i></button></td> 
-                                                    <td><a href='MyAdmin.php?deleteid=".$rowUser['id']."' class='btn bg-danger py-1 px-2 rounded text-white'> <i class='bi bi-trash3-fill'></i></a></td>
+                                                    <td><a href='MyAdmin.php?deleteid=" . $rowUser['id'] . "' class='btn bg-danger py-1 px-2 rounded text-white'> <i class='bi bi-trash3-fill'></i></a></td>
                                                 </form>
                                                 </tr>";
-                                                }
-                                            }
-                                            ?>
-                                        </table>
-                                        <?php
-                                        ?>
-
-                                    </div>
-                                </div>
-                                <div>
-                                    <h5 class="text-3xl text-center mt-1 my-3"> اضافة مستخدم جديد</h5>
-                                </div>
-                                <form action="Admin.php" method="POST" class="flex flex-row pe-1">
-                                    <input class="border py-1 mx-0 text-center" type="text" name="newEmail" placeholder="البريد الالكتروني">
-                                    <input class="border py-1 mx-0 text-center" type="text" name="newFname" placeholder="الاسم الاول "> 
-                                    <input class="border py-1 mx-0 text-center" type="text" name="newLname" placeholder="الاسم الثاني">
-                                    <input class="border py-1 mx-0 text-center" type="text" name="newPhone" placeholder="رقم الهاتف">
-                                    <input class="border py-1 mx-0 text-center" type="text" name="newPass" placeholder="كلمة المرور">
-                                    <input class="border py-1 mx-0 text-center" type="text" name="newUsertype" placeholder="نوع المستخدم">
-                                    <input class="border py-1 mx-0 text-center" type="text" name="newGender" placeholder="الجنس">
-                                    <div> <button type="submit" name="insertNewUser" class="btn bg-pigi px-4 py-2 hover:bg-cohly text-center text-light">اضافة</button></div>
-                                </form>
-
-                                <?php if (count($INSERTerrors) > 0) : ?>
-                                    <div class="error">
-                                        <?php foreach ($INSERTerrors as $error) : ?>
-                                            <p> <?php echo $error; ?> </p>
-                                        <?php endforeach ?>
-                                    </div>
-                                <?php endif ?>
+                                        }
+                                    }
+                                    ?>
                                 </table>
+                                <?php
+                                ?>
+
                             </div>
                         </div>
+                        <!-- Pagenation -->
+
+                        <div>
+                            <nav class="" aria-label="Page navigation example">
+                                <ul class="pagination ">
+                                    <li class="page-item">
+
+                                        <?php
+
+                                        if ($currentPage == 1) {
+
+                                            echo '<a class="page-link" style="color: #816D4A" href="#" aria-label="Previous">
+                                             <span aria-hidden="true">&laquo;</span>
+                                             <span class="sr-only">Previous</span></a>';
+                                        } else {
+
+                                            echo '<a class="page-link" style="color: #C4AE7C" href="?page=' . $prevPage . '" aria-label="Previous">
+                                                 <span aria-hidden="true">&laquo;</span>
+                                                 <span class="sr-only">Previous</span></a>';
+                                        }
+                                        ?>
+
+                                    </li>
+                                    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                         <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+                                    <li class="page-item">
+
+                                        <?php
+                                        if ($currentPage == $lastPage) {
+
+                                            echo '<a class="page-link" style="color: #816D4A" href="#" aria-label="Next">
+                                                  <span aria-hidden="true">&raquo;</span>
+                                                  <span class="sr-only">Next</span>
+                                                 </a>';
+                                        } else {
+
+                                            echo '<a class="page-link" style="color: #C4AE7C" href="?page=' . $nextPage . '" aria-label="Next">
+                                                  <span aria-hidden="true">&raquo;</span>
+                                                  <span class="sr-only">Next</span>
+                                                </a>';
+                                        }
+                                        ?>
+
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
+
+
+                        <!-- Insertion a new user -->
+                        <div>
+                            <h5 class="text-3xl text-center mt-1 my-3"> اضافة مستخدم جديد</h5>
+                        </div>
+                        <form action="Admin.php" method="POST" class="flex flex-row pe-1">
+                            <input class="border py-1 mx-0 text-center" type="text" name="newEmail" placeholder="البريد الالكتروني">
+                            <input class="border py-1 mx-0 text-center" type="text" name="newFname" placeholder="الاسم الاول ">
+                            <input class="border py-1 mx-0 text-center" type="text" name="newLname" placeholder="الاسم الثاني">
+                            <input class="border py-1 mx-0 text-center" type="text" name="newPhone" placeholder="رقم الهاتف">
+                            <input class="border py-1 mx-0 text-center" type="text" name="newPass" placeholder="كلمة المرور">
+                            <input class="border py-1 mx-0 text-center" type="text" name="newUsertype" placeholder="نوع المستخدم">
+                            <input class="border py-1 mx-0 text-center" type="text" name="newGender" placeholder="الجنس">
+                            <div> <button type="submit" name="insertNewUser" class="btn bg-pigi px-4 py-2 hover:bg-cohly text-center text-light">اضافة</button></div>
+                        </form>
+
+                        <?php if (count($INSERTerrors) > 0) : ?>
+                            <div class="error">
+                                <?php foreach ($INSERTerrors as $error) : ?>
+                                    <p> <?php echo $error; ?> </p>
+                                <?php endforeach ?>
+                            </div>
+                        <?php endif ?>
+                        </table>
                     </div>
-                <!-- </div> -->
+                </div>
+            </div>
+            <!-- </div> -->
             <!-- </div> -->
         </div>
     </section>
