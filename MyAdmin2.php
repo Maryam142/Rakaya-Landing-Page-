@@ -106,7 +106,6 @@ $lastPage = ceil($number_of_rows / $perPage);
         </thead>
     </table>
     <div>
-
         <nav class="" aria-label="Page navigation example">
             <ul class="pagination ">
                 <li class="page-item">

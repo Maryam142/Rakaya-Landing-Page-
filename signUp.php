@@ -32,14 +32,7 @@ include('./include/signup_processing.php');
 </head>
 
 <body>
-  <!-- Spinner Start -->
-  <!-- <div id="spinner"
-    class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-    <div class="spinner-border position-relative pg-light_pigi" style="width: 6rem; height: 6rem;" role="status"></div>
-    <img class="position-absolute top-50 start-50 translate-middle" src="img/minilogo.png" alt="Icon" height="60px"
-      width="60px">
-  </div> -->
-  <!-- Spinner End -->
+
   <!-- Navbar -->
   <header id="header" class="fixed-top d-flex align-items-center header-transparent">
     <div class="container d-flex justify-content-between align-items-center">
@@ -56,7 +49,10 @@ include('./include/signup_processing.php');
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">عن ركايا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">خدماتنا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">للتواصل</a></li>
-          <li class="breadcrumb-item"><a href="logIn.php" class="bg-pigi px-3 py-2 ms-4 me-4 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">تسجيل الدخول </a></li>
+          <li class="breadcrumb-item"><a href="logIn.php" class="bg-boni px-3 py-2 ms-4 me-1 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">تسجيل
+              دخول </a></li>
+          <li><a href="signUp.php" class="bg-pigi px-3 py-2 ms-1 me-4 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">انشاء
+              حساب</a></li>        
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>

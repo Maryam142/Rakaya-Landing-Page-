@@ -671,3 +671,8 @@ p,
   border-radius: 4px;
   margin: 20px auto;
 }
+
+/* insertuser in MyAdmin page */
+.insertuser{
+  width: fit-content;
+}
