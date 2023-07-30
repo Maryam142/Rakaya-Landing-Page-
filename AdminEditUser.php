@@ -20,53 +20,26 @@ if (!isset($_SESSION['logged_in'])) {
 /////Edit a User using php//////////////////////////////////////////////////////////////////////////
     $Fname	= "";
     $Lname	= "";
-    $email= "";
-    $phone= "";
-    $password= "";
-    $gender= "";
-    $userType= "";
+    $email ="";
+    $phone ="";
+    $password ="";
+    $gender ="";
+    $userType ="";
 
-    $edit_id = "";
-    $EnewEmail = "";
-    $EnewFname = "";
-    $EnewLname = "";
-    $EnewGender = "";
-    $EnewPass = "";
-    $newUserTyper = "";
-    $EnewPhone = "";
+     if(isset($_GET['EditId'])){
+        $userId= $_GET['EditId'];
+        $_SESSION['userId']=$userId;
+         $res=mysqli_query($conn,"SELECT * FROM `users` WHERE `users`.`id` = '$userId'");
+         $userrow =mysqli_fetch_array($res);
 
-    if($_SERVER['REQUEST_METHOD'] == 'GET'){
-     if(!isset($_GET['EditId'])){
-        header("location:Admin.php");
-        exit;
-     }else{
-        
-
-
-
-        if(isset($_POST['EditUser'])){
-        $EnewEmail=$_POST['EEmail'];
-        $EnewFname=$_POST['EFname'];
-        $EnewLname=$_POST['ELname'];
-        $EnewGender=$_POST['EGender'];
-        $EnewPass=$_POST['EPass'];
-        $EnewUserTyper=$_POST['EUserTyper'];
-        $EnewPhone=$_POST['EPhone'];
-
-    // Server-side validation///////////////////////////////////////////////////////
-
-    //if there is no error:
-        $query = "UPDATE `users` SET `Email` = '$EnewEmail ',`Fname`='$EnewFname', `Lname` = '$EnewLname', `Phone` = '$EnewPhone', `Gender` = '$EnewGender', `pass`= '$EnewPass', `UserType` = '$EnewUserTyper'  WHERE `users`.`id` = '$edit_id'";
-        $resultofediting = mysqli_query($conn, $query);
-        if ($resultofediting) {
-        $ConfirmeditMsg = "تم تحديث البيانات بنجاح ";
-        } else {
-        $ConfirmeditMsg = "لم يتم تحديث البيانات في قاعدة البيانات  ";
-        }
-    }
-   
+         $Fname	= $userrow['Fname'];
+         $Lname	= $userrow['Lname'];
+         $email= $userrow['Email'];
+         $phone= $userrow['Phone'];
+         $password= $userrow['pass'];
+         $gender= $userrow['Gender'];
+         $userType= $userrow['UserType'];
  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -112,8 +85,10 @@ if (!isset($_SESSION['logged_in'])) {
                         <a href="logout.php" class="bg-pigi px-2 mx-2 py-3 ms-2 flex rounded animate_animated animate_fadeInUp text-light">
                             تسجيل الخروج</a>
                     </li>
-                    <li class="flex ">
+                    <li class="flex "> 
+                        <a href="Admin.php">
                         <img src="<?php echo $AdminRow['Image'] ?>" class="rounded-pill h-12" height="40" alt="profile image">
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -137,8 +112,7 @@ if (!isset($_SESSION['logged_in'])) {
     <div>
         <h5 class="text-3xl text-center mt-1 my-3">تعديل بيانات المستخدم</h5>
     </div>
-    <form action="AdminEditUser.php" method="POST" class="flex flex-col pe-1 space-y-2 mx-5 text-end">
-        <input hidden name="edit_id" value="<?php echo $edit_id;?>">
+    <form action="Edit.php" method="POST" class="flex flex-col pe-1 space-y-2 mx-5 text-end">
         <input class="border rounded py-1 mx-0 text-end" type="text" name="EEmail" placeholder="البريد الالكتروني" value="<?php echo $email;?>">
         <input class="border rounded py-1 mx-0 text-end" type="text" name="EFname" placeholder="الاسم الاول  " value="<?php echo $Fname;?>">
         <input class="border rounded py-1 mx-0 text-end" type="text" name="ELname" placeholder="الاسم الثاني  " value="<?php echo $Lname;?>">
@@ -146,8 +120,13 @@ if (!isset($_SESSION['logged_in'])) {
         <input class="border rounded py-1 mx-0 text-end" type="text" name="EPass" placeholder="كلمة المرور  " value="<?php echo $password;?>">
         <input class="border rounded py-1 mx-0 text-end" type="text" name="EUsertype" placeholder="نوع المستخدم  " value="<?php echo $userType;?>">
         <input class="border rounded py-1 mx-0 text-end" type="text" name="EGender" placeholder="الجنس  " value="<?php echo $gender;?>">
-        <div> <button type="submit" name="EditUser" style="background-color: #C4AE7C;" class="btn bg-pigi w-full px-4 py-2 hover:bg-cohly text-center text-light">تعديل</button></div>
+        <div> <button type="submit" name="Edit" style="background-color: #C4AE7C;" class="btn bg-pigi w-full px-4 py-2 hover:bg-cohly text-center text-light">تعديل</button></div>
     </form>
+    <?php if (!empty($ConfirmeditMsg)) : ?>
+                  <div class="systemMsg w-full">
+                    <p><?php echo $ConfirmeditMsg ?> </p>
+                  </div>
+                <?php endif ?>
   </div>
     </section>
 

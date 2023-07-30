@@ -7,7 +7,12 @@ if (!isset($_SESSION['logged_in'])) {
     die();
 }
 
-////retrive Admin Info only///////////////////////////////////////////////////////////
+if($_SESSION['edited']){
+    echo "<script> alert('the user account is updated successfully!'); </script>";
+    $_SESSION['edited']=false;
+}
+
+////retrive Admin Info only/////////////////////////////////////////////////////////////////////////
     $admin_email = $_SESSION['user_email'];
     $fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
     //return one row of admin info
@@ -16,7 +21,7 @@ if (!isset($_SESSION['logged_in'])) {
     $userID = $AdminRow['id'];
     $adminerrors = array();
 
-////retrive All users Info only///////////////////////////////////////////////////////////
+////retrive All users Info only/////////////////////////////////////////////////////////////////////
     $fetchqueryAll = "SELECT * FROM users";
     //return all rows of users' info
     $resultall = mysqli_query($conn, $fetchqueryAll);
@@ -32,139 +37,6 @@ if (!isset($_SESSION['logged_in'])) {
         echo "<script> alert('delete the user account successfully!'); </script>";
     }
  }
-
-/////Edit a User using php//////////////////////////////////////////////////////////////////////////
-    // $edit_id = "";
-    // $EnewEmail = "";
-    // $EnewFname = "";
-    // $EnewLname = "";
-    // $EnewGender = "";
-    // $EnewPass = "";
-    // $newUserTyper = "";
-    // $EnewPhone = "";
-
-    // if (isset($_GET['EditId'])) {
-    //     $edit_id=$_POST['EditId'];
-    //     $EnewEmail=$_POST['EnewEmail'];
-    //     $EnewFname=$_POST['EnewFname'];
-    //     $EnewLname=$_POST['EnewLname'];
-    //     $EnewGender=$_POST['EnewGender'];
-    //     $EnewPass=$_POST['EnewPass'];
-    //     $EnewUserTyper=$_POST['EnewUserTyper'];
-    //     $EnewPhone=$_POST['EnewPhone'];
-
-    // // Server-side validation///////////////////////////////////////////////////////
-
-<<<<<<< HEAD
-    // //if there is no error:
-    //     $query = "UPDATE `users` SET `Email` = '$EnewEmail ',`Fname`='$EnewFname', `Lname` = '$EnewLname', `Phone` = '$EnewPhone', `Gender` = '$EnewGender', `pass`= '$EnewPass', `UserType` = '$EnewUserTyper'  WHERE `users`.`id` = '$edit_id'";
-    //     $resultofediting = mysqli_query($conn, $query);
-    //     if ($resultofediting) {
-    //     $ConfirmeditMsg = "تم تحديث البيانات بنجاح ";
-    //     } else {
-    //     $ConfirmeditMsg = "لم يتم تحديث البيانات في قاعدة البيانات  ";
-    //     }
-    // }
-=======
-//Edit a User using php/////////////////////
-$edit_id = "";
-$EnewEmail = "";
-$EnewFname = "";
-$EnewLname = "";
-$EnewGender = "";
-$EnewPass = "";
-$EnewUserTyper = "";
-$EnewPhone = "";
-
-if (isset($_GET['Editid'])) {
-    $edit_id=$_POST['Editid'];
-    $EnewEmail=$_POST['EnewEmail'];
-    $EnewFname=$_POST['EnewFname'];
-    $EnewLname=$_POST['EnewLname'];
-    $EnewGender=$_POST['EnewGender'];
-    $EnewPass=$_POST['EnewPass'];
-    $EnewUserTyper=$_POST['EnewUserTyper'];
-    $EnewPhone=$_POST['EnewPhone'];
-
-    $query = "UPDATE `users` SET `Email` = '$EnewEmail ',`Fname`='$EnewFname', `Lname` = '$EnewLname', `Phone` = '$EnewPhone', `Gender` = '$EnewGender', `pass`= '$EnewPass', `UserType` = '$EnewUserTyper'  WHERE `users`.`id` = '$edit_id'";
-    $resultofediting = mysqli_query($conn, $query);
-    if ($resultofediting) {
-    $ConfirmeditMsg = "تم تحديث البيانات بنجاح ";
-    } else {
-    $ConfirmeditMsg = "لم يتم تحديث البيانات في قاعدة البيانات  ";
-    }
-
-    // Server-side validation///////////////////////////////////////////////////////
-    // validate first and last name///////////////////////////
-    if (empty($newFname)) {
-        array_push($INSERTerrors, " يجب كتابة الاسم الاول");
-    } elseif (strlen($newFname) > 100) {
-        array_push($INSERTerrors, "يجب ان لايكون الاسم اكبر من 100 حرف ");
-    }
-
-    if (empty($newLname)) {
-        array_push($INSERTerrors, " يجب كتابة الاسم الاخير");
-    } elseif (strlen($newLname) > 100) {
-        array_push($INSERTerrors, " يجب ان لايكون الاسم اكبر من 100 حرف ");
-    }
-
-    // validate email///////////////////////////
-    if (empty($newEmail)) {
-        array_push($INSERTerrors, "يجب كتابة البريد الالكترونى");
-    } elseif (filter_var($newEmail, FILTER_VALIDATE_EMAIL) == false) {
-        array_push($INSERTerrors, "البريد الالكترونى غير صالح");
-    }
-
-    // validate password////////////////////////////
-    if (empty($newPass)) {
-        array_push($INSERTerrors, "يجب كتابة  كلمة المرور");
-    } elseif (strlen($newPass) < 8) {
-        array_push($INSERTerrors, "يجب ان تحتوي كلمة المرور  اكثر  من 8 حرف ");
-    }
-
-    $uppercase = preg_match('@[A-Z]@', $newPass);
-    $lowercase = preg_match('@[a-z]@', $newPass);
-    $number    = preg_match('@[0-9]@', $newPass);
-
-    if (!$uppercase || !$lowercase || !$number  || strlen($newPass) < 6) {
-        array_push($INSERTerrors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
-    }
-
-    // validate gender///////////////////////////
-    if (empty($newGender)) {
-        array_push($INSERTerrors, "يرجى تحديد نوع الجنس");
-    }
-    // validate userType///////////////////////////
-    if (empty($newUsertype)) {
-        array_push($INSERTerrors, "يرجى تحديد نوع المستخدم");
-    }
-
-    // validate phone///////////////////////////
-    if (empty($newPhone)) {
-        array_push($INSERTerrors, "يرجى ادخال رقم الجوال");
-    }
-    if (!(preg_match('/^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/', $newPhone))) {
-        array_push($INSERTerrors, " يرجى ادخال رقم الجوال بشكل صحيح");
-    }
-    //prevent dublicate emails query/////////////////////////////////////////////////
-    $statment = "SELECT email FROM users WHERE email ='$newEmail'";
-    $data = mysqli_fetch_row(mysqli_query($conn, $statment));
-
-    if ($data) {
-        array_push($INSERTerrors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
-    }
-
-
-
-    // no insert erorrs
-    if (count($INSERTerrors) == 0)
-        $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$newEmail ','$newFname','$newLname','$newPhone','$newPass ','$newGender','$newUsertype','')";
-    if (mysqli_query($conn, $sql)) {
-        echo "<script> alert('a new user is inserted successfully!')</script>";
-    }
-
-}
->>>>>>> f09fd65b4de323572fdd597d52572f3d7661e454
 
 
 /////Insert new User////////////////////////////////////////////////////////////////////////////////
@@ -287,8 +159,7 @@ if (isset($_GET['Editid'])) {
     $sql = "SELECT * FROM users";
     $statement = $connpdo->query($sql);
     $number_of_rows = $statement->rowCount();
-
-    $lastPage = ceil($number_of_rows / $perPage);
+    $lastPage = ceil($number_of_rows/$perPage);
 
 ?>
 
@@ -337,14 +208,7 @@ if (isset($_GET['Editid'])) {
                             تسجيل الخروج</a>
                     </li>
                     <li class="flex ">
-<<<<<<< HEAD
                         <img src="<?php echo $AdminRow['Image'] ?>" class="rounded-pill h-12" height="40" alt="profile image">
-=======
-                        <img src="
-                        <?php // echo $row['Image'] 
-                        ?>
-                        " class="rounded-pill h-12" height="40" alt="profile image">
->>>>>>> f09fd65b4de323572fdd597d52572f3d7661e454
                     </li>
                 </ul>
             </nav>
@@ -375,14 +239,8 @@ if (isset($_GET['Editid'])) {
 
                 <img class="rounded-circle mt-5" width="150px" src="<?php echo $AdminRow['Image'] ?>" alt="profile image" class="font-weight-bold">
 
-<<<<<<< HEAD
                 <?php echo $AdminRow['Fname'], " ", $AdminRow['Lname'] ?></span><span class="text-black-50">
                     <?php echo $AdminRow['Email'] ?></span><span> </span>
-=======
-                <?php //echo $row['Fname'], " ", $row['Lname'] 
-                ?></span><span class="text-black-50">
-                    <?php echo $row['Email'] ?></span><span> </span>
->>>>>>> f09fd65b4de323572fdd597d52572f3d7661e454
             </div>
             <!-- System Msgs -->
             <?php if (count($adminerrors) > 0) : ?>
@@ -497,8 +355,8 @@ if (isset($_GET['Editid'])) {
                             </nav>
                         </div>
                         </table>
-                                                <!-- Insertion a new user -->
-                                                <div>
+                        <!-- Insertion a new user -->
+                        <div>
                             <h5 class="text-3xl text-center mt-1 my-3"> اضافة مستخدم جديد</h5>
                         </div>
                         <form action="Admin.php" method="POST" class="flex flex-row pe-1">
