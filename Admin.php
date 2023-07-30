@@ -55,17 +55,6 @@ if (!isset($_SESSION['logged_in'])) {
 
     // // Server-side validation///////////////////////////////////////////////////////
 
-<<<<<<< HEAD
-    // //if there is no error:
-    //     $query = "UPDATE `users` SET `Email` = '$EnewEmail ',`Fname`='$EnewFname', `Lname` = '$EnewLname', `Phone` = '$EnewPhone', `Gender` = '$EnewGender', `pass`= '$EnewPass', `UserType` = '$EnewUserTyper'  WHERE `users`.`id` = '$edit_id'";
-    //     $resultofediting = mysqli_query($conn, $query);
-    //     if ($resultofediting) {
-    //     $ConfirmeditMsg = "تم تحديث البيانات بنجاح ";
-    //     } else {
-    //     $ConfirmeditMsg = "لم يتم تحديث البيانات في قاعدة البيانات  ";
-    //     }
-    // }
-=======
 //Edit a User using php/////////////////////
 $edit_id = "";
 $EnewEmail = "";
@@ -164,7 +153,6 @@ if (isset($_GET['Editid'])) {
     }
 
 }
->>>>>>> f09fd65b4de323572fdd597d52572f3d7661e454
 
 
 /////Insert new User////////////////////////////////////////////////////////////////////////////////
