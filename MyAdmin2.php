@@ -152,7 +152,7 @@ $lastPage = ceil($number_of_rows / $perPage);
         </nav>
 
     </div>
-
+  
 </body>
 
 </html>
