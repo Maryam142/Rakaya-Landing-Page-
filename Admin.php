@@ -7,21 +7,22 @@ if (!isset($_SESSION['logged_in'])) {
     die();
 }
 
-$user_email = $_SESSION['user_email'];
-$fetchquery = "SELECT * FROM users WHERE Email ='$user_email'";
-$fetchqueryAll = "SELECT * FROM users";
+////retrive Admin Info only///////////////////////////////////////////////////////////
+    $admin_email = $_SESSION['user_email'];
+    $fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
+    //return one row of admin info
+    $AdminResult = mysqli_query($conn, $fetchquery);
+    $AdminRow = mysqli_fetch_assoc($AdminResult);
+    $userID = $AdminRow['id'];
+    $adminerrors = array();
 
-//return one row of admin info
-$result = mysqli_query($conn, $fetchquery);
-//return all rows of users' info
-$resultall = mysqli_query($conn, $fetchqueryAll);
+////retrive All users Info only///////////////////////////////////////////////////////////
+    $fetchqueryAll = "SELECT * FROM users";
+    //return all rows of users' info
+    $resultall = mysqli_query($conn, $fetchqueryAll);
 
-$row = mysqli_fetch_assoc($result);
-$userID = $row['id'];
-
-$adminerrors = array();
-
-if (isset($_GET['deleteid'])) {
+/////Delete a User using php////////////////////////////////////////////////////////////////////////
+ if (isset($_GET['deleteid'])) {
 
     $id = $_GET['deleteid'];
     $Dquery = "DELETE FROM `users` WHERE `users`.`id` = '$id'";
@@ -30,164 +31,163 @@ if (isset($_GET['deleteid'])) {
     if ($delete) {
         echo "<script> alert('delete the user account successfully!'); </script>";
     }
-}
+ }
 
+/////Edit a User using php//////////////////////////////////////////////////////////////////////////
+    // $edit_id = "";
+    // $EnewEmail = "";
+    // $EnewFname = "";
+    // $EnewLname = "";
+    // $EnewGender = "";
+    // $EnewPass = "";
+    // $newUserTyper = "";
+    // $EnewPhone = "";
 
+    // if (isset($_GET['EditId'])) {
+    //     $edit_id=$_POST['EditId'];
+    //     $EnewEmail=$_POST['EnewEmail'];
+    //     $EnewFname=$_POST['EnewFname'];
+    //     $EnewLname=$_POST['EnewLname'];
+    //     $EnewGender=$_POST['EnewGender'];
+    //     $EnewPass=$_POST['EnewPass'];
+    //     $EnewUserTyper=$_POST['EnewUserTyper'];
+    //     $EnewPhone=$_POST['EnewPhone'];
 
-//Insert new User
-$newFname     =  "";
-$newLname     =  "";
-$newPass      =  "";
-$newEmail     =  "";
-$newPhone     =  "";
-$newGender    =  "";
-$newUsertype  =  "";
-$INSERTerrors =  "";
-$INSERTerrors = array();
+    // // Server-side validation///////////////////////////////////////////////////////
 
-//Edit a User using php/////////////////////
-$edit_id = "";
-$EnewEmail = "";
-$EnewFname = "";
-$EnewLname = "";
-$EnewGender = "";
-$EnewPass = "";
-$EnewUserTyper = "";
-$EnewPhone = "";
-
-if (isset($_GET['Editid'])) {
-    // $edit_id=$_POST['Editid'];
-    // $EnewEmail=$_POST['EnewEmail'];
-    // $EnewFname=$_POST['EnewFname'];
-    // $EnewLname=$_POST['EnewLname'];
-    // $EnewGender=$_POST['EnewGender'];
-    // $EnewPass=$_POST['EnewPass'];
-    // $EnewUserTyper=$_POST['EnewUserTyper'];
-    // $EnewPhone=$_POST['EnewPhone'];
-
-    // $query = "UPDATE `users` SET `Email` = '$EnewEmail ',`Fname`='$EnewFname', `Lname` = '$EnewLname', `Phone` = '$EnewPhone', `Gender` = '$EnewGender', `pass`= '$EnewPass', `UserType` = '$EnewUserTyper'  WHERE `users`.`id` = '$edit_id'";
-    // $resultofediting = mysqli_query($conn, $query);
-    // if ($resultofediting) {
-    // $ConfirmeditMsg = "تم تحديث البيانات بنجاح ";
-    // } else {
-    // $ConfirmeditMsg = "لم يتم تحديث البيانات في قاعدة البيانات  ";
+    // //if there is no error:
+    //     $query = "UPDATE `users` SET `Email` = '$EnewEmail ',`Fname`='$EnewFname', `Lname` = '$EnewLname', `Phone` = '$EnewPhone', `Gender` = '$EnewGender', `pass`= '$EnewPass', `UserType` = '$EnewUserTyper'  WHERE `users`.`id` = '$edit_id'";
+    //     $resultofediting = mysqli_query($conn, $query);
+    //     if ($resultofediting) {
+    //     $ConfirmeditMsg = "تم تحديث البيانات بنجاح ";
+    //     } else {
+    //     $ConfirmeditMsg = "لم يتم تحديث البيانات في قاعدة البيانات  ";
+    //     }
     // }
-}
 
 
+/////Insert new User////////////////////////////////////////////////////////////////////////////////
+    $newFname     =  "";
+    $newLname     =  "";
+    $newPass      =  "";
+    $newEmail     =  "";
+    $newPhone     =  "";
+    $newGender    =  "";
+    $newUsertype  =  "";
+    $INSERTerrors =  "";
+    $INSERTerrors = array();
 
-if (isset($_POST['insertNewUser'])) {
-    $newFname =  filter_var($_POST['newFname'], FILTER_SANITIZE_STRING);
-    $newLname  =  filter_var($_POST['newLname'],  FILTER_SANITIZE_STRING);
-    $newPass  =  filter_var($_POST['newPass'],  FILTER_SANITIZE_STRING);
-    $newEmail     =  filter_var($_POST['newEmail'],     FILTER_SANITIZE_EMAIL);
-    $newPhone     =  filter_var($_POST['newPhone'],     FILTER_SANITIZE_STRING);
-    $newGender    =  $_POST['newGender'];
-    $newUsertype  =  $_POST['newUsertype'];
+    if (isset($_POST['insertNewUser'])) {
+        $newFname =  filter_var($_POST['newFname'], FILTER_SANITIZE_STRING);
+        $newLname  =  filter_var($_POST['newLname'],  FILTER_SANITIZE_STRING);
+        $newPass  =  filter_var($_POST['newPass'],  FILTER_SANITIZE_STRING);
+        $newEmail     =  filter_var($_POST['newEmail'],     FILTER_SANITIZE_EMAIL);
+        $newPhone     =  filter_var($_POST['newPhone'],     FILTER_SANITIZE_STRING);
+        $newGender    =  $_POST['newGender'];
+        $newUsertype  =  $_POST['newUsertype'];
 
     // Server-side validation///////////////////////////////////////////////////////
-    // validate first and last name///////////////////////////
-    if (empty($newFname)) {
-        array_push($INSERTerrors, " يجب كتابة الاسم الاول");
-    } elseif (strlen($newFname) > 100) {
-        array_push($INSERTerrors, "يجب ان لايكون الاسم اكبر من 100 حرف ");
+        // validate first and last name///////////////////////////
+        if (empty($newFname)) {
+            array_push($INSERTerrors, " يجب كتابة الاسم الاول");
+        } elseif (strlen($newFname) > 100) {
+            array_push($INSERTerrors, "يجب ان لايكون الاسم اكبر من 100 حرف ");
+        }
+
+        if (empty($newLname)) {
+            array_push($INSERTerrors, " يجب كتابة الاسم الاخير");
+        } elseif (strlen($newLname) > 100) {
+            array_push($INSERTerrors, " يجب ان لايكون الاسم اكبر من 100 حرف ");
+        }
+
+        // validate email///////////////////////////
+        if (empty($newEmail)) {
+            array_push($INSERTerrors, "يجب كتابة البريد الالكترونى");
+        } elseif (filter_var($newEmail, FILTER_VALIDATE_EMAIL) == false) {
+            array_push($INSERTerrors, "البريد الالكترونى غير صالح");
+        }
+
+        // validate password////////////////////////////
+        if (empty($newPass)) {
+            array_push($INSERTerrors, "يجب كتابة  كلمة المرور");
+        } elseif (strlen($newPass) < 8) {
+            array_push($INSERTerrors, "يجب ان تحتوي كلمة المرور  اكثر  من 8 حرف ");
+        }
+
+        $uppercase = preg_match('@[A-Z]@', $newPass);
+        $lowercase = preg_match('@[a-z]@', $newPass);
+        $number    = preg_match('@[0-9]@', $newPass);
+
+        if (!$uppercase || !$lowercase || !$number  || strlen($newPass) < 6) {
+            array_push($INSERTerrors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
+        }
+
+        // validate gender///////////////////////////
+        if (empty($newGender)) {
+            array_push($INSERTerrors, "يرجى تحديد نوع الجنس");
+        }
+        // validate userType///////////////////////////
+        if (empty($newUsertype)) {
+            array_push($INSERTerrors, "يرجى تحديد نوع المستخدم");
+        }
+
+        // validate phone///////////////////////////
+        if (empty($newPhone)) {
+            array_push($INSERTerrors, "يرجى ادخال رقم الجوال");
+        }
+        if (!(preg_match('/^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/', $newPhone))) {
+            array_push($INSERTerrors, " يرجى ادخال رقم الجوال بشكل صحيح");
+        }
+        //prevent dublicate emails query/////////////////////////////////////////////////
+        $statment = "SELECT email FROM users WHERE email ='$newEmail'";
+        $data = mysqli_fetch_row(mysqli_query($conn, $statment));
+
+        if ($data) {
+            array_push($INSERTerrors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
+        }
+
+
+
+    //if no insert erorrs
+        if (count($INSERTerrors) == 0){
+            $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$newEmail ','$newFname','$newLname','$newPhone','$newPass ','$newGender','$newUsertype','')";
+        if (mysqli_query($conn, $sql)) {
+            echo "<script> alert('a new user is inserted successfully!')</script>";
+        }
+    }
     }
 
-    if (empty($newLname)) {
-        array_push($INSERTerrors, " يجب كتابة الاسم الاخير");
-    } elseif (strlen($newLname) > 100) {
-        array_push($INSERTerrors, " يجب ان لايكون الاسم اكبر من 100 حرف ");
+
+///// Pagenation////////////////////////////////////////////////////////////////////////////////////
+ //to move from pages
+    if (isset($_GET['page'])) {
+        //more pages
+        $currentPage = $_GET['page'];
+    } else {
+        //page now 
+        $currentPage = 1;
     }
 
-    // validate email///////////////////////////
-    if (empty($newEmail)) {
-        array_push($INSERTerrors, "يجب كتابة البريد الالكترونى");
-    } elseif (filter_var($newEmail, FILTER_VALIDATE_EMAIL) == false) {
-        array_push($INSERTerrors, "البريد الالكترونى غير صالح");
-    }
+    //pages numbers 
+    $prevPage = $currentPage - 1;
+    $nextPage = $currentPage + 1;
 
-    // validate password////////////////////////////
-    if (empty($newPass)) {
-        array_push($INSERTerrors, "يجب كتابة  كلمة المرور");
-    } elseif (strlen($newPass) < 8) {
-        array_push($INSERTerrors, "يجب ان تحتوي كلمة المرور  اكثر  من 8 حرف ");
-    }
+    //the start page
+    $perPage = 5;
+    $start = ($currentPage - 1) * $perPage;
 
-    $uppercase = preg_match('@[A-Z]@', $newPass);
-    $lowercase = preg_match('@[a-z]@', $newPass);
-    $number    = preg_match('@[0-9]@', $newPass);
-
-    if (!$uppercase || !$lowercase || !$number  || strlen($newPass) < 6) {
-        array_push($INSERTerrors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
-    }
-
-    // validate gender///////////////////////////
-    if (empty($newGender)) {
-        array_push($INSERTerrors, "يرجى تحديد نوع الجنس");
-    }
-    // validate userType///////////////////////////
-    if (empty($newUsertype)) {
-        array_push($INSERTerrors, "يرجى تحديد نوع المستخدم");
-    }
-
-    // validate phone///////////////////////////
-    if (empty($newPhone)) {
-        array_push($INSERTerrors, "يرجى ادخال رقم الجوال");
-    }
-    if (!(preg_match('/^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/', $newPhone))) {
-        array_push($INSERTerrors, " يرجى ادخال رقم الجوال بشكل صحيح");
-    }
-    //prevent dublicate emails query/////////////////////////////////////////////////
-    $statment = "SELECT email FROM users WHERE email ='$newEmail'";
-    $data = mysqli_fetch_row(mysqli_query($conn, $statment));
-
-    if ($data) {
-        array_push($INSERTerrors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
-    }
+    $fetchquery = "SELECT  SQL_CALC_FOUND_ROWS * FROM users limit  $start , $perPage";
+    $result = mysqli_query($conn, $fetchquery);
+    $row = mysqli_fetch_assoc($result);
 
 
+    //Conut total db rows 
+    $connpdo = new PDO("mysql:host=localhost;dbname=rakaya", "root", "");
+    $sql = "SELECT * FROM users";
+    $statement = $connpdo->query($sql);
+    $number_of_rows = $statement->rowCount();
 
-    // no insert erorrs
-    if (count($INSERTerrors) == 0)
-        $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$newEmail ','$newFname','$newLname','$newPhone','$newPass ','$newGender','$newUsertype','')";
-    if (mysqli_query($conn, $sql)) {
-        echo "<script> alert('a new user is inserted successfully!')</script>";
-    }
-}
-
-// Pagenation//////////////////////////////////////////////////////////////////////
-//to move from pages
-if (isset($_GET['page'])) {
-    //more pages
-    $currentPage = $_GET['page'];
-} else {
-    //page now 
-    $currentPage = 1;
-}
-
-//pages numbers 
-$prevPage = $currentPage - 1;
-$nextPage = $currentPage + 1;
-
-//the start page
-$perPage = 5;
-$start = ($currentPage - 1) * $perPage;
-
-$fetchquery = "SELECT  SQL_CALC_FOUND_ROWS * FROM users limit  $start , $perPage";
-$result = mysqli_query($conn, $fetchquery);
-$row = mysqli_fetch_assoc($result);
-
-
-//Conut total db rows 
-$connpdo = new PDO("mysql:host=localhost;dbname=rakaya", "root", "");
-$sql = "SELECT * FROM users";
-$statement = $connpdo->query($sql);
-$number_of_rows = $statement->rowCount();
-
-
-$lastPage = ceil($number_of_rows / $perPage);
-
-
+    $lastPage = ceil($number_of_rows / $perPage);
 
 ?>
 
@@ -199,7 +199,7 @@ $lastPage = ceil($number_of_rows / $perPage);
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Rakaya home</title>
+    <title>Rakaya Admin</title>
     <link href="img/minilogo.png" rel="icon">
     <!-- animate -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -208,7 +208,8 @@ $lastPage = ceil($number_of_rows / $perPage);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@200;300;400;500;600;700;900;1000&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
-    <!--icon -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+   <!--icon -->
     <link href="libraris/animate.css/animate.min.css" rel="stylesheet">
     <link href="libraris/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="libraris/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -235,7 +236,7 @@ $lastPage = ceil($number_of_rows / $perPage);
                             تسجيل الخروج</a>
                     </li>
                     <li class="flex ">
-                        <img src="<?php echo $row['Image'] ?>" class="rounded-pill h-12" height="40" alt="profile image">
+                        <img src="<?php echo $AdminRow['Image'] ?>" class="rounded-pill h-12" height="40" alt="profile image">
                     </li>
                 </ul>
             </nav>
@@ -260,14 +261,14 @@ $lastPage = ceil($number_of_rows / $perPage);
         <!-- content -->
         <div class="container-fluid rounded bg-white mb-5 py-5 " style="margin-top: -100px;">
             <div class=" justify-content-between align-items-center mb-1">
-                <h4 class="text-center text-bold text-3xl"> <span class="text-pigi"><?php echo $row['Fname'] ?> </span> اهلًا ومرحبًا</h4>
+                <h4 class="text-center text-bold text-3xl"> <span class="text-pigi"><?php echo $AdminRow['Fname'] ?> </span> اهلًا ومرحبًا</h4>
             </div>
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
 
-                <img class="rounded-circle mt-5" width="150px" src="<?php echo $row['Image'] ?>" alt="profile image" class="font-weight-bold">
+                <img class="rounded-circle mt-5" width="150px" src="<?php echo $AdminRow['Image'] ?>" alt="profile image" class="font-weight-bold">
 
-                <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
-                    <?php echo $row['Email'] ?></span><span> </span>
+                <?php echo $AdminRow['Fname'], " ", $AdminRow['Lname'] ?></span><span class="text-black-50">
+                    <?php echo $AdminRow['Email'] ?></span><span> </span>
             </div>
             <!-- System Msgs -->
             <?php if (count($adminerrors) > 0) : ?>
@@ -309,32 +310,33 @@ $lastPage = ceil($number_of_rows / $perPage);
                                     <?php
                                     $rowsNum = mysqli_num_rows($resultall);
                                     if ($rowsNum > 0) {
-                                        while ($rowUser = mysqli_fetch_assoc($resultall)) {
+                                        while ($row = mysqli_fetch_assoc($result)) {
                                             echo "<tr> 
                                                 <form action='Admin.php' method='POST'> 
-                                                    <td>" . $rowUser['id'] . "</td>
-                                                    <td>  <input  type='text' name='EnewEmail' placeholder=" . $rowUser['Email'] . "></td>
-                                                    <td>  <input  type='text' name='EnewFname'maxlength='5' placeholder=" . $rowUser['Fname'] . "></td>
-                                                    <td>  <input  type='text' name='EnewPhone' placeholder=" . $rowUser['Phone'] . "></td>
-                                                    <td>  <input  type='text' name='EnewPass' placeholder=" . $rowUser['pass'] . "></td>
-                                                    <td>  <input  type='text' name='EnewUserTyper' placeholder=" . $rowUser['UserType'] . "></td>
-                                                    <td>  <input  type='text' name='EnewGender' placeholder=" . $rowUser['Gender'] . "></td>
-                                                    <td> <div><button type='submit' name='editUser' class='btn  py-1 px-2  text-center text-light'style='background-color: #C4AE7C;'><i class='bi bi-pencil-square'></i></button></td> 
-                                                    <td><a href='MyAdmin.php?deleteid=" . $rowUser['id'] . "' class='btn bg-danger py-1 px-2 rounded text-white'> <i class='bi bi-trash3-fill'></i></a></td>
+                                                    <td>" . $row['id'] . "</td>
+                                                    <td>  <input  type='text' name='EnewEmail' placeholder=". $row['Email'] ."></td>
+                                                    <td>  <input  type='text' name='EnewFname'maxlength='5' placeholder=". $row['Fname'] . "></td>
+                                                    <td>  <input  type='text' name='EnewPhone' placeholder=". $row['Phone'] ."></td>
+                                                    <td>  <input  type='text' name='EnewPass' placeholder=". $row['pass'] ."></td>
+                                                    <td>  <input  type='text' name='EnewUserTyper' placeholder=". $row['UserType'] ."></td>
+                                                    <td>  <input  type='text' name='EnewGender' placeholder=". $row['Gender'] ."></td>
+                                                    <td><a href='AdminEditUser.php?EditId=". $row['id'] ."' class='btn bg-pigi py-1 px-2 rounded text-white'> <i class='bi bi-pencil-square'></i></a></td>
+                                                    <td><a href='Admin.php?deleteid=". $row['id'] ."' class='btn bg-danger py-1 px-2 rounded text-white'> <i class='bi bi-trash3-fill'></i></a></td>
                                                 </form>
                                                 </tr>";
                                         }
                                     }
                                     ?>
                                 </table>
-                                <?php
-                                ?>
+                                <div> 
+                                    <a href="AdminAddUser.php" class="btn bg-pigi px-4 py-2 hover:bg-cohly text-center text-light" role="button">اضافة مستخدم جديد</a>
+                            </div>
 
                             </div>
                         </div>
-                        <!-- Pagenation -->
 
-                        <div>
+                        <!-- Pagenation -->
+                        <div class="">
                             <nav class="" aria-label="Page navigation example">
                                 <ul class="pagination ">
                                     <li class="page-item">
@@ -355,10 +357,10 @@ $lastPage = ceil($number_of_rows / $perPage);
                                         ?>
 
                                     </li>
-                                    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                         <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-                                    <li class="page-item">
+                                    <!-- <li class="page-item" ><a class="page-link" style="color: #C4AE7C" href="#">1</a></li>
+                                         <li class="page-item"><a class="page-link" style="color: #C4AE7C" href="#">2</a></li>
+                                         <li class="page-item"><a class="page-link" style="color: #C4AE7C" href="#">3</a></li>
+                                    <li class="page-item"> -->
 
                                         <?php
                                         if ($currentPage == $lastPage) {
@@ -379,12 +381,10 @@ $lastPage = ceil($number_of_rows / $perPage);
                                     </li>
                                 </ul>
                             </nav>
-
                         </div>
-
-
-                        <!-- Insertion a new user -->
-                        <div>
+                        </table>
+                                                <!-- Insertion a new user -->
+                                                <div>
                             <h5 class="text-3xl text-center mt-1 my-3"> اضافة مستخدم جديد</h5>
                         </div>
                         <form action="Admin.php" method="POST" class="flex flex-row pe-1">
