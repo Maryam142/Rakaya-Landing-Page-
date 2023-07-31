@@ -432,17 +432,17 @@
           </div>
           <div class="col col-md-6 text-center align-items-center" data-aos="zoom-in-left">
             <div class="row text-boni px-5 pb-5 items-center justify-between">
-              <form action="Contact_Proccessing.php" method="POST" id="ajax-contact" class="space-y-4">
-                <input name="name" type="text" class="form-control rounded-3 border-pigi text-end " placeholder="الاسم">
-                <input name="email" type="text" class="form-control rounded-3 border-pigi text-end  "
+              <form action="include/insert.php" method="POST" id="submit_form" action="#" class="space-y-4">
+                <input type="text"  name="name" id="name" class="form-control rounded-3 border-pigi text-end " placeholder="الاسم">
+                <input type="text" name="email" id="email" class="form-control rounded-3 border-pigi text-end  "
                   placeholder="البريد الالكتروني">
-                  <input name="subject" type="text" class="form-control rounded-3 border-pigi text-end " placeholder="عنوان الرسالة">
-                <textarea name="message" class="form-control rounded-3 border-pigi text-end" rows="5"
+                <textarea  name="message" id="message" class="form-control rounded-3 border-pigi text-end" rows="7"
                   placeholder="اكتب رسالتك هنا  "></textarea>
-                <center> <button name="submit" id="submit" class="btn bg-pigi rounded px-3 py-2 hover:bg-boni text-light"
-                    type="submit">ارسال</button>
-                  <div class="alert alert-success" role="alert" id="form-massages" style="display: none;"></div>
+                <center> <button  type="button" name="submit" id="submit" class="btn bg-pigi rounded px-3 py-2 hover:bg-boni text-light"
+                    >ارسال</button>
                 </center>
+                <span id="error_message" class="text-danger"></span>  
+                <span id="success_message" class="text-success"></span>  
                 <div data-aos="fade-up" data-aos-duration="3000">
                 </div>
               </form>
@@ -551,6 +551,36 @@
     }
 
   </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+  <script>  
+ $(document).ready(function(){  
+      $('#submit').click(function(){  
+           var name = $('#name').val();  
+           var message = $('#message').val();  
+           var email = $('#email').val();
+           if(name == '' || message == ''|| email == '')  
+           {  
+                $('#error_message').html("الرجاء التأكد من تعبئة البيانات ");  
+           }  
+           else  
+           {  
+                $('#error_message').html('');  
+                $.ajax({  
+                     url:"include/insert.php",  
+                     method:"POST",  
+                     data:{name:name,email:email, message:message},  
+                     success:function(data){  
+                          $("form").trigger("reset");  
+                          $('#success_message').fadeIn().html(data);  
+                          setTimeout(function(){  
+                               $('#success_message').fadeOut("Slow");  
+                          }, 2000);  
+                     }  
+                });  
+           }  
+      });  
+ });  
+ </script>  
 </body>
 
 </html>
