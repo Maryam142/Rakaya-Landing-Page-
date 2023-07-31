@@ -162,8 +162,6 @@ if($_SESSION['edited']){
     $lastPage = ceil($number_of_rows/$perPage);
 
 ?>
-
-
 <!DOCTYPE html>
 <html>
 

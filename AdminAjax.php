@@ -8,13 +8,13 @@ if (!isset($_SESSION['logged_in'])) {
 }
 ////retrive Admin Info only/////////////////////////////////////////////////////////////////////////
 
-    $admin_email = $_SESSION['user_email'];
-    $fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
-    //return one row of admin info
-    $AdminResult = mysqli_query($conn, $fetchquery);
-    $AdminRow = mysqli_fetch_assoc($AdminResult);
-    $userID = $AdminRow['id'];
-    $adminerrors = array();
+$admin_email = $_SESSION['user_email'];
+$fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
+//return one row of admin info
+$AdminResult = mysqli_query($conn, $fetchquery);
+$AdminRow = mysqli_fetch_assoc($AdminResult);
+$userID = $AdminRow['id'];
+$adminerrors = array();
 
 
 
@@ -23,13 +23,13 @@ if (!isset($_SESSION['logged_in'])) {
 
 
 ////retrive All users Info only/////////////////////////////////////////////////////////////////////
-    $fetchqueryAll = "SELECT * FROM users";
-    //return all rows of users' info
-    $resultall = mysqli_query($conn, $fetchqueryAll);
+$fetchqueryAll = "SELECT * FROM users";
+//return all rows of users' info
+$resultall = mysqli_query($conn, $fetchqueryAll);
 
 ///// Pagenation////////////////////////////////////////////////////////////////////////////////////
- //to move from pages
- if (isset($_GET['page'])) {
+//to move from pages
+if (isset($_GET['page'])) {
     //more pages
     $currentPage = $_GET['page'];
 } else {
@@ -55,7 +55,7 @@ $connpdo = new PDO("mysql:host=localhost;dbname=rakaya", "root", "");
 $sql = "SELECT * FROM users";
 $statement = $connpdo->query($sql);
 $number_of_rows = $statement->rowCount();
-$lastPage = ceil($number_of_rows/$perPage);
+$lastPage = ceil($number_of_rows / $perPage);
 ?>
 
 <!DOCTYPE html>
@@ -133,63 +133,18 @@ $lastPage = ceil($number_of_rows/$perPage);
                                 <h2 class="display-6 text-center"> بيانات المستخدمين</h2>
                             </div>
                             <div class="card-body">
-                                 <div class="table-responsive" id="databaseRows">
-                                   <!-- Database rows -->
-                                   </div>
-                                <div>
+                                <div class="mb-2">
                                     <a href="AdminAddUser.php" class="btn bg-pigi px-4 py-2 hover:bg-cohly text-center text-light" role="button">اضافة مستخدم جديد</a>
                                 </div>
-
+                                <div class="table-responsive" id="databaseRows">
+                                    <!-- Database rows -->
+                                </div>
                             </div>
-                        </div>
-
-                        <!-- Pagenation -->
-                        <div class="">
-                            <nav class="" aria-label="Page navigation example">
-                                <ul class="pagination ">
-                                    <li class="page-item">
-                                        <?php
-                                        // if ($currentPage == 1) {
-
-                                        //     echo '<a class="page-link" style="color: #816D4A" href="#" aria-label="Previous">
-                                        //      <span aria-hidden="true">&laquo;</span>
-                                        //      <span class="sr-only">Previous</span></a>';
-                                        // } else {
-
-                                        //     echo '<a class="page-link" style="color: #C4AE7C" href="?page=' . $prevPage . '" aria-label="Previous">
-                                        //          <span aria-hidden="true">&laquo;</span>
-                                        //          <span class="sr-only">Previous</span></a>';
-                                        // }
-                                        ?>
-                                    </li>
-                                    <!-- <li class="page-item" ><a class="page-link" style="color: #C4AE7C" href="#">1</a></li>
-                                         <li class="page-item"><a class="page-link" style="color: #C4AE7C" href="#">2</a></li>
-                                         <li class="page-item"><a class="page-link" style="color: #C4AE7C" href="#">3</a></li>
-                                    <li class="page-item"> -->
-
-                                    <?php
-                                    // if ($currentPage == $lastPage) {
-
-                                    //     echo '<a class="page-link" style="color: #816D4A" href="#" aria-label="Next">
-                                    //               <span aria-hidden="true">&raquo;</span>
-                                    //               <span class="sr-only">Next</span>
-                                    //              </a>';
-                                    // } else {
-
-                                    //     echo '<a class="page-link" style="color: #C4AE7C" href="?page=' . $nextPage . '" aria-label="Next">
-                                    //               <span aria-hidden="true">&raquo;</span>
-                                    //               <span class="sr-only">Next</span>
-                                    //             </a>';
-                                    // }
-                                    ?>
-                                    </li>
-                                </ul>
-                            </nav>
                         </div>
                     </div>
                 </div>
-                </div>
             </div>
+        </div>
     </section>
 
     <!-- Footer-->
@@ -269,29 +224,29 @@ $lastPage = ceil($number_of_rows/$perPage);
     </script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-<script>
-$(document).ready(function(){
-    load_data();
-    function load_data(page){
-        $.ajax({
-            url:"pagination.php",
-            method:"POST",
-            data:{page:page},
-            success: function(data){
+    <script>
+        $(document).ready(function() {
+            load_data();
 
-                $('#databaseRows').html(data);
+            function load_data(page) {
+                $.ajax({
+                    url: "pagination.php",
+                    method: "POST",
+                    data: {
+                        page: page
+                    },
+                    success: function(data) {
+                        $('#databaseRows').html(data);
+                    }
+
+                })
             }
-        
-        })
-    }
-    $(document).on('click', '.pagination_link', function(){
-
-        var page = $(this).attr("id");
-        load_data(page);
-    });
-
-});
-</script>
+            $(document).on('click', '.pagination_link', function() {
+                var page = $(this).attr("id");
+                load_data(page);
+            });
+        });
+    </script>
 
 </body>
 
