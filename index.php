@@ -536,7 +536,6 @@
   <script>AOS.init();</script>
   <script src="js/main.js"></script>
   <script src="js/spinner.js"></script>
-  <script src="js/contact_form.js"></script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>

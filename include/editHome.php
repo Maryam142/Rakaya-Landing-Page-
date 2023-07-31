@@ -130,7 +130,7 @@ if (isset($_POST['delete'])) {
     if ($resultofediting) {
       $ConfirmeditMsg = "تم حذف الحساب ";
       session_unset();
-      header('location: index.html');
+      header('location: index.php');
       die();
     }
   }
