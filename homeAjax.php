@@ -1,5 +1,13 @@
 <?php
-include('include\editHome.php');
+include('include\editHomeAjax.php');
+
+$user_email = $_SESSION['user_email'];
+
+$fetchquery = "SELECT * FROM users WHERE Email ='$user_email'";
+$result = mysqli_query($conn, $fetchquery);
+$row = mysqli_fetch_assoc($result);
+$userID = $row['id'];
+
 ?>
 
 <!DOCTYPE html>
@@ -110,6 +118,7 @@ include('include\editHome.php');
                     </div>
                     <div class="row mt-3 align-items-center text-end ">
                         <div class="col-md-6 text-center"><button type="submit" name="edit" class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" style="background-color: #816D4A">تعديل</button></div>
+                        <div id="result"></div>
                     </div>
                     </form>
 
@@ -214,33 +223,33 @@ include('include\editHome.php');
     <!-- AJAX -->
 
     <script>
-        $("form").submit(function(e) {
-            e.preventDefault();
+        // $("form").submit(function(e) {
+        //     e.preventDefault();
 
-            $.post(
-                'include/editHomeAjax.php',
-                $("form :input").serializeArray(),
-                //   {
-                //     EFname:$("#Efname").val(),
-                //     ELname:$("#Elname").val(),
-                //     Ephone:$("#Ephone").val(),
-                //     Eemail:$("#Eemail").val(),
-                //     Egender:$("#Egender").val(),
-                //     Eusertype:$("#Eusertype").val()
-                // },
-                function(result) {
-                    if (result == "success") {
-                        console.log("Done");
-                        $("#result").html("Values inserted successfully");
-                    } else {
-                        $("#result").html("Error");
+        //     $.post(
+        //         'include/editHomeAjax.php',
+        //         // $("form :input").serializeArray(),
+        //           {
+        //             EFname:$("#Efname").val(),
+        //             ELname:$("#Elname").val(),
+        //             Ephone:$("#Ephone").val(),
+        //             Eemail:$("#Eemail").val(),
+        //         //     Egender:$("#Egender").val(),
+        //         //     Eusertype:$("#Eusertype").val()
+        //         },
+        //         function(result) {
+        //             if (result == "success") {
+        //                 console.log("Done");
+        //                 $("#result").html("Values inserted successfully");
+        //             } else {
+        //                 $("#result").html("Error");
 
-                    }
+        //             }
 
-                }
+        //         }
 
-            );
-        });
+        //     );
+        // });
     </script>
 
 
