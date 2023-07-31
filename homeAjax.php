@@ -19,7 +19,6 @@ include('include\editHome.php');
     <link href="libraris/animate.css/animate.min.css" rel="stylesheet">
     <link href="libraris/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="libraris/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="libraris/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
@@ -79,47 +78,24 @@ include('include\editHome.php');
                         <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
                             <?php echo $row['Email'] ?></span><span> </span>
                     </div>
-                    <form action="home.php" method="POST" enctype="multipart/form-data">
-                        <div class="form mb-4 text-end">
-                            <input type="file" name="Eimage" class="box" accept="img/jpg, img/jpeg, img/png">
-                        </div>
+                    <form action="include/editHomeAjax.php" method="POST" enctype="multipart/form-data">
+
                 </div>
                 <div class="col-md-7 border-right text-end">
                     <div class="p-3 py-3 text-end">
-                        <!-- form -->
-                        <form action="home.php" method="POST" class="border border-ramadi rounded p-5">
+                        
+                        <form action="include/editHomeAjax.php" method="POST" class="border border-ramadi rounded p-5">
                             <div class="row">
                                 <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" id="Efname" name="Efname" class="form-control text-end" placeholder="الاسم الأول " value="<?php echo $row['Fname'] ?>"></div>
                                 <div class="col-md-6"><label class="labels">الأسم الأخير </label><input type="text" id="Elname" name="Elname" class="form-control text-end" placeholder="الاسم الأخير" value="<?php echo $row['Lname'] ?>"></div>
                             </div>
                             <div class="row mt-3 space-y-3">
                                 <div class="col-md-12 "><label class="labels">رقم الجوال </label><input type="text" id="Ephone" name="Ephone" class="form-control text-end" placeholder="رقم الجوال" value="<?php echo $row['Phone'] ?>"></div>
-                                <div class="col-md-12 "><label class="labels">البريد الالكتروني</label><input type="text" id="Eemail"  name="Eemail" class="form-control text-end" placeholder="البريد الالكتروني" value="<?php echo $row['Email'] ?>"></div>
-                                <div class="col-md-12 "><label class="labels"> الجنس</label><input type="text" id="Egender" name="Egender" class="form-control text-end" placeholder="" value="<?php echo $row['Gender'] ?>"></div>
-                                <div class="col-md-12 "><label class="labels"> نوع المستخدم</label><input type="text" id="Eusertype" name="Eusertype" class="form-control text-end" placeholder=" " value="<?php echo $row['UserType'] ?>"></div>
-                                <div><p id="result"></p></div>
+                                <div class="col-md-12 "><label class="labels">البريد الالكتروني</label><input type="text" id="Eemail" name="Eemail" class="form-control text-end" placeholder="البريد الالكتروني" value="<?php echo $row['Email'] ?>"></div>
+                                <div>
+                                    <p id="result"></p>
+                                </div>
 
-                                <!-- select sex  -->
-                                <!-- <div class="form-check-inline ">
-                  <label class="form-check-label" for="gender">أنثى</label>
-                  <input class="form-check-input" type="radio" name="Egender" value="female" id="gender">
-                </div>
-                <div class="form-check-inline mb-4">
-                  <label class="form-check-label" for="gender">ذكر</label>
-                  <input class="form-check-input" type="radio" name="Egender" value="male" id="gender">
-                </div>
-                <div id="msg"></div> -->
-                                <!-- select user type -->
-                                <!-- <div class="form-outline mb-4 text-end">
-                  <label class="form-label text-end">نوع المستخدم </label>
-                  <select name="Eusertype" id="usertype" class="form-select text-end mb-2" aria-label="Default select example">
-                    <option value="">- اختر -</option>
-                    <option value="Consultant">استشاري</option>
-                    <option value="Developer">مطور</option>
-                    <option value="Client">عميل</option>
-                    <option value="Intern">متدرب</option>
-                  </select>
-                </div> -->
                                 <!-- Password input -->
                                 <div class="col-md-12 "><label class="form-label" for="Epassword">كلمة المرور</label>
                                     <input type="password" name="Epassword" id="Epassword" class="form-control  text-end" placeholder="••••••••" required value="<?php echo $row['pass'] ?>" />
@@ -129,13 +105,12 @@ include('include\editHome.php');
                                     <input type="password" name="Epassword2" id="Epassword2" class="form-control  text-end" placeholder="••••••••" required value="<?php echo $row['pass'] ?>" />
                                 </div>
                                 <!-- <div class="col-md-12 mt-5 "><label class="labels">العنوان الأول</label><input type="text" class="form-control text-end" placeholder="العنوان الأول" value=""></div>
-              <div class="col-md-12 "><label class="labels">العنوان الثاني </label><input type="text" class="form-control text-end" placeholder="العنوان الثاني " value=""></div>
-              <div class="col-md-12 "><label class="labels">الرمز البريدي</label><input type="text" class="form-control text-end" placeholder="الرمز البريدي " value=""></div>
-              <div class="col-md-12 "><label class="labels">المنطقة</label><input type="text" class="form-control text-end" placeholder="المنطقة" value=""></div> -->
+                                <div class="col-md-12 "><label class="labels">العنوان الثاني </label><input type="text" class="form-control text-end" placeholder="العنوان الثاني " value=""></div>
+                                <div class="col-md-12 "><label class="labels">الرمز البريدي</label><input type="text" class="form-control text-end" placeholder="الرمز البريدي " value=""></div>
+                                <div class="col-md-12 "><label class="labels">المنطقة</label><input type="text" class="form-control text-end" placeholder="المنطقة" value=""></div> -->
                             </div>
                     </div>
                     <div class="row mt-3 align-items-center text-end ">
-                        <div class="col-md-6 text-center"><button type="submit" name="delete" class="btn bg-pigi mb-1 rounded px-2 py-2 hover:bg-cohly text-center text-light" style="background-color: #a94442;" onclick="confirmDeleteAccount()">حذف الحساب</button></div>
                         <div class="col-md-6 text-center"><button type="submit" name="edit" class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" style="background-color: #816D4A">تعديل</button></div>
                     </div>
                     </form>
@@ -218,8 +193,8 @@ include('include\editHome.php');
     <script>
         AOS.init();
     </script>
-    <script src="js/main.js"></script>
-    <script src="js/spinner.js"></script>
+    <!-- <script src="js/main.js"></script> -->
+    <!-- <script src="js/spinner.js"></script> -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -245,24 +220,22 @@ include('include\editHome.php');
             e.preventDefault();
 
             $.post(
-                'include/editHome.php', 
-                $("form:input").serializeArray(),
+                'include/editHomeAjax.php',
+                $("form :input").serializeArray(),
                 //   {
-                //     // EFname:$("#Efname").val(),
-                //     // ELname:$("#Elname").val(),
-                //     // Ephone:$("#Ephone").val(),
-                //     // Eemail:$("#Eemail").val(),
-                //     // Egender:$("#Egender").val(),
-                //     // Eusertype:$("#Eusertype").val()
-
+                //     EFname:$("#Efname").val(),
+                //     ELname:$("#Elname").val(),
+                //     Ephone:$("#Ephone").val(),
+                //     Eemail:$("#Eemail").val(),
+                //     Egender:$("#Egender").val(),
+                //     Eusertype:$("#Eusertype").val()
                 // },
-                function(result){
-                    if(result == "success"){
+                function(result) {
+                    if (result == "success") {
                         console.log("Done");
                         $("#result").html("Values inserted successfully");
-                        
 
-                    }else{
+                    } else {
                         $("#result").html("Error");
 
                     }
