@@ -1,22 +1,22 @@
-$(function(){
+$(function () {
 
     var form = $('#ajax-contact');
     var formMessages = $('#form-massages');
 
-    $(form).submit(function(event){
+    $(form).submit(function (event) {
         event.perentDefault();
         var formData = new formData(this);
 
         $.ajax({
             type: 'POST',
             url: $(form).attr('action'),
-            data:formData,
+            data: formData,
             processData: false,
             contentType: false,
-        }).done(function(response){
+        }).done(function (response) {
             response = $.praseJSON(response);
 
-            if(response.error == 0){
+            if (response.error == 0) {
                 $(formMessages).removeClass('alert-danger');
                 $(formMessages).addClass('alert-success');
 
@@ -25,22 +25,22 @@ $(function(){
 
                 $(form).trigger('reset');
                 // $(form).slideUp();
-            }else{
-             $(formMessages).removeClass('alert-success');
-             $(formMessages).addClass('alert-danger');
-             $(formMessages).text('response.msg');
-             $(formMessages).fadeIn();
+            } else {
+                $(formMessages).removeClass('alert-success');
+                $(formMessages).addClass('alert-danger');
+                $(formMessages).text('response.msg');
+                $(formMessages).fadeIn();
             }
-        }).fail(function(data){
+        }).fail(function (data) {
             $(formMessages).removeClass('alert-success');
             $(formMessages).addClass('alert-danger');
 
-            if(data.responseText !== ''){
+            if (data.responseText !== '') {
                 $(formMessages).text(data.responseText);
-            }else{
+            } else {
                 $(formMessages).text('عذرًا، حدث  خطأ ولم ترسل رسالتك');
 
             }
         });
-     });
- });
+    });
+});

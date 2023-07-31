@@ -8,38 +8,38 @@ if (!isset($_SESSION['logged_in'])) {
 }
 
 ////retrive Admin Info only///////////////////////////////////////////////////////////
-    $admin_email = $_SESSION['user_email'];
-    $fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
-    //return one row of admin info
-    $AdminResult = mysqli_query($conn, $fetchquery);
-    $AdminRow = mysqli_fetch_assoc($AdminResult);
-    $userID = $AdminRow['id'];
-    $adminerrors = array();
+$admin_email = $_SESSION['user_email'];
+$fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
+//return one row of admin info
+$AdminResult = mysqli_query($conn, $fetchquery);
+$AdminRow = mysqli_fetch_assoc($AdminResult);
+$userID = $AdminRow['id'];
+$adminerrors = array();
 
 
 /////Edit a User using php//////////////////////////////////////////////////////////////////////////
-    $Fname	= "";
-    $Lname	= "";
-    $email ="";
-    $phone ="";
-    $password ="";
-    $gender ="";
-    $userType ="";
+$Fname    = "";
+$Lname    = "";
+$email = "";
+$phone = "";
+$password = "";
+$gender = "";
+$userType = "";
 
-     if(isset($_GET['EditId'])){
-        $userId= $_GET['EditId'];
-        $_SESSION['userId']=$userId;
-         $res=mysqli_query($conn,"SELECT * FROM `users` WHERE `users`.`id` = '$userId'");
-         $userrow =mysqli_fetch_array($res);
+if (isset($_GET['EditId'])) {
+    $userId = $_GET['EditId'];
+    $_SESSION['userId'] = $userId;
+    $res = mysqli_query($conn, "SELECT * FROM `users` WHERE `users`.`id` = '$userId'");
+    $userrow = mysqli_fetch_array($res);
 
-         $Fname	= $userrow['Fname'];
-         $Lname	= $userrow['Lname'];
-         $email= $userrow['Email'];
-         $phone= $userrow['Phone'];
-         $password= $userrow['pass'];
-         $gender= $userrow['Gender'];
-         $userType= $userrow['UserType'];
- }
+    $Fname    = $userrow['Fname'];
+    $Lname    = $userrow['Lname'];
+    $email = $userrow['Email'];
+    $phone = $userrow['Phone'];
+    $password = $userrow['pass'];
+    $gender = $userrow['Gender'];
+    $userType = $userrow['UserType'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +59,7 @@ if (!isset($_SESSION['logged_in'])) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@200;300;400;500;600;700;900;1000&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-   <!--icon -->
+    <!--icon -->
     <link href="libraris/animate.css/animate.min.css" rel="stylesheet">
     <link href="libraris/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="libraris/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -85,9 +85,9 @@ if (!isset($_SESSION['logged_in'])) {
                         <a href="logout.php" class="bg-pigi px-2 mx-2 py-3 ms-2 flex rounded animate_animated animate_fadeInUp text-light">
                             تسجيل الخروج</a>
                     </li>
-                    <li class="flex "> 
+                    <li class="flex ">
                         <a href="Admin.php">
-                        <img src="<?php echo $AdminRow['Image'] ?>" class="rounded-pill h-12" height="40" alt="profile image">
+                            <img src="<?php echo $AdminRow['Image'] ?>" class="rounded-pill h-12" height="40" alt="profile image">
                         </a>
                     </li>
                 </ul>
@@ -106,28 +106,28 @@ if (!isset($_SESSION['logged_in'])) {
                 </nav>
             </div>
         </div>
-<!-- content -->
-<div class="container rounded bg-white mb-5 py-5 " style="margin-top: -100px;">
-    <!-- Insertion a new user -->
-    <div>
-        <h5 class="text-3xl text-center mt-1 my-3">تعديل بيانات المستخدم</h5>
-    </div>
-    <form action="Edit.php" method="POST" class="flex flex-col pe-1 space-y-2 mx-5 text-end">
-        <input class="border rounded py-1 mx-0 text-end" type="text" name="EEmail" placeholder="البريد الالكتروني" value="<?php echo $email;?>">
-        <input class="border rounded py-1 mx-0 text-end" type="text" name="EFname" placeholder="الاسم الاول  " value="<?php echo $Fname;?>">
-        <input class="border rounded py-1 mx-0 text-end" type="text" name="ELname" placeholder="الاسم الثاني  " value="<?php echo $Lname;?>">
-        <input class="border rounded py-1 mx-0 text-end" type="text" name="EPhone" placeholder="رقم الهاتف  " value="<?php echo $phone;?>">
-        <input class="border rounded py-1 mx-0 text-end" type="text" name="EPass" placeholder="كلمة المرور  " value="<?php echo $password;?>">
-        <input class="border rounded py-1 mx-0 text-end" type="text" name="EUsertype" placeholder="نوع المستخدم  " value="<?php echo $userType;?>">
-        <input class="border rounded py-1 mx-0 text-end" type="text" name="EGender" placeholder="الجنس  " value="<?php echo $gender;?>">
-        <div> <button type="submit" name="Edit" style="background-color: #C4AE7C;" class="btn bg-pigi w-full px-4 py-2 hover:bg-cohly text-center text-light">تعديل</button></div>
-    </form>
-    <?php if (!empty($ConfirmeditMsg)) : ?>
-                  <div class="systemMsg w-full">
+        <!-- content -->
+        <div class="container rounded bg-white mb-5 py-5 " style="margin-top: -100px;">
+            <!-- Insertion a new user -->
+            <div>
+                <h5 class="text-3xl text-center mt-1 my-3">تعديل بيانات المستخدم</h5>
+            </div>
+            <form action="Edit.php" method="POST" class="flex flex-col pe-1 space-y-2 mx-5 text-end">
+                <input class="border rounded py-1 mx-0 text-end" type="text" name="EEmail" placeholder="البريد الالكتروني" value="<?php echo $email; ?>">
+                <input class="border rounded py-1 mx-0 text-end" type="text" name="EFname" placeholder="الاسم الاول  " value="<?php echo $Fname; ?>">
+                <input class="border rounded py-1 mx-0 text-end" type="text" name="ELname" placeholder="الاسم الثاني  " value="<?php echo $Lname; ?>">
+                <input class="border rounded py-1 mx-0 text-end" type="text" name="EPhone" placeholder="رقم الهاتف  " value="<?php echo $phone; ?>">
+                <input class="border rounded py-1 mx-0 text-end" type="text" name="EPass" placeholder="كلمة المرور  " value="<?php echo $password; ?>">
+                <input class="border rounded py-1 mx-0 text-end" type="text" name="EUsertype" placeholder="نوع المستخدم  " value="<?php echo $userType; ?>">
+                <input class="border rounded py-1 mx-0 text-end" type="text" name="EGender" placeholder="الجنس  " value="<?php echo $gender; ?>">
+                <div> <button type="submit" name="Edit" style="background-color: #C4AE7C;" class="btn bg-pigi w-full px-4 py-2 hover:bg-cohly text-center text-light">تعديل</button></div>
+            </form>
+            <?php if (!empty($ConfirmeditMsg)) : ?>
+                <div class="systemMsg w-full">
                     <p><?php echo $ConfirmeditMsg ?> </p>
-                  </div>
-                <?php endif ?>
-  </div>
+                </div>
+            <?php endif ?>
+        </div>
     </section>
 
     <!-- Scripts -->
@@ -158,5 +158,6 @@ if (!isset($_SESSION['logged_in'])) {
             }
         }
     </script>
-  </body>
+</body>
+
 </html>

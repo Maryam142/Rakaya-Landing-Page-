@@ -43,7 +43,7 @@ include('./include/login_processing.php');
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">عن ركايا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">خدماتنا</a></li>
           <li><a href="index.html" class="btn-get-started animate__animated animate__fadeInUp">للتواصل</a></li>
-          <li ><a href="logIn.php" class="bg-boni px-3 py-2 ms-4 me-1 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">تسجيل
+          <li><a href="logIn.php" class="bg-boni px-3 py-2 ms-4 me-1 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">تسجيل
               دخول </a></li>
           <li class="breadcrumb-item"><a href="signUp.php" class="bg-pigi px-3 py-2 ms-1 me-4 rounded text-light hover:bg-ramadi animate__animated animate__fadeInUp">انشاء
               حساب</a></li>

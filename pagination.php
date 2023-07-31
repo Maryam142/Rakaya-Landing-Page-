@@ -66,4 +66,3 @@ for($i=1; $i<=$total_pages; $i++)  {
 }
 $output .= '</div><br /><br />';  
 echo $output;
-?>

@@ -7,27 +7,27 @@ if (!isset($_SESSION['logged_in'])) {
     die();
 }
 
-if($_SESSION['edited']){
+if ($_SESSION['edited']) {
     echo "<script> alert('the user account is updated successfully!'); </script>";
-    $_SESSION['edited']=false;
+    $_SESSION['edited'] = false;
 }
 
 ////retrive Admin Info only/////////////////////////////////////////////////////////////////////////
-    $admin_email = $_SESSION['user_email'];
-    $fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
-    //return one row of admin info
-    $AdminResult = mysqli_query($conn, $fetchquery);
-    $AdminRow = mysqli_fetch_assoc($AdminResult);
-    $userID = $AdminRow['id'];
-    $adminerrors = array();
+$admin_email = $_SESSION['user_email'];
+$fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
+//return one row of admin info
+$AdminResult = mysqli_query($conn, $fetchquery);
+$AdminRow = mysqli_fetch_assoc($AdminResult);
+$userID = $AdminRow['id'];
+$adminerrors = array();
 
 ////retrive All users Info only/////////////////////////////////////////////////////////////////////
-    $fetchqueryAll = "SELECT * FROM users";
-    //return all rows of users' info
-    $resultall = mysqli_query($conn, $fetchqueryAll);
+$fetchqueryAll = "SELECT * FROM users";
+//return all rows of users' info
+$resultall = mysqli_query($conn, $fetchqueryAll);
 
 /////Delete a User using php////////////////////////////////////////////////////////////////////////
- if (isset($_GET['deleteid'])) {
+if (isset($_GET['deleteid'])) {
 
     $id = $_GET['deleteid'];
     $Dquery = "DELETE FROM `users` WHERE `users`.`id` = '$id'";
@@ -36,130 +36,130 @@ if($_SESSION['edited']){
     if ($delete) {
         echo "<script> alert('delete the user account successfully!'); </script>";
     }
- }
+}
 
 
 /////Insert new User////////////////////////////////////////////////////////////////////////////////
-    $newFname     =  "";
-    $newLname     =  "";
-    $newPass      =  "";
-    $newEmail     =  "";
-    $newPhone     =  "";
-    $newGender    =  "";
-    $newUsertype  =  "";
-    $INSERTerrors =  "";
-    $INSERTerrors = array();
+$newFname     =  "";
+$newLname     =  "";
+$newPass      =  "";
+$newEmail     =  "";
+$newPhone     =  "";
+$newGender    =  "";
+$newUsertype  =  "";
+$INSERTerrors =  "";
+$INSERTerrors = array();
 
-    if (isset($_POST['insertNewUser'])) {
-        $newFname =  filter_var($_POST['newFname'], FILTER_SANITIZE_STRING);
-        $newLname  =  filter_var($_POST['newLname'],  FILTER_SANITIZE_STRING);
-        $newPass  =  filter_var($_POST['newPass'],  FILTER_SANITIZE_STRING);
-        $newEmail     =  filter_var($_POST['newEmail'],     FILTER_SANITIZE_EMAIL);
-        $newPhone     =  filter_var($_POST['newPhone'],     FILTER_SANITIZE_STRING);
-        $newGender    =  $_POST['newGender'];
-        $newUsertype  =  $_POST['newUsertype'];
+if (isset($_POST['insertNewUser'])) {
+    $newFname =  filter_var($_POST['newFname'], FILTER_SANITIZE_STRING);
+    $newLname  =  filter_var($_POST['newLname'],  FILTER_SANITIZE_STRING);
+    $newPass  =  filter_var($_POST['newPass'],  FILTER_SANITIZE_STRING);
+    $newEmail     =  filter_var($_POST['newEmail'],     FILTER_SANITIZE_EMAIL);
+    $newPhone     =  filter_var($_POST['newPhone'],     FILTER_SANITIZE_STRING);
+    $newGender    =  $_POST['newGender'];
+    $newUsertype  =  $_POST['newUsertype'];
 
     // Server-side validation///////////////////////////////////////////////////////
-        // validate first and last name///////////////////////////
-        if (empty($newFname)) {
-            array_push($INSERTerrors, " يجب كتابة الاسم الاول");
-        } elseif (strlen($newFname) > 100) {
-            array_push($INSERTerrors, "يجب ان لايكون الاسم اكبر من 100 حرف ");
-        }
+    // validate first and last name///////////////////////////
+    if (empty($newFname)) {
+        array_push($INSERTerrors, " يجب كتابة الاسم الاول");
+    } elseif (strlen($newFname) > 100) {
+        array_push($INSERTerrors, "يجب ان لايكون الاسم اكبر من 100 حرف ");
+    }
 
-        if (empty($newLname)) {
-            array_push($INSERTerrors, " يجب كتابة الاسم الاخير");
-        } elseif (strlen($newLname) > 100) {
-            array_push($INSERTerrors, " يجب ان لايكون الاسم اكبر من 100 حرف ");
-        }
+    if (empty($newLname)) {
+        array_push($INSERTerrors, " يجب كتابة الاسم الاخير");
+    } elseif (strlen($newLname) > 100) {
+        array_push($INSERTerrors, " يجب ان لايكون الاسم اكبر من 100 حرف ");
+    }
 
-        // validate email///////////////////////////
-        if (empty($newEmail)) {
-            array_push($INSERTerrors, "يجب كتابة البريد الالكترونى");
-        } elseif (filter_var($newEmail, FILTER_VALIDATE_EMAIL) == false) {
-            array_push($INSERTerrors, "البريد الالكترونى غير صالح");
-        }
+    // validate email///////////////////////////
+    if (empty($newEmail)) {
+        array_push($INSERTerrors, "يجب كتابة البريد الالكترونى");
+    } elseif (filter_var($newEmail, FILTER_VALIDATE_EMAIL) == false) {
+        array_push($INSERTerrors, "البريد الالكترونى غير صالح");
+    }
 
-        // validate password////////////////////////////
-        if (empty($newPass)) {
-            array_push($INSERTerrors, "يجب كتابة  كلمة المرور");
-        } elseif (strlen($newPass) < 8) {
-            array_push($INSERTerrors, "يجب ان تحتوي كلمة المرور  اكثر  من 8 حرف ");
-        }
+    // validate password////////////////////////////
+    if (empty($newPass)) {
+        array_push($INSERTerrors, "يجب كتابة  كلمة المرور");
+    } elseif (strlen($newPass) < 8) {
+        array_push($INSERTerrors, "يجب ان تحتوي كلمة المرور  اكثر  من 8 حرف ");
+    }
 
-        $uppercase = preg_match('@[A-Z]@', $newPass);
-        $lowercase = preg_match('@[a-z]@', $newPass);
-        $number    = preg_match('@[0-9]@', $newPass);
+    $uppercase = preg_match('@[A-Z]@', $newPass);
+    $lowercase = preg_match('@[a-z]@', $newPass);
+    $number    = preg_match('@[0-9]@', $newPass);
 
-        if (!$uppercase || !$lowercase || !$number  || strlen($newPass) < 6) {
-            array_push($INSERTerrors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
-        }
+    if (!$uppercase || !$lowercase || !$number  || strlen($newPass) < 6) {
+        array_push($INSERTerrors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
+    }
 
-        // validate gender///////////////////////////
-        if (empty($newGender)) {
-            array_push($INSERTerrors, "يرجى تحديد نوع الجنس");
-        }
-        // validate userType///////////////////////////
-        if (empty($newUsertype)) {
-            array_push($INSERTerrors, "يرجى تحديد نوع المستخدم");
-        }
+    // validate gender///////////////////////////
+    if (empty($newGender)) {
+        array_push($INSERTerrors, "يرجى تحديد نوع الجنس");
+    }
+    // validate userType///////////////////////////
+    if (empty($newUsertype)) {
+        array_push($INSERTerrors, "يرجى تحديد نوع المستخدم");
+    }
 
-        // validate phone///////////////////////////
-        if (empty($newPhone)) {
-            array_push($INSERTerrors, "يرجى ادخال رقم الجوال");
-        }
-        if (!(preg_match('/^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/', $newPhone))) {
-            array_push($INSERTerrors, " يرجى ادخال رقم الجوال بشكل صحيح");
-        }
-        //prevent dublicate emails query/////////////////////////////////////////////////
-        $statment = "SELECT email FROM users WHERE email ='$newEmail'";
-        $data = mysqli_fetch_row(mysqli_query($conn, $statment));
+    // validate phone///////////////////////////
+    if (empty($newPhone)) {
+        array_push($INSERTerrors, "يرجى ادخال رقم الجوال");
+    }
+    if (!(preg_match('/^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/', $newPhone))) {
+        array_push($INSERTerrors, " يرجى ادخال رقم الجوال بشكل صحيح");
+    }
+    //prevent dublicate emails query/////////////////////////////////////////////////
+    $statment = "SELECT email FROM users WHERE email ='$newEmail'";
+    $data = mysqli_fetch_row(mysqli_query($conn, $statment));
 
-        if ($data) {
-            array_push($INSERTerrors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
-        }
+    if ($data) {
+        array_push($INSERTerrors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
+    }
 
 
 
     //if no insert erorrs
-        if (count($INSERTerrors) == 0){
-            $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$newEmail ','$newFname','$newLname','$newPhone','$newPass ','$newGender','$newUsertype','')";
+    if (count($INSERTerrors) == 0) {
+        $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$newEmail ','$newFname','$newLname','$newPhone','$newPass ','$newGender','$newUsertype','')";
         if (mysqli_query($conn, $sql)) {
             echo "<script> alert('a new user is inserted successfully!')</script>";
         }
     }
-    }
+}
 
 
 ///// Pagenation////////////////////////////////////////////////////////////////////////////////////
- //to move from pages
-    if (isset($_GET['page'])) {
-        //more pages
-        $currentPage = $_GET['page'];
-    } else {
-        //page now 
-        $currentPage = 1;
-    }
+//to move from pages
+if (isset($_GET['page'])) {
+    //more pages
+    $currentPage = $_GET['page'];
+} else {
+    //page now 
+    $currentPage = 1;
+}
 
-    //pages numbers 
-    $prevPage = $currentPage - 1;
-    $nextPage = $currentPage + 1;
+//pages numbers 
+$prevPage = $currentPage - 1;
+$nextPage = $currentPage + 1;
 
-    //the start page
-    $perPage = 5;
-    $start = ($currentPage - 1) * $perPage;
+//the start page
+$perPage = 5;
+$start = ($currentPage - 1) * $perPage;
 
-    $fetchquery = "SELECT  SQL_CALC_FOUND_ROWS * FROM users limit  $start , $perPage";
-    $result = mysqli_query($conn, $fetchquery);
-    $row = mysqli_fetch_assoc($result);
+$fetchquery = "SELECT  SQL_CALC_FOUND_ROWS * FROM users limit  $start , $perPage";
+$result = mysqli_query($conn, $fetchquery);
+$row = mysqli_fetch_assoc($result);
 
 
-    //Conut total db rows 
-    $connpdo = new PDO("mysql:host=localhost;dbname=rakaya", "root", "");
-    $sql = "SELECT * FROM users";
-    $statement = $connpdo->query($sql);
-    $number_of_rows = $statement->rowCount();
-    $lastPage = ceil($number_of_rows/$perPage);
+//Conut total db rows 
+$connpdo = new PDO("mysql:host=localhost;dbname=rakaya", "root", "");
+$sql = "SELECT * FROM users";
+$statement = $connpdo->query($sql);
+$number_of_rows = $statement->rowCount();
+$lastPage = ceil($number_of_rows / $perPage);
 
 ?>
 <!DOCTYPE html>
@@ -179,7 +179,7 @@ if($_SESSION['edited']){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Cairo:wght@200;300;400;500;600;700;900;1000&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-   <!--icon -->
+    <!--icon -->
     <link href="libraris/animate.css/animate.min.css" rel="stylesheet">
     <link href="libraris/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="libraris/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -284,23 +284,23 @@ if($_SESSION['edited']){
                                             echo "<tr> 
                                                 <form action='Admin.php' method='POST'> 
                                                     <td>" . $row['id'] . "</td>
-                                                    <td>  <input  type='text' name='EnewEmail' placeholder=". $row['Email'] ."></td>
-                                                    <td>  <input  type='text' name='EnewFname'maxlength='5' placeholder=". $row['Fname'] . "></td>
-                                                    <td>  <input  type='text' name='EnewPhone' placeholder=". $row['Phone'] ."></td>
-                                                    <td>  <input  type='text' name='EnewPass' placeholder=". $row['pass'] ."></td>
-                                                    <td>  <input  type='text' name='EnewUserTyper' placeholder=". $row['UserType'] ."></td>
-                                                    <td>  <input  type='text' name='EnewGender' placeholder=". $row['Gender'] ."></td>
-                                                    <td><a href='AdminEditUser.php?EditId=". $row['id'] ."' class='btn bg-pigi py-1 px-2 rounded text-white'> <i class='bi bi-pencil-square'></i></a></td>
-                                                    <td><a href='Admin.php?deleteid=". $row['id'] ."' class='btn bg-danger py-1 px-2 rounded text-white'> <i class='bi bi-trash3-fill'></i></a></td>
+                                                    <td>  <input  type='text' name='EnewEmail' placeholder=" . $row['Email'] . "></td>
+                                                    <td>  <input  type='text' name='EnewFname'maxlength='5' placeholder=" . $row['Fname'] . "></td>
+                                                    <td>  <input  type='text' name='EnewPhone' placeholder=" . $row['Phone'] . "></td>
+                                                    <td>  <input  type='text' name='EnewPass' placeholder=" . $row['pass'] . "></td>
+                                                    <td>  <input  type='text' name='EnewUserTyper' placeholder=" . $row['UserType'] . "></td>
+                                                    <td>  <input  type='text' name='EnewGender' placeholder=" . $row['Gender'] . "></td>
+                                                    <td><a href='AdminEditUser.php?EditId=" . $row['id'] . "' class='btn bg-pigi py-1 px-2 rounded text-white'> <i class='bi bi-pencil-square'></i></a></td>
+                                                    <td><a href='Admin.php?deleteid=" . $row['id'] . "' class='btn bg-danger py-1 px-2 rounded text-white'> <i class='bi bi-trash3-fill'></i></a></td>
                                                 </form>
                                                 </tr>";
                                         }
                                     }
                                     ?>
                                 </table>
-                                <div> 
+                                <div>
                                     <a href="AdminAddUser.php" class="btn bg-pigi px-4 py-2 hover:bg-cohly text-center text-light" role="button">اضافة مستخدم جديد</a>
-                            </div>
+                                </div>
 
                             </div>
                         </div>
@@ -332,21 +332,21 @@ if($_SESSION['edited']){
                                          <li class="page-item"><a class="page-link" style="color: #C4AE7C" href="#">3</a></li>
                                     <li class="page-item"> -->
 
-                                        <?php
-                                        if ($currentPage == $lastPage) {
+                                    <?php
+                                    if ($currentPage == $lastPage) {
 
-                                            echo '<a class="page-link" style="color: #816D4A" href="#" aria-label="Next">
+                                        echo '<a class="page-link" style="color: #816D4A" href="#" aria-label="Next">
                                                   <span aria-hidden="true">&raquo;</span>
                                                   <span class="sr-only">Next</span>
                                                  </a>';
-                                        } else {
+                                    } else {
 
-                                            echo '<a class="page-link" style="color: #C4AE7C" href="?page=' . $nextPage . '" aria-label="Next">
+                                        echo '<a class="page-link" style="color: #C4AE7C" href="?page=' . $nextPage . '" aria-label="Next">
                                                   <span aria-hidden="true">&raquo;</span>
                                                   <span class="sr-only">Next</span>
                                                 </a>';
-                                        }
-                                        ?>
+                                    }
+                                    ?>
 
                                     </li>
                                 </ul>

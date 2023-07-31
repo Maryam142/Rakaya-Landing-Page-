@@ -28,13 +28,13 @@ if (isset($_POST['reset'])) {
     if (!$data) {
       array_push($Reset_errors, "لا  يوجد حساب مسجل بهذا البريد الالكتروني");
     } else {
-      
+
       require_once 'mail.php';
       //Send email to user
       $mail->setFrom('rakayateam2@gmail.com', 'Rakaya Team 2');
       $mail->addAddress($resetEmail);
       $mail->Subject = 'اعادة تعيين كلمة المرور';
-      $mail->Body    = 'اهلا عميلنا العزيز <br> <br> '.'<a href="http://localhost/Rakaya-Landing-Page-/reset2.php?email=' . $_POST['resetEmail'] . '"> اضغط هنا</a> لإعادة تعيين كلمة المرور الخاصة بك';
+      $mail->Body    = 'اهلا عميلنا العزيز <br> <br> ' . '<a href="http://localhost/Rakaya-Landing-Page-/reset2.php?email=' . $_POST['resetEmail'] . '"> اضغط هنا</a> لإعادة تعيين كلمة المرور الخاصة بك';
       $mail->send();
       $SysMsg = "تم ارسال رابط اعادة تعيين كلمة المرور على بريدك الالكتروني";
       // header('Location: reset.php'); //prevent sending the reset email every time page refresh

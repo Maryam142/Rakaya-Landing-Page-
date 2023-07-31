@@ -96,12 +96,12 @@ if (isset($_POST['submit'])) {
     array_push($errors, " يرجى ادخال رقم الجوال بشكل صحيح");
   }
   //prevent dublicate emails query/////////////////////////////////////////////////
-   $statment = "SELECT email FROM users WHERE email ='$email'";
-   $data = mysqli_fetch_row(mysqli_query($conn, $statment));
-  
-    if ($data) {
-      array_push($errors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
-    }
+  $statment = "SELECT email FROM users WHERE email ='$email'";
+  $data = mysqli_fetch_row(mysqli_query($conn, $statment));
+
+  if ($data) {
+    array_push($errors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
+  }
 
   //Image Validation //////////////////////////////////////////////
   $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);

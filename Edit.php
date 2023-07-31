@@ -40,5 +40,4 @@ if(isset($_POST['Edit'])){
         } else {
         $ConfirmeditMsg = "لم يتم تحديث البيانات في قاعدة البيانات  ";
         }
-    } 
-?>
+    }

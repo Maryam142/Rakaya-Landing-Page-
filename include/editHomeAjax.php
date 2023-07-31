@@ -31,5 +31,3 @@ if (isset($_POST["ELname"])) {
         echo "تم ارسال الرسالة ";
     }else{echo "errrooorrrrrrr!";}
 }
- 
-?> 
