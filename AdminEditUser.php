@@ -74,7 +74,7 @@ if (!isset($_SESSION['logged_in'])) {
 
             <div class="logo">
                 <div class="container-fluid">
-                    <a class="navbar-brand my-3 mt-3" href="index.html">
+                    <a class="navbar-brand my-3 mt-3" href="index.php">
                         <img src="img/rakaya.png" class="me-lg-2" height="40" class=" active btn-get-started animate_animated animate_fadeInUp" />
                     </a>
                 </div>

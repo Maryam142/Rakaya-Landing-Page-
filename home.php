@@ -1,5 +1,5 @@
 <?php
-include('include\editHome.php');
+include('include\home_processing.php');
 
 // view image profile
 if (empty($row['Image'])) {
@@ -38,7 +38,7 @@ if (empty($row['Image'])) {
 
       <div class="logo">
         <div class="container-fluid">
-          <a class="navbar-brand my-3 mt-3" href="index.html">
+          <a class="navbar-brand my-3 mt-3" href="index.php">
             <img src="img/rakaya.png" class="me-lg-2" height="40" class=" active btn-get-started animate__animated animate__fadeInUp" />
           </a>
         </div>
