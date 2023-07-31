@@ -50,8 +50,6 @@ include('include\editHome.php');
         </div>
     </header>
 
-
-
     <section>
         <!-- Background image -->
         <div class="p-5 bg-image" style="background-image: url('img/Sign_in_up.png'); height: 300px; background-attachment: fixed;">
@@ -83,7 +81,7 @@ include('include\editHome.php');
                 </div>
                 <div class="col-md-7 border-right text-end">
                     <div class="p-3 py-3 text-end">
-                        
+
                         <form action="include/editHomeAjax.php" method="POST" class="border border-ramadi rounded p-5">
                             <div class="row">
                                 <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" id="Efname" name="Efname" class="form-control text-end" placeholder="الاسم الأول " value="<?php echo $row['Fname'] ?>"></div>
@@ -234,7 +232,6 @@ include('include\editHome.php');
                     if (result == "success") {
                         console.log("Done");
                         $("#result").html("Values inserted successfully");
-
                     } else {
                         $("#result").html("Error");
 
