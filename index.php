@@ -476,6 +476,8 @@
   </script>
   <script src="js/main.js"></script>
   <script src="js/spinner.js"></script>
+  <script src="js/contact_form.js"></script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -493,6 +495,7 @@
         }
       }
     }
+
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script>
