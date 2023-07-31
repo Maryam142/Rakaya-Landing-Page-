@@ -9,6 +9,7 @@ $conn = mysqli_connect('localhost', 'root', '', 'rakaya');
 if (!$conn) {
     echo 'error: ' . mysqli_connect_error();
 }
+// include('./DB_conn.php');
 
 if (isset($_POST["name"])) {
     //   $name = mysqli_real_escape_string($connect, $_POST["name"]);
