@@ -6,8 +6,8 @@ $user_email = $_SESSION['user_email'];
 $fetchquery = "SELECT * FROM users WHERE Email ='$user_email'";
 $result = mysqli_query($conn, $fetchquery);
 $row = mysqli_fetch_assoc($result);
-$userID = $row['id'];
 
+$id = $row['id'];
 ?>
 
 <!DOCTYPE html>
@@ -90,53 +90,39 @@ $userID = $row['id'];
                 <div class="col-md-7 border-right text-end">
                     <div class="p-3 py-3 text-end">
 
-                        <form action="include/editHomeAjax.php" method="POST" class="border border-ramadi rounded p-5">
+                        <form action="include/editHomeAjax.php" method="POST" id="submit_form" class="border border-ramadi rounded p-5">
                             <div class="row">
-                                <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" id="Efname" name="Efname" class="form-control text-end" placeholder="الاسم الأول " value="<?php echo $row['Fname'] ?>"></div>
-                                <div class="col-md-6"><label class="labels">الأسم الأخير </label><input type="text" id="Elname" name="Elname" class="form-control text-end" placeholder="الاسم الأخير" value="<?php echo $row['Lname'] ?>"></div>
+                                <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" id="EFname" name="EFname" class="form-control text-end" placeholder="الاسم الأول " value="<?php echo $row['Fname'] ?>"></div>
+                                <div class="col-md-6"><label class="labels">الأسم الأخير </label><input type="text" id="ELname" name="ELname" class="form-control text-end" placeholder="الاسم الأخير" value="<?php echo $row['Lname'] ?>"></div>
                             </div>
                             <div class="row mt-3 space-y-3">
-                                <div class="col-md-12 "><label class="labels">رقم الجوال </label><input type="text" id="Ephone" name="Ephone" class="form-control text-end" placeholder="رقم الجوال" value="<?php echo $row['Phone'] ?>"></div>
+                                <!-- <div class="col-md-12 "><label class="labels">رقم الجوال </label><input type="text" id="Ephone" name="Ephone" class="form-control text-end" placeholder="رقم الجوال" value="<?php echo $row['Phone'] ?>"></div> -->
                                 <div class="col-md-12 "><label class="labels">البريد الالكتروني</label><input type="text" id="Eemail" name="Eemail" class="form-control text-end" placeholder="البريد الالكتروني" value="<?php echo $row['Email'] ?>"></div>
-                                <div>
-                                    <p id="result"></p>
-                                </div>
+                                <span id="error_message" class="text-danger"></span>
+                                <span id="success_message" class="text-success"></span>
 
                                 <!-- Password input -->
-                                <div class="col-md-12 "><label class="form-label" for="Epassword">كلمة المرور</label>
+                                <!-- <div class="col-md-12 "><label class="form-label" for="Epassword">كلمة المرور</label>
                                     <input type="password" name="Epassword" id="Epassword" class="form-control  text-end" placeholder="••••••••" required value="<?php echo $row['pass'] ?>" />
-                                </div>
+                                </div> -->
                                 <!-- Password input2 -->
-                                <div class="col-md-12 "><label class="form-label" for="Epassword2" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمةالمرور</label>
+                                <!-- <div class="col-md-12 "><label class="form-label" for="Epassword2" placeholder="ادخل كلمة المرور مرة اخرى"> تاكيد كلمةالمرور</label>
                                     <input type="password" name="Epassword2" id="Epassword2" class="form-control  text-end" placeholder="••••••••" required value="<?php echo $row['pass'] ?>" />
-                                </div>
+                                </div> -->
                                 <!-- <div class="col-md-12 mt-5 "><label class="labels">العنوان الأول</label><input type="text" class="form-control text-end" placeholder="العنوان الأول" value=""></div>
                                 <div class="col-md-12 "><label class="labels">العنوان الثاني </label><input type="text" class="form-control text-end" placeholder="العنوان الثاني " value=""></div>
                                 <div class="col-md-12 "><label class="labels">الرمز البريدي</label><input type="text" class="form-control text-end" placeholder="الرمز البريدي " value=""></div>
                                 <div class="col-md-12 "><label class="labels">المنطقة</label><input type="text" class="form-control text-end" placeholder="المنطقة" value=""></div> -->
+
                             </div>
                     </div>
                     <div class="row mt-3 align-items-center text-end ">
-                        <div class="col-md-6 text-center"><button type="submit" name="edit" class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" style="background-color: #816D4A">تعديل</button></div>
-                        <div id="result"></div>
+                        <div class="col-md-6 text-center"><button type="submit" id="submit" name="submit" class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" style="background-color: #816D4A">تعديل</button></div>
                     </div>
                     </form>
 
                     <!-- System Msgs -->
-                    <?php if (count($homeerrors) > 0) : ?>
 
-                        <div class="error">
-                            <?php foreach ($homeerrors as $error) : ?>
-                                <p> <?php echo $error; ?> </p>
-                            <?php endforeach ?>
-                        </div>
-                    <?php endif ?>
-
-                    <?php if (!empty($ConfirmeditMsg)) : ?>
-                        <div class="systemMsg w-full">
-                            <p><?php echo $ConfirmeditMsg ?> </p>
-                        </div>
-                    <?php endif ?>
                 </div>
 
             </div>
@@ -221,6 +207,37 @@ $userID = $row['id'];
         }
     </script>
     <!-- AJAX -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#submit').click(function() {
+                var EFname = $('#EFname').val();
+                var ELname = $('#ELname').val();
+                var Eemail = $('#Eemail').val();
+                if (Efname == '' || Elname == '' || Eemail == '') {
+                    $('#error_message').html("الرجاء التأكد من تعبئة البيانات ");
+                } else {
+                    $('#error_message').html('');
+                    $.ajax({
+                        url: "include/editHomeAjax.php",
+                        method: "POST",
+                        data: {
+                            EFname: EFname,
+                            ELname: ELname,
+                            Eemail: Eemail
+                        },
+                        success: function(data) {
+                            $("form").trigger("reset");
+                            $('#success_message').fadeIn().html(data);
+                            setTimeout(function() {
+                                $('#success_message').fadeOut("Slow");
+                            }, 2000);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 
     <script>
         // $("form").submit(function(e) {
