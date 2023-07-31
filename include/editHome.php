@@ -24,6 +24,8 @@ $Eusertype  =  "";
 $Epassword2 =  "";
 $Epassword2 =  "";
 $image     =  "";
+$image_upload_path  =  "";
+$image_tmp_name ="";
 
 
 // initialize the form's varibales 
@@ -83,7 +85,8 @@ if (isset($_POST['edit'])) {
     array_push($homeerrors, "يجب ان تتطابق كلمات المرور ");
   }
 
-  $image_name      =  $_FILES['Eimage']['name'];
+$image_name      =  $_FILES['Eimage']['name'];
+if(!empty($image_name)){
   $image_size      =  $_FILES['Eimage']['size'];
   $image_type      =  $_FILES['Eimage']['type'];
   $image_tmp_name  =  $_FILES['Eimage']['tmp_name'];
@@ -107,7 +110,11 @@ if (isset($_POST['edit'])) {
 
     if (!in_array($image_extension, $allowed_extensions)) {
       array_push($homeerrors, "هذا الامتداد غير مسموح");
+      }
     }
+  }else{
+    $image_upload_path=$row['Image'];
+  }
 
 
     if (count($homeerrors) == 0) {
@@ -115,13 +122,13 @@ if (isset($_POST['edit'])) {
       $query = "UPDATE `users` SET `Email` = '$Eemail ',`Fname`='$EFname', `Lname` = '$ELname', `Phone` = '$Ephone', `Gender` = '$Egender', `pass`= '$Epassword2', `UserType` = '$Eusertype',`Image` = '$image_upload_path'  WHERE `users`. `id` = '$userID'";
       $resultofediting = mysqli_query($conn, $query);
       if ($resultofediting) {
-        echo "success";
+        $ConfirmeditMsg = "تم تحديث بياناتك بنجاح ";
       } else {
-       echo  "failer";
+        $ConfirmeditMsg = "لم يتم تحديث بياناتك  ";
       }
     }
   }
-}
+
 // delete the profile
 if (isset($_POST['delete'])) {
   if (count($homeerrors) == 0) {
@@ -135,12 +142,4 @@ if (isset($_POST['delete'])) {
     }
   }
 }
-
-// view image profile
-if (!empty($row['Image'])) {
-  $imgsrc = "<img scr='img/" . $row['Image'] . "' class='rounded-circle mt-5' width='150px'>";
-} else {
-  $imgsrc = "img/user_profile.png";
-}
-
 ?>

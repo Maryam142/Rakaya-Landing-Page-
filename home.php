@@ -1,5 +1,10 @@
 <?php
 include('include\editHome.php');
+
+// view image profile
+if (empty($row['Image'])) {
+  $imgsrc = "";
+}
 ?>
 
 <!DOCTYPE html>
@@ -87,6 +92,21 @@ include('include\editHome.php');
         </div>
         <div class="col-md-7 border-right text-end">
           <div class="p-3 py-3 text-end">
+            <!-- System Msgs -->
+            <?php if (count($homeerrors) > 0) : ?>
+
+              <div class="error">
+                <?php foreach ($homeerrors as $error) : ?>
+                  <p> <?php echo $error; ?> </p>
+                <?php endforeach ?>
+              </div>
+            <?php endif ?>
+
+            <?php if (!empty($ConfirmeditMsg)) : ?>
+              <div class="systemMsg w-full">
+                <p><?php echo $ConfirmeditMsg ?> </p>
+              </div>
+            <?php endif ?>
             <form action="home.php" method="POST" class="border border-ramadi rounded p-5">
               <div class="row">
                 <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" name="Efname" class="form-control text-end" placeholder="الاسم الأول " value="<?php echo $row['Fname'] ?>"></div>
@@ -97,28 +117,6 @@ include('include\editHome.php');
                 <div class="col-md-12 "><label class="labels">البريد الالكتروني</label><input type="text" name="Eemail" class="form-control text-end" placeholder="البريد الالكتروني" value="<?php echo $row['Email'] ?>"></div>
                 <div class="col-md-12 "><label class="labels"> الجنس</label><input type="text" name="Egender" class="form-control text-end" placeholder="" value="<?php echo $row['Gender'] ?>"></div>
                 <div class="col-md-12 "><label class="labels"> نوع المستخدم</label><input type="text" name="Eusertype" class="form-control text-end" placeholder=" " value="<?php echo $row['UserType'] ?>"></div>
-
-                <!-- select sex  -->
-                <!-- <div class="form-check-inline ">
-                  <label class="form-check-label" for="gender">أنثى</label>
-                  <input class="form-check-input" type="radio" name="Egender" value="female" id="gender">
-                </div>
-                <div class="form-check-inline mb-4">
-                  <label class="form-check-label" for="gender">ذكر</label>
-                  <input class="form-check-input" type="radio" name="Egender" value="male" id="gender">
-                </div>
-                <div id="msg"></div> -->
-                <!-- select user type -->
-                <!-- <div class="form-outline mb-4 text-end">
-                  <label class="form-label text-end">نوع المستخدم </label>
-                  <select name="Eusertype" id="usertype" class="form-select text-end mb-2" aria-label="Default select example">
-                    <option value="">- اختر -</option>
-                    <option value="Consultant">استشاري</option>
-                    <option value="Developer">مطور</option>
-                    <option value="Client">عميل</option>
-                    <option value="Intern">متدرب</option>
-                  </select>
-                </div> -->
                 <!-- Password input -->
                 <div class="col-md-12 "><label class="form-label" for="Epassword">كلمة المرور</label>
                   <input type="password" name="Epassword" id="Epassword" class="form-control  text-end" placeholder="••••••••" required value="<?php echo $row['pass'] ?>" />
@@ -138,22 +136,6 @@ include('include\editHome.php');
             <div class="col-md-6 text-center"><button type="submit" name="edit" class="btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" style="background-color: #816D4A">تعديل</button></div>
           </div>
           </form>
-
-          <!-- System Msgs -->
-          <?php if (count($homeerrors) > 0) : ?>
-
-            <div class="error">
-              <?php foreach ($homeerrors as $error) : ?>
-                <p> <?php echo $error; ?> </p>
-              <?php endforeach ?>
-            </div>
-          <?php endif ?>
-
-          <?php if (!empty($ConfirmeditMsg)) : ?>
-            <div class="systemMsg w-full">
-              <p><?php echo $ConfirmeditMsg ?> </p>
-            </div>
-          <?php endif ?>
         </div>
 
       </div>
@@ -237,7 +219,7 @@ include('include\editHome.php');
       }
     }
   </script>
-  
+
 
 </body>
 

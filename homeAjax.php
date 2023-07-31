@@ -84,13 +84,12 @@ $id = $row['id'];
                         <?php echo $row['Fname'], " ", $row['Lname'] ?></span><span class="text-black-50">
                             <?php echo $row['Email'] ?></span><span> </span>
                     </div>
-                    <form action="include/editHomeAjax.php" method="POST" enctype="multipart/form-data">
 
                 </div>
                 <div class="col-md-7 border-right text-end">
                     <div class="p-3 py-3 text-end">
 
-                        <form action="include/editHomeAjax.php" method="POST" id="submit_form" class="border border-ramadi rounded p-5">
+                        <form action="" method="POST" id="submit_form" class="border border-ramadi rounded p-5">
                             <div class="row">
                                 <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" id="EFname" name="EFname" class="form-control text-end" placeholder="الاسم الأول " value="<?php echo $row['Fname'] ?>"></div>
                                 <div class="col-md-6"><label class="labels">الأسم الأخير </label><input type="text" id="ELname" name="ELname" class="form-control text-end" placeholder="الاسم الأخير" value="<?php echo $row['Lname'] ?>"></div>
@@ -214,7 +213,7 @@ $id = $row['id'];
                 var EFname = $('#EFname').val();
                 var ELname = $('#ELname').val();
                 var Eemail = $('#Eemail').val();
-                if (Efname == '' || Elname == '' || Eemail == '') {
+                if (EFname == '' || ELname == '' || Eemail == '') {
                     $('#error_message').html("الرجاء التأكد من تعبئة البيانات ");
                 } else {
                     $('#error_message').html('');
@@ -238,38 +237,6 @@ $id = $row['id'];
             });
         });
     </script>
-
-    <script>
-        // $("form").submit(function(e) {
-        //     e.preventDefault();
-
-        //     $.post(
-        //         'include/editHomeAjax.php',
-        //         // $("form :input").serializeArray(),
-        //           {
-        //             EFname:$("#Efname").val(),
-        //             ELname:$("#Elname").val(),
-        //             Ephone:$("#Ephone").val(),
-        //             Eemail:$("#Eemail").val(),
-        //         //     Egender:$("#Egender").val(),
-        //         //     Eusertype:$("#Eusertype").val()
-        //         },
-        //         function(result) {
-        //             if (result == "success") {
-        //                 console.log("Done");
-        //                 $("#result").html("Values inserted successfully");
-        //             } else {
-        //                 $("#result").html("Error");
-
-        //             }
-
-        //         }
-
-        //     );
-        // });
-    </script>
-
-
 </body>
 
 </html>

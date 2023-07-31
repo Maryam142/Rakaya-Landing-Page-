@@ -9,7 +9,6 @@ $conn = mysqli_connect('localhost', 'root', '', 'rakaya');
 if (!$conn) {
     echo 'error: ' . mysqli_connect_error();
 }
-// include('./DB_conn.php');
 
 if (isset($_POST["name"])) { 
     $name     =  filter_var($_POST["name"],  FILTER_SANITIZE_STRING);
@@ -18,17 +17,12 @@ if (isset($_POST["name"])) {
     $sql = "INSERT INTO tbl_form(name, email , message) VALUES ('" . $name . "','" . $email . "', '" . $message . "')";
     if (mysqli_query($conn, $sql)) {
         echo "تم ارسال الرسالة ";
+        
+    $mail->setFrom($email, $name);
+    $mail->addAddress('rakayateam2@gmail.com');
+    $mail->Subject = $subject;
+    $mail->Body    = $message;
+    $mail->send();
     }
-
-    $recipient = $email;
-
-    $email_content ="Name: $name\n";
-    $email_content ="Email: $email\n\n";
-    $email_content ="Message: \n$message\n";
-
-    $email_haeders = "Form: $name <$email>";
-
-
-    mail($recipient,'', $email_content, $email_haeders);
 }
 ?>  
