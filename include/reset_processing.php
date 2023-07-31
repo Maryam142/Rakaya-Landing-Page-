@@ -28,6 +28,7 @@ if (isset($_POST['reset'])) {
     if (!$data) {
       array_push($Reset_errors, "لا  يوجد حساب مسجل بهذا البريد الالكتروني");
     } else {
+      
       require_once 'mail.php';
       //Send email to user
       $mail->setFrom('rakayateam2@gmail.com', 'Rakaya Team 2');

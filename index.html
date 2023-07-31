@@ -432,14 +432,16 @@
           </div>
           <div class="col col-md-6 text-center align-items-center" data-aos="zoom-in-left">
             <div class="row text-boni px-5 pb-5 items-center justify-between">
-              <form action="#" class="space-y-4">
-                <input type="text" class="form-control rounded-3 border-pigi text-end " placeholder="الاسم">
-                <input type="text" class="form-control rounded-3 border-pigi text-end  "
+              <form action="Contact_Proccessing.php" method="POST" id="ajax-contact" class="space-y-4">
+                <input name="name" type="text" class="form-control rounded-3 border-pigi text-end " placeholder="الاسم">
+                <input name="email" type="text" class="form-control rounded-3 border-pigi text-end  "
                   placeholder="البريد الالكتروني">
-                <textarea class="form-control rounded-3 border-pigi text-end" rows="7"
+                  <input name="subject" type="text" class="form-control rounded-3 border-pigi text-end " placeholder="عنوان الرسالة">
+                <textarea name="message" class="form-control rounded-3 border-pigi text-end" rows="5"
                   placeholder="اكتب رسالتك هنا  "></textarea>
-                <center> <button class="btn bg-pigi rounded px-3 py-2 hover:bg-boni text-light"
+                <center> <button name="submit" id="submit" class="btn bg-pigi rounded px-3 py-2 hover:bg-boni text-light"
                     type="submit">ارسال</button>
+                  <div class="alert alert-success" role="alert" id="form-massages" style="display: none;"></div>
                 </center>
                 <div data-aos="fade-up" data-aos-duration="3000">
                 </div>
@@ -534,6 +536,8 @@
   <script>AOS.init();</script>
   <script src="js/main.js"></script>
   <script src="js/spinner.js"></script>
+  <script src="js/contact_form.js"></script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -545,6 +549,7 @@
         }
       }
     }
+
   </script>
 </body>
 
