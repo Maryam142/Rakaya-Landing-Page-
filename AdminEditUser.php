@@ -7,6 +7,9 @@ if (!isset($_SESSION['logged_in'])) {
     die();
 }
 
+$ConfirmeditMsg="";
+
+
 ////retrive Admin Info only///////////////////////////////////////////////////////////
 $admin_email = $_SESSION['user_email'];
 $fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
@@ -18,28 +21,29 @@ $adminerrors = array();
 
 
 /////Edit a User using php//////////////////////////////////////////////////////////////////////////
-$Fname    = "";
-$Lname    = "";
-$email = "";
-$phone = "";
-$password = "";
-$gender = "";
-$userType = "";
+    $Fname    = "";
+    $Lname    = "";
+    $email = "";
+    $phone = "";
+    $password = "";
+    $gender = "";
+    $userType = "";
 
-if (isset($_GET['EditId'])) {
-    $userId = $_GET['EditId'];
-    $_SESSION['userId'] = $userId;
-    $res = mysqli_query($conn, "SELECT * FROM `users` WHERE `users`.`id` = '$userId'");
-    $userrow = mysqli_fetch_array($res);
+    if (isset($_GET['EditId'])) {
+        $userId = $_GET['EditId'];
+        $_SESSION['userId'] = $userId;
+        $res = mysqli_query($conn, "SELECT * FROM `users` WHERE `users`.`id` = '$userId'");
+        $userrow = mysqli_fetch_array($res);
+        $ConfirmeditMsg= "تم تحديث بيانات المستخدم ";   
 
-    $Fname    = $userrow['Fname'];
-    $Lname    = $userrow['Lname'];
-    $email = $userrow['Email'];
-    $phone = $userrow['Phone'];
-    $password = $userrow['pass'];
-    $gender = $userrow['Gender'];
-    $userType = $userrow['UserType'];
-}
+        $Fname    = $userrow['Fname'];
+        $Lname    = $userrow['Lname'];
+        $email = $userrow['Email'];
+        $phone = $userrow['Phone'];
+        $password = $userrow['pass'];
+        $gender = $userrow['Gender'];
+        $userType = $userrow['UserType'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -100,8 +104,9 @@ if (isset($_GET['EditId'])) {
             <div class="text-center">
                 <nav aria-label="breadcrumb text-light " style="float: left;">
                     <ol class="breadcrumb text-light mt-5 text-xl" style="--bs-breadcrumb-divider-color:#C4AE7C;">
-                        <li class="breadcrumb-item text-pigi" aria-current="page"> الملف الشخصي </li>
-                        <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
+                        <li class="breadcrumb-item text-pigi" aria-current="page"> تعديل بيانات مستخدم </li>
+                        <li class="breadcrumb-item"> <a href="Admin.php"> لوحة التحكم </a></li>
+                        <li class="breadcrumb-item"><a href="index.php">الرئيسية</a></li>
                     </ol>
                 </nav>
             </div>
@@ -112,21 +117,22 @@ if (isset($_GET['EditId'])) {
             <div>
                 <h5 class="text-3xl text-center mt-1 my-3">تعديل بيانات المستخدم</h5>
             </div>
-            <form action="Edit.php" method="POST" class="flex flex-col pe-1 space-y-2 mx-5 text-end">
-                <input class="border rounded py-1 mx-0 text-end" type="text" name="EEmail" placeholder="البريد الالكتروني" value="<?php echo $email; ?>">
-                <input class="border rounded py-1 mx-0 text-end" type="text" name="EFname" placeholder="الاسم الاول  " value="<?php echo $Fname; ?>">
-                <input class="border rounded py-1 mx-0 text-end" type="text" name="ELname" placeholder="الاسم الثاني  " value="<?php echo $Lname; ?>">
-                <input class="border rounded py-1 mx-0 text-end" type="text" name="EPhone" placeholder="رقم الهاتف  " value="<?php echo $phone; ?>">
-                <input class="border rounded py-1 mx-0 text-end" type="text" name="EPass" placeholder="كلمة المرور  " value="<?php echo $password; ?>">
-                <input class="border rounded py-1 mx-0 text-end" type="text" name="EUsertype" placeholder="نوع المستخدم  " value="<?php echo $userType; ?>">
-                <input class="border rounded py-1 mx-0 text-end" type="text" name="EGender" placeholder="الجنس  " value="<?php echo $gender; ?>">
-                <div> <button type="submit" name="Edit" style="background-color: #C4AE7C;" class="btn bg-pigi w-full px-4 py-2 hover:bg-cohly text-center text-light">تعديل</button></div>
-            </form>
             <?php if (!empty($ConfirmeditMsg)) : ?>
-                <div class="systemMsg w-full">
+                <div class="systemMsg py-2">
                     <p><?php echo $ConfirmeditMsg ?> </p>
                 </div>
             <?php endif ?>
+
+            <form action="Edit.php" method="POST" class="flex flex-col pe-1 space-y-2 mx-5 text-end">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="EEmail" placeholder="البريد الالكتروني" value="<?php echo $email; ?>">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="EFname" placeholder="الاسم الاول  " value="<?php echo $Fname; ?>">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="ELname" placeholder="الاسم الثاني  " value="<?php echo $Lname; ?>">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="EPhone" placeholder="رقم الهاتف  " value="<?php echo $phone; ?>">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="EPass" placeholder="كلمة المرور  " value="<?php echo $password; ?>">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="EUsertype" placeholder="نوع المستخدم  " value="<?php echo $userType; ?>">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="EGender" placeholder="الجنس  " value="<?php echo $gender; ?>">
+                <div> <button type="submit" name="Edit" style="background-color: #C4AE7C;" class="btn bg-pigi w-full px-4 py-2 hover:bg-cohly text-center text-light">تعديل</button></div>
+            </form>
         </div>
     </section>
 
@@ -158,6 +164,5 @@ if (isset($_GET['EditId'])) {
             }
         }
     </script>
-</body>
-
+  </body>
 </html>

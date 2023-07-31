@@ -8,13 +8,13 @@ if (!isset($_SESSION['logged_in'])) {
 }
 ////retrive Admin Info only/////////////////////////////////////////////////////////////////////////
 
-$admin_email = $_SESSION['user_email'];
-$fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
-//return one row of admin info
-$AdminResult = mysqli_query($conn, $fetchquery);
-$AdminRow = mysqli_fetch_assoc($AdminResult);
-$userID = $AdminRow['id'];
-$adminerrors = array();
+    $admin_email = $_SESSION['user_email'];
+    $fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
+    //return one row of admin info
+    $AdminResult = mysqli_query($conn, $fetchquery);
+    $AdminRow = mysqli_fetch_assoc($AdminResult);
+    $userID = $AdminRow['id'];
+    $adminerrors = array();
 
 
 
@@ -23,39 +23,39 @@ $adminerrors = array();
 
 
 ////retrive All users Info only/////////////////////////////////////////////////////////////////////
-$fetchqueryAll = "SELECT * FROM users";
-//return all rows of users' info
-$resultall = mysqli_query($conn, $fetchqueryAll);
+    $fetchqueryAll = "SELECT * FROM users";
+    //return all rows of users' info
+    $resultall = mysqli_query($conn, $fetchqueryAll);
 
 ///// Pagenation////////////////////////////////////////////////////////////////////////////////////
-//to move from pages
-if (isset($_GET['page'])) {
-    //more pages
-    $currentPage = $_GET['page'];
-} else {
-    //page now 
-    $currentPage = 1;
-}
+    //to move from pages
+    if (isset($_GET['page'])) {
+        //more pages
+        $currentPage = $_GET['page'];
+    } else {
+        //page now 
+        $currentPage = 1;
+    }
 
-//pages numbers 
-$prevPage = $currentPage - 1;
-$nextPage = $currentPage + 1;
+    //pages numbers 
+    $prevPage = $currentPage - 1;
+    $nextPage = $currentPage + 1;
 
-//the start page
-$perPage = 5;
-$start = ($currentPage - 1) * $perPage;
+    //the start page
+    $perPage = 5;
+    $start = ($currentPage - 1) * $perPage;
 
-$fetchquery = "SELECT  SQL_CALC_FOUND_ROWS * FROM users limit  $start , $perPage";
-$result = mysqli_query($conn, $fetchquery);
-$row = mysqli_fetch_assoc($result);
+    $fetchquery = "SELECT  SQL_CALC_FOUND_ROWS * FROM users limit  $start , $perPage";
+    $result = mysqli_query($conn, $fetchquery);
+    $row = mysqli_fetch_assoc($result);
 
 
-//Conut total db rows 
-$connpdo = new PDO("mysql:host=localhost;dbname=rakaya", "root", "");
-$sql = "SELECT * FROM users";
-$statement = $connpdo->query($sql);
-$number_of_rows = $statement->rowCount();
-$lastPage = ceil($number_of_rows / $perPage);
+    //Conut total db rows 
+    $connpdo = new PDO("mysql:host=localhost;dbname=rakaya", "root", "");
+    $sql = "SELECT * FROM users";
+    $statement = $connpdo->query($sql);
+    $number_of_rows = $statement->rowCount();
+    $lastPage = ceil($number_of_rows / $perPage);
 ?>
 
 <!DOCTYPE html>

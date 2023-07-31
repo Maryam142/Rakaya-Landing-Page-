@@ -6,109 +6,108 @@ if (!isset($_SESSION['logged_in'])) {
     header('location: logIn.php');
     die();
 }
+$ConfirmeditMsg="";
 
 ////retrive Admin Info only///////////////////////////////////////////////////////////
-$admin_email = $_SESSION['user_email'];
-$fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
-//return one row of admin info
-$AdminResult = mysqli_query($conn, $fetchquery);
-$AdminRow = mysqli_fetch_assoc($AdminResult);
-$userID = $AdminRow['id'];
-$adminerrors = array();
+    $admin_email = $_SESSION['user_email'];
+    $fetchquery = "SELECT * FROM users WHERE Email ='$admin_email'";
+    //return one row of admin info
+    $AdminResult = mysqli_query($conn, $fetchquery);
+    $AdminRow = mysqli_fetch_assoc($AdminResult);
+    $userID = $AdminRow['id'];
+    $adminerrors = array();
 
 
 /////Insert new User////////////////////////////////////////////////////////////////////////////////
-$newFname     =  "";
-$newLname     =  "";
-$newPass      =  "";
-$newEmail     =  "";
-$newPhone     =  "";
-$newGender    =  "";
-$newUsertype  =  "";
-$INSERTerrors =  "";
-$INSERTerrors = array();
+    $newFname     =  "";
+    $newLname     =  "";
+    $newPass      =  "";
+    $newEmail     =  "";
+    $newPhone     =  "";
+    $newGender    =  "";
+    $newUsertype  =  "";
+    $INSERTerrors =  "";
+    $INSERTerrors = array();
 
-if (isset($_POST['insertNewUser'])) {
-    $newFname =  filter_var($_POST['newFname'], FILTER_SANITIZE_STRING);
-    $newLname  =  filter_var($_POST['newLname'],  FILTER_SANITIZE_STRING);
-    $newPass  =  filter_var($_POST['newPass'],  FILTER_SANITIZE_STRING);
-    $newEmail     =  filter_var($_POST['newEmail'],     FILTER_SANITIZE_EMAIL);
-    $newPhone     =  filter_var($_POST['newPhone'],     FILTER_SANITIZE_STRING);
-    $newGender    =  $_POST['newGender'];
-    $newUsertype  =  $_POST['newUsertype'];
+    if (isset($_POST['insertNewUser'])) {
+        $newFname =  filter_var($_POST['newFname'], FILTER_SANITIZE_STRING);
+        $newLname  =  filter_var($_POST['newLname'],  FILTER_SANITIZE_STRING);
+        $newPass  =  filter_var($_POST['newPass'],  FILTER_SANITIZE_STRING);
+        $newEmail     =  filter_var($_POST['newEmail'],     FILTER_SANITIZE_EMAIL);
+        $newPhone     =  filter_var($_POST['newPhone'],     FILTER_SANITIZE_STRING);
+        $newGender    =  $_POST['newGender'];
+        $newUsertype  =  $_POST['newUsertype'];
 
     // Server-side validation///////////////////////////////////////////////////////
-    // validate first and last name///////////////////////////
-    if (empty($newFname)) {
-        array_push($INSERTerrors, " يجب كتابة الاسم الاول");
-    } elseif (strlen($newFname) > 100) {
-        array_push($INSERTerrors, "يجب ان لايكون الاسم اكبر من 100 حرف ");
-    }
+        // validate first and last name///////////////////////////
+        if (empty($newFname)) {
+            array_push($INSERTerrors, " يجب كتابة الاسم الاول");
+        } elseif (strlen($newFname) > 100) {
+            array_push($INSERTerrors, "يجب ان لايكون الاسم اكبر من 100 حرف ");
+        }
 
-    if (empty($newLname)) {
-        array_push($INSERTerrors, " يجب كتابة الاسم الاخير");
-    } elseif (strlen($newLname) > 100) {
-        array_push($INSERTerrors, " يجب ان لايكون الاسم اكبر من 100 حرف ");
-    }
+        if (empty($newLname)) {
+            array_push($INSERTerrors, " يجب كتابة الاسم الاخير");
+        } elseif (strlen($newLname) > 100) {
+            array_push($INSERTerrors, " يجب ان لايكون الاسم اكبر من 100 حرف ");
+        }
 
-    // validate email///////////////////////////
-    if (empty($newEmail)) {
-        array_push($INSERTerrors, "يجب كتابة البريد الالكترونى");
-    } elseif (filter_var($newEmail, FILTER_VALIDATE_EMAIL) == false) {
-        array_push($INSERTerrors, "البريد الالكترونى غير صالح");
-    }
+        // validate email///////////////////////////
+        if (empty($newEmail)) {
+            array_push($INSERTerrors, "يجب كتابة البريد الالكترونى");
+        } elseif (filter_var($newEmail, FILTER_VALIDATE_EMAIL) == false) {
+            array_push($INSERTerrors, "البريد الالكترونى غير صالح");
+        }
 
-    // validate password////////////////////////////
-    if (empty($newPass)) {
-        array_push($INSERTerrors, "يجب كتابة  كلمة المرور");
-    } elseif (strlen($newPass) < 8) {
-        array_push($INSERTerrors, "يجب ان تحتوي كلمة المرور  اكثر  من 8 حرف ");
-    }
+        // validate password////////////////////////////
+        if (empty($newPass)) {
+            array_push($INSERTerrors, "يجب كتابة  كلمة المرور");
+        } elseif (strlen($newPass) < 8) {
+            array_push($INSERTerrors, "يجب ان تحتوي كلمة المرور  اكثر  من 8 حرف ");
+        }
 
-    $uppercase = preg_match('@[A-Z]@', $newPass);
-    $lowercase = preg_match('@[a-z]@', $newPass);
-    $number    = preg_match('@[0-9]@', $newPass);
+        $uppercase = preg_match('@[A-Z]@', $newPass);
+        $lowercase = preg_match('@[a-z]@', $newPass);
+        $number    = preg_match('@[0-9]@', $newPass);
 
-    if (!$uppercase || !$lowercase || !$number  || strlen($newPass) < 6) {
-        array_push($INSERTerrors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
-    }
+        if (!$uppercase || !$lowercase || !$number  || strlen($newPass) < 6) {
+            array_push($INSERTerrors, "يجب ان تتكون كلمة السر على الاقل من 6 ارقام تتضمن حرف كبير وحرف صغير وارقام");
+        }
 
-    // validate gender///////////////////////////
-    if (empty($newGender)) {
-        array_push($INSERTerrors, "يرجى تحديد نوع الجنس");
-    }
-    // validate userType///////////////////////////
-    if (empty($newUsertype)) {
-        array_push($INSERTerrors, "يرجى تحديد نوع المستخدم");
-    }
+        // validate gender///////////////////////////
+        if (empty($newGender)) {
+            array_push($INSERTerrors, "يرجى تحديد نوع الجنس");
+        }
+        // validate userType///////////////////////////
+        if (empty($newUsertype)) {
+            array_push($INSERTerrors, "يرجى تحديد نوع المستخدم");
+        }
 
-    // validate phone///////////////////////////
-    if (empty($newPhone)) {
-        array_push($INSERTerrors, "يرجى ادخال رقم الجوال");
-    }
-    if (!(preg_match('/^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/', $newPhone))) {
-        array_push($INSERTerrors, " يرجى ادخال رقم الجوال بشكل صحيح");
-    }
-    //prevent dublicate emails query/////////////////////////////////////////////////
-    $statment = "SELECT email FROM users WHERE email ='$newEmail'";
-    $data = mysqli_fetch_row(mysqli_query($conn, $statment));
+        // validate phone///////////////////////////
+        if (empty($newPhone)) {
+            array_push($INSERTerrors, "يرجى ادخال رقم الجوال");
+        }
+        if (!(preg_match('/^(\d{3})[- ]?(\d{3})[- ]?(\d{4})$/', $newPhone))) {
+            array_push($INSERTerrors, " يرجى ادخال رقم الجوال بشكل صحيح");
+        }
+        //prevent dublicate emails query/////////////////////////////////////////////////
+        $statment = "SELECT email FROM users WHERE email ='$newEmail'";
+        $data = mysqli_fetch_row(mysqli_query($conn, $statment));
 
-    if ($data) {
-        array_push($INSERTerrors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
-    }
+        if ($data) {
+            array_push($INSERTerrors, "هناك حساب مسجل مسبقا بهذا البريد الالكتروني");
+        }
 
 
 
     //if no insert erorrs
-    if (count($INSERTerrors) == 0) {
-        $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$newEmail ','$newFname','$newLname','$newPhone','$newPass ','$newGender','$newUsertype','')";
-        if (mysqli_query($conn, $sql)) {
-            echo "<script> alert('a new user is inserted successfully!')</script>";
+        if (count($INSERTerrors) == 0) {
+            $sql = "INSERT INTO users ( Email, Fname, Lname, Phone, pass, Gender, UserType,Image) VALUES ('$newEmail ','$newFname','$newLname','$newPhone','$newPass ','$newGender','$newUsertype','')";
+            if (mysqli_query($conn, $sql)) {
+                $ConfirmeditMsg= "تمت اضافة مستخدم جديد";   
+            }
         }
     }
-}
-
-
 ?>
 
 <!DOCTYPE html>
@@ -174,8 +173,9 @@ if (isset($_POST['insertNewUser'])) {
             <div class="text-center">
                 <nav aria-label="breadcrumb text-light " style="float: left;">
                     <ol class="breadcrumb text-light mt-5 text-xl" style="--bs-breadcrumb-divider-color:#C4AE7C;">
-                        <li class="breadcrumb-item text-pigi" aria-current="page"> الملف الشخصي </li>
-                        <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
+                    <li class="breadcrumb-item text-pigi" aria-current="page"> اضافة مستخدم </li>
+                        <li class="breadcrumb-item"> <a href="Admin.php"> لوحة التحكم </a></li>
+                        <li class="breadcrumb-item"><a href="index.php">الرئيسية</a></li>
                     </ol>
                 </nav>
             </div>
@@ -186,17 +186,6 @@ if (isset($_POST['insertNewUser'])) {
             <div>
                 <h5 class="text-3xl text-center mt-1 my-3"> اضافة مستخدم جديد</h5>
             </div>
-            <form action="AdminAddUser.php" method="POST" class="flex flex-col pe-1 space-y-2 mx-5 text-end">
-                <input class="border py-1 mx-0 text-end" type="text" name="newEmail" placeholder="البريد الالكتروني">
-                <input class="border py-1 mx-0 text-end" type="text" name="newFname" placeholder="الاسم الاول ">
-                <input class="border py-1 mx-0 text-end" type="text" name="newLname" placeholder="الاسم الثاني">
-                <input class="border py-1 mx-0 text-end" type="text" name="newPhone" placeholder="رقم الهاتف">
-                <input class="border py-1 mx-0 text-end" type="text" name="newPass" placeholder="كلمة المرور">
-                <input class="border py-1 mx-0 text-end" type="text" name="newUsertype" placeholder="نوع المستخدم">
-                <input class="border py-1 mx-0 text-end" type="text" name="newGender" placeholder="الجنس">
-                <div> <button type="submit" name="insertNewUser" class="btn bg-pigi px-4 py-2 hover:bg-cohly text-center text-light" style="background-color: #C4AE7C;">اضافة</button></div>
-            </form>
-
             <?php if (count($INSERTerrors) > 0) : ?>
                 <div class="error">
                     <?php foreach ($INSERTerrors as $error) : ?>
@@ -204,6 +193,21 @@ if (isset($_POST['insertNewUser'])) {
                     <?php endforeach ?>
                 </div>
             <?php endif ?>
+            <?php if (!empty($ConfirmeditMsg)) : ?>
+                <div class="systemMsg py-2">
+                    <p><?php echo $ConfirmeditMsg ?> </p>
+                </div>
+            <?php endif ?>
+            <form action="AdminAddUser.php" method="POST" class="flex flex-col pe-1 space-y-2 mx-5 text-end">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="newEmail" placeholder="البريد الالكتروني">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="newFname" placeholder="الاسم الاول ">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="newLname" placeholder="الاسم الثاني">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="newPhone" placeholder="رقم الهاتف">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="newPass" placeholder="كلمة المرور">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="newUsertype" placeholder="نوع المستخدم">
+                <input class="border rounded py-1 px-2 mx-0 text-end" type="text" name="newGender" placeholder="الجنس">
+                <div> <button type="submit" name="insertNewUser" class="btn bg-pigi px-4 py-2 hover:bg-cohly text-center text-light" style="background-color: #C4AE7C;">اضافة</button></div>
+            </form>
 
             <!-- Scripts -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

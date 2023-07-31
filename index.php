@@ -388,7 +388,8 @@
               <form action="include/insert.php" method="POST" id="submit_form" class="space-y-4">
                 <input type="text" name="name" id="name" class="form-control rounded-3 border-pigi text-end " placeholder="الاسم">
                 <input type="text" name="email" id="email" class="form-control rounded-3 border-pigi text-end  " placeholder="البريد الالكتروني">
-                <textarea name="message" id="message" class="form-control rounded-3 border-pigi text-end" rows="7" placeholder="اكتب رسالتك هنا  "></textarea>
+                <input type="text" name="subject" id="subject" class="form-control rounded-3 border-pigi text-end " placeholder="عنوان الرسالة">
+                <textarea name="message" id="message" class="form-control rounded-3 border-pigi text-end" rows="5" placeholder="اكتب رسالتك هنا  "></textarea>
                 <center> <button type="button" name="submit" id="submit" class="btn bg-pigi rounded px-3 py-2 hover:bg-boni text-light">ارسال</button>
                 </center>
                 <span id="error_message" class="text-danger"></span>
@@ -500,9 +501,10 @@
     $(document).ready(function() {
       $('#submit').click(function() {
         var name = $('#name').val();
-        var message = $('#message').val();
+        var message = $('#message').val(); 
+        var subject = $('#subject').val();
         var email = $('#email').val();
-        if (name == '' || message == '' || email == '') {
+        if (name == '' || message == '' || email == ''|| subject == '') {
           $('#error_message').html("الرجاء التأكد من تعبئة البيانات ");
         } else {
           $('#error_message').html('');
@@ -512,7 +514,8 @@
             data: {
               name: name,
               email: email,
-              message: message
+              message: message,
+              subject: subject
             },
             success: function(data) {
               $("form").trigger("reset");

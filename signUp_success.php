@@ -43,7 +43,7 @@ include('./include/signup_processing.php');
     <div class="container d-flex justify-content-between align-items-center">
       <div class="logo">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="index.php">
             <img src="img/rakaya.png" class="me-lg-2" height="40" class=" active btn-get-started animate__animated animate__fadeInUp" />
           </a>
         </div>
@@ -71,7 +71,7 @@ include('./include/signup_processing.php');
         <nav aria-label="breadcrumb text-light " style="float: left;">
           <ol class="breadcrumb text-light mt-5 text-xl" style="--bs-breadcrumb-divider-color:#C4AE7C;">
             <li class="breadcrumb-item text-pigi" aria-current="page">انشاء حساب </li>
-            <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
+            <li class="breadcrumb-item"><a href="index.php">الرئيسية</a></li>
           </ol>
         </nav>
       </div>

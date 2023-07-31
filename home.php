@@ -157,27 +157,28 @@ if (empty($row['Image'])) {
       </div>
       <div class="flex justify-around space-x-32">
         <div class="flex flex-col space-y-2">
-          <a href="index.html">الرئيسية</a>
-          <a href="#about">عن ركايا</a>
+          <a href="index.php">الرئيسية</a>
+          <a href="index.php#about">عن ركايا</a>
         </div>
         <div class="flex flex-col space-y-2">
-          <a href="#services">خدماتنا</a>
-          <a href="#contact">للتواصل</a>
+          <a href="index.php#services">خدماتنا</a>
+          <a href="index.php#contact">للتواصل</a>
         </div>
       </div>
-      <div class="flex flex-col justify-between items-center">
-        <form action="">
-          <div class="single">
-            <div class="input-group">
-              <input type="text" name="" placeholder="البريد الإلكتروني" id="" class="mb-2 flex-1 py-2 px-6 rounded text-end">
-              <span class="input-group-btn">
-                <button class="ml-2 btn bg-pigi rounded px-6 py-2 hover:bg-cohly text-light" type="submit" name="Subscribe">الاشتراك</button>
-              </span>
-            </div>
+    </div>
+    <div class="flex flex-col justify-between items-center">
+      <form action="">
+        <div class="single">
+          <div class="input-group">
+            <input type="text" name="" placeholder="البريد الإلكتروني" id="" class="mb-2 flex-1 py-2 px-6 rounded text-end">
+            <span class="input-group-btn">
+              <button class="ml-2 btn bg-pigi rounded px-6 py-2 hover:bg-cohly text-light" type="submit" name="Subscribe">الاشتراك</button>
+            </span>
           </div>
-        </form>
-        <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
-      </div>
+        </div>
+      </form>
+      <div class="hidden md:block text-right">اشترك لدينا ليصلك كل جديد</div>
+    </div>
     </div>
 
     <!-- Copyright -->

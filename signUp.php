@@ -66,7 +66,7 @@ include('./include/signup_processing.php');
         <nav aria-label="breadcrumb text-light " style="float: left;">
           <ol class="breadcrumb text-light mt-5 text-xl" style="--bs-breadcrumb-divider-color:#C4AE7C;">
             <li class="breadcrumb-item text-pigi" aria-current="page">انشاء حساب </li>
-            <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
+            <li class="breadcrumb-item"><a href="index.php">الرئيسية</a></li>
           </ol>
         </nav>
       </div>
@@ -167,7 +167,7 @@ include('./include/signup_processing.php');
                 <button name="submit" class="w-full btn bg-pigi mb-1 rounded px-4 py-2 hover:bg-cohly text-center text-light" type="submit" style="background-color: #C4AE7C;">
                   انشئ الحساب</button>
                 <div>
-                  <i> لديك حساب بالفعل؟ <a href="logIn.html" class="link-underline-dark link-opacity-75 text-boni"> اضغط
+                  <i> لديك حساب بالفعل؟ <a href="logIn.php" class="link-underline-dark link-opacity-75 text-boni"> اضغط
                       هنا
                     </a>
                   </i>

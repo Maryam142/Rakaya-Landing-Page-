@@ -6,11 +6,7 @@ if (!isset($_SESSION['logged_in'])) {
     header('location: logIn.php');
     die();
 }
-
-if ($_SESSION['edited']) {
-    echo "<script> alert('the user account is updated successfully!'); </script>";
-    $_SESSION['edited'] = false;
-}
+$ConfirmeditMsg="";
 
 ////retrive Admin Info only/////////////////////////////////////////////////////////////////////////
 $admin_email = $_SESSION['user_email'];
@@ -221,7 +217,7 @@ $lastPage = ceil($number_of_rows / $perPage);
             <div class="text-center">
                 <nav aria-label="breadcrumb text-light " style="float: left;">
                     <ol class="breadcrumb text-light mt-5 text-xl" style="--bs-breadcrumb-divider-color:#C4AE7C;">
-                        <li class="breadcrumb-item text-pigi" aria-current="page"> الملف الشخصي </li>
+                        <li class="breadcrumb-item text-pigi" aria-current="page"> لوحة التحكم </li>
                         <li class="breadcrumb-item"><a href="index.html">الرئيسية</a></li>
                     </ol>
                 </nav>
@@ -399,12 +395,12 @@ $lastPage = ceil($number_of_rows / $perPage);
             </div>
             <div class="flex justify-around space-x-32">
                 <div class="flex flex-col space-y-2">
-                    <a href="index.html">الرئيسية</a>
-                    <a href="#about">عن ركايا</a>
+                    <a href="index.php">الرئيسية</a>
+                    <a href="index.php#about">عن ركايا</a>
                 </div>
                 <div class="flex flex-col space-y-2">
-                    <a href="#services">خدماتنا</a>
-                    <a href="#contact">للتواصل</a>
+                    <a href="index.php#services">خدماتنا</a>
+                    <a href="index.php#contact">للتواصل</a>
                 </div>
             </div>
             <div class="flex flex-col justify-between items-center">

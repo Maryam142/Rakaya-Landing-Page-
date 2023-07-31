@@ -27,7 +27,5 @@ if (isset($_POST["ELname"])) {
     $Eemail    =  filter_var($_POST["Eemail"],  FILTER_SANITIZE_EMAIL);
 
     $query = "UPDATE `users` SET `Email` = '$Eemail', `Fname` = '$EFname', `Lname` = '$ELname' WHERE `users`.`id` = $id";
-    if (mysqli_query($conn, $query)) {
-        echo "تم ارسال الرسالة ";
-    }else{echo "errrooorrrrrrr!";}
+    mysqli_query($conn, $query);   
 }

@@ -89,7 +89,7 @@ $id = $row['id'];
                 <div class="col-md-7 border-right text-end">
                     <div class="p-3 py-3 text-end">
 
-                        <form action="" method="POST" id="submit_form" class="border border-ramadi rounded p-5">
+                        <form action="" method="POST" id="form" class="border border-ramadi rounded p-5">
                             <div class="row">
                                 <div class="col-md-6"><label class="labels">الاسم الأول </label><input type="text" id="EFname" name="EFname" class="form-control text-end" placeholder="الاسم الأول " value="<?php echo $row['Fname'] ?>"></div>
                                 <div class="col-md-6"><label class="labels">الأسم الأخير </label><input type="text" id="ELname" name="ELname" class="form-control text-end" placeholder="الاسم الأخير" value="<?php echo $row['Lname'] ?>"></div>
@@ -143,13 +143,14 @@ $id = $row['id'];
             </div>
             <div class="flex justify-around space-x-32">
                 <div class="flex flex-col space-y-2">
-                    <a href="index.html">الرئيسية</a>
-                    <a href="#about">عن ركايا</a>
+                    <a href="index.php">الرئيسية</a>
+                    <a href="index.php#about">عن ركايا</a>
                 </div>
                 <div class="flex flex-col space-y-2">
-                    <a href="#services">خدماتنا</a>
-                    <a href="#contact">للتواصل</a>
+                    <a href="index.php#services">خدماتنا</a>
+                    <a href="index.php#contact">للتواصل</a>
                 </div>
+            </div>
             </div>
             <div class="flex flex-col justify-between items-center">
                 <form action="">
@@ -213,6 +214,8 @@ $id = $row['id'];
                 var EFname = $('#EFname').val();
                 var ELname = $('#ELname').val();
                 var Eemail = $('#Eemail').val();
+                var success_message = $('#success_message');
+
                 if (EFname == '' || ELname == '' || Eemail == '') {
                     $('#error_message').html("الرجاء التأكد من تعبئة البيانات ");
                 } else {
@@ -227,10 +230,10 @@ $id = $row['id'];
                         },
                         success: function(data) {
                             $("form").trigger("reset");
-                            $('#success_message').fadeIn().html(data);
+                            $('#success_message').fadeIn().html('تم تحديث البيانات بنجاح');
                             setTimeout(function() {
                                 $('#success_message').fadeOut("Slow");
-                            }, 2000);
+                            }, 99000);
                         }
                     });
                 }
